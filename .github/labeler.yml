@@ -1,0 +1,4 @@
+area/infra:
+  - "util/**/*"
+  - ".github/**/*"
+  - "Dockerfile"
