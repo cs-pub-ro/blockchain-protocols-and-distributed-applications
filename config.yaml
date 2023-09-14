@@ -31,8 +31,8 @@ docusaurus:
     sidebar: js
     structure:
       - Introduction: chapters/README.md
-      - Template Chapter:
-          - Template Topic:
+      - Lectures:
+          - Introduction:
               path: chapters/template-chapter/template-topic/
               extra:
                 - media/
@@ -41,7 +41,21 @@ docusaurus:
                 - Drills/: drills/
                 - Guides/: guides/
                 - Slides: /build/embed_reveal/template-chapter-template-topic
-          - Yet Another Topic:
+          - Blockchain Protocols:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+      - Practical Sessions:
+          - Introduction:
+              path: chapters/template-chapter/template-topic/
+              extra:
+                - media/
+              subsections:
+                - Reading/: reading/
+                - Drills/: drills/
+                - Guides/: guides/
+                - Slides: /build/embed_reveal/template-chapter-template-topic
+          - Blockchain Protocols:
               path: chapters/template-chapter/yet-another-topic/
               subsections:
                 - Drills/: drills/
@@ -54,7 +68,7 @@ docusaurus:
       onBrokenLinks: warn
       onBrokenMarkdownLinks: warn
     config_socials:
-      Main site: https://example.com
-      OCW: https://example.com
+      Main site: https://ocw.cs.pub.ro/courses/fob
+      OCW: https://ocw.cs.pub.ro/courses/fob
       Facebook: https://www.facebook.com/zuck/
     copyright_string: Example Copyright

@@ -2,7 +2,7 @@
 slug: /
 ---
 
-# Intro
+# Welcome to Blockchain Protocols and Distributed Applications
 
 This is a landing page for your course.
 
