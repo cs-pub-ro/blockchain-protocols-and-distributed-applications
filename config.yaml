@@ -27,7 +27,7 @@ embed_reveal:
 docusaurus:
   plugin: docusaurus
   options:
-    course_name: Template
+    course_name: Blockchain Protocols and Distributed Applications
     sidebar: js
     structure:
       - Introduction: chapters/README.md
