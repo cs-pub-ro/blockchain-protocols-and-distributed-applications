@@ -41,7 +41,39 @@ docusaurus:
                 - Drills/: drills/
                 - Guides/: guides/
                 - Slides: /build/embed_reveal/template-chapter-template-topic
-          - Blockchain Protocols:
+          - Blockchain Protocols v1:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Blockchain Protocols v2:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Case Study - Invited Speaker:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Wallet:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Virtual Machine:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Smart Contracts:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Security:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Scaling dApps:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Composability:
               path: chapters/template-chapter/yet-another-topic/
               subsections:
                 - Drills/: drills/
@@ -55,7 +87,57 @@ docusaurus:
                 - Drills/: drills/
                 - Guides/: guides/
                 - Slides: /build/embed_reveal/template-chapter-template-topic
-          - Blockchain Protocols:
+          - Wallet:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Basic Peer-to-Peer Blockchain:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Observers:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Virtual Machine:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Smart Contracts:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Fungible Tokens:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Non Fungible Tokens (NFT):
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - dApps:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - Security:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+          - DeFi:
+              path: chapters/template-chapter/yet-another-topic/
+              subsections:
+                - Drills/: drills/
+      - Assignments:
+          - Assignment1:
+              path: chapters/template-chapter/template-topic/
+              extra:
+                - media/
+              subsections:
+                - Reading/: reading/
+                - Drills/: drills/
+                - Guides/: guides/
+                - Slides: /build/embed_reveal/template-chapter-template-topic
+          - Assignment2:
               path: chapters/template-chapter/yet-another-topic/
               subsections:
                 - Drills/: drills/
