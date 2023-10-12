@@ -51,14 +51,14 @@ docusaurus:
           path: /build/embed_reveal
           subsections:
             - Introduction: Introduction/Introduction.mdx
-            - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
+            # - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
             # - Case Study: Case-Study/Case-Study.mdx
             # - Wallet: Wallet/Wallet.mdx
-            - Virtual Machine: Virtual-Machine/Virtual-Machine.mdx
-            - Smart Contracts: Smart-Contracts/Smart-Contracts.mdx
-            - Security: Security/Security.mdx
-            - Scaling dApps: Scaling-dApps/Scaling-dApps.mdx
-            - Composability: Composability/Composability.mdx
+            # - Virtual Machine: Virtual-Machine/Virtual-Machine.mdx
+            # - Smart Contracts: Smart-Contracts/Smart-Contracts.mdx
+            # - Security: Security/Security.mdx
+            # - Scaling dApps: Scaling-dApps/Scaling-dApps.mdx
+            # - Composability: Composability/Composability.mdx
       - Practical Sessions:
           - Explorer:
               path: chapters/introduction/lab/content/explorer
