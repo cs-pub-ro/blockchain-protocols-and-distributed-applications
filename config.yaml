@@ -12,15 +12,15 @@ make_assets:
   options:
     command: make
     locations:
-      - chapters/introduction/lecture/slides
-      - chapters/protocol/lecture/slides
+      - chapters/introduction/lecture
+      - chapters/protocol/lecture
       # - chapters/case-study/lecture/slides
       # - chapters/wallet/lecture/slides
-      - chapters/vm/lecture/slides
-      - chapters/smart-contracts/lecture/slides
-      - chapters/security/lecture/slides
-      - chapters/dApps/lecture/slides
-      - chapters/composability/lecture/slides
+      - chapters/vm/lecture
+      - chapters/smart-contracts/lecture
+      - chapters/security/lecture
+      - chapters/dApps/lecture
+      - chapters/composability/lecture
     args:
       - all
 
