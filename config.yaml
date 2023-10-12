@@ -63,8 +63,8 @@ docusaurus:
           - Explorer:
               path: chapters/introduction/lab/content/explorer
               extra:
-                - ../media/
-                - ../quiz/
+                - ../../media/
+                - ../../quiz/
               subsections:
                 - Time in Blockchain/: time.md
                 - Blocks/: blocks.md
