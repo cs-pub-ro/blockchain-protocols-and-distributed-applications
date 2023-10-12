@@ -132,7 +132,7 @@ docusaurus:
                 - Reading/: reading/
                 - Drills/: drills/
                 - Guides/: guides/
-                - Slides: /build/embed_reveal/template-chapter-template-topic
+                # - Slides: /build/embed_reveal/template-chapter-template-topic
           - Assignment2:
               path: chapters/template-chapter/yet-another-topic/
               subsections:
