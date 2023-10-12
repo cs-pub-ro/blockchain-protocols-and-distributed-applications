@@ -79,26 +79,14 @@ docusaurus:
                 - ../../media/
                 - ../../quiz/
               subsections:
-                - Time in Blockchain/: time.md
-                - Blocks/: blocks.md
-                - Transactions/: transactions.md
-                - Leader/: leader.md
-                - Consensus Grup/: consensus.md
-                - Validators/: validators.md
-                - Observers/: observers.md
+                - Observer/: observer.md
           - Wallet:
               path: chapters/introduction/lab/content/wallet
               extra:
                 - ../../media/
                 - ../../quiz/
               subsections:
-                - Time in Blockchain/: time.md
-                - Blocks/: blocks.md
-                - Transactions/: transactions.md
-                - Leader/: leader.md
-                - Consensus Grup/: consensus.md
-                - Validators/: validators.md
-                - Observers/: observers.md
+                - Wallet/: wallet.md
           - Basic Peer-to-Peer Blockchain:
               path: chapters/template-chapter/yet-another-topic/
               subsections:
