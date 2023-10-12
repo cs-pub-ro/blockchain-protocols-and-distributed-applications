@@ -13,14 +13,14 @@ make_assets:
     command: make
     locations:
       - chapters/introduction/lecture
-      - chapters/protocol/lecture
+      # - chapters/protocol/lecture
       # - chapters/case-study/lecture/slides
       # - chapters/wallet/lecture/slides
-      - chapters/vm/lecture
-      - chapters/smart-contracts/lecture
-      - chapters/security/lecture
-      - chapters/dApps/lecture
-      - chapters/composability/lecture
+      # - chapters/vm/lecture
+      # - chapters/smart-contracts/lecture
+      # - chapters/security/lecture
+      # - chapters/dApps/lecture
+      # - chapters/composability/lecture
     args:
       - all
 
