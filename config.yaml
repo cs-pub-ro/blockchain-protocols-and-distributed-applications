@@ -64,7 +64,7 @@ docusaurus:
               path: chapters/introduction/lab/content/explorer
               extra:
                 - ../../media/
-                - ../../quiz/
+                # - ../../quiz/
               subsections:
                 - Time in Blockchain/: time.md
                 - Blocks/: blocks.md
@@ -77,14 +77,14 @@ docusaurus:
               path: chapters/introduction/lab/content/observer
               extra:
                 - ../../media/
-                - ../../quiz/
+                # - ../../quiz/
               subsections:
                 - Observer/: observer.md
           - Wallet:
               path: chapters/introduction/lab/content/wallet
               extra:
                 - ../../media/
-                - ../../quiz/
+                # - ../../quiz/
               subsections:
                 - Wallet/: wallet.md
           - Basic Peer-to-Peer Blockchain:
@@ -134,7 +134,7 @@ docusaurus:
                 - Guides/: guides/
                 # - Slides: /build/embed_reveal/template-chapter-template-topic
           - Assignment2:
-              path: chapters/template-chapter/yet-another-topic/
+              path: chapters/template-chapter/yet-another-topic/embed_reveal/template-chapter-template-topic
               subsections:
                 - Drills/: drills/
     static_assets:
