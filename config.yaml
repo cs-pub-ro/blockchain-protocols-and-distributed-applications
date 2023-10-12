@@ -138,7 +138,7 @@ docusaurus:
       #         subsections:
       #           - Drills/: drills/
     static_assets:
-      - template-chapter-template-topic: /build/make_assets/chapters/template-chapter/template-topic/slides/_site
+      - slides/Compute: /build/make_assets/content/chapters/introduction/lecture/_site
     config_meta:
       title: Blockchain Protocols and Distributed Applications
       url: http://costincarabas.github.io/
