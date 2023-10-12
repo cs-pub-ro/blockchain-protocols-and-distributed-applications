@@ -12,7 +12,15 @@ make_assets:
   options:
     command: make
     locations:
-      - chapters/template-chapter/template-topic/slides
+      - chapters/introduction/lecture/slides
+      - chapters/protocol/lecture/slides
+      - chapters/case-study/lecture/slides
+      - chapters/wallet/lecture/slides
+      - chapters/vm/lecture/slides
+      - chapters/smart-contracts/lecture/slides
+      - chapters/security/lecture/slides
+      - chapters/dApps/lecture/slides
+      - chapters/composability/lecture/slides
     args:
       - all
 
@@ -22,7 +30,15 @@ embed_reveal:
     target: docusaurus
     extension: mdx
     build:
-      template-chapter-template-topic: template-chapter-template-topic
+      Introduction: slides/introduction
+      Protocol: slides/protocol
+      Case-Study: slides/case-study
+      Wallet: slides/wallet
+      VM: slides/vm
+      Smart-Contracts: slides/smart-contracts
+      Security: slides/security
+      Dapps: slides/dApps
+      Composability: slides/composability
 
 docusaurus:
   plugin: docusaurus
@@ -31,66 +47,58 @@ docusaurus:
     sidebar: js
     structure:
       - Introduction: chapters/README.md
-      - Lectures:
-          - Introduction:
-              path: chapters/template-chapter/template-topic/
-              extra:
-                - media/
-              subsections:
-                - Reading/: reading/
-                - Drills/: drills/
-                - Guides/: guides/
-                - Slides: /build/embed_reveal/template-chapter-template-topic
-          - Blockchain Protocols v1:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
-          - Blockchain Protocols v2:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
-          - Case Study - Invited Speaker:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
-          - Wallet:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
-          - Virtual Machine:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
-          - Smart Contracts:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
-          - Security:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
-          - Scaling dApps:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
-          - Composability:
-              path: chapters/template-chapter/yet-another-topic/
-              subsections:
-                - Drills/: drills/
+      - Lecture:
+          path: /build/embed_reveal
+          subsections:
+            - Introduction: Introduction/Introduction.mdx
+            - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
+            - Case Study: Case-Study/Case-Study.mdx
+            - Wallet: Wallet/Wallet.mdx
+            - Virtual Machine: Virtual-Machine/Virtual-Machine.mdx
+            - Smart Contracts: Smart-Contracts/Smart-Contracts.mdx
+            - Security: Security/Security.mdx
+            - Scaling dApps: Scaling-dApps/Scaling-dApps.mdx
+            - Composability: Composability/Composability.mdx
       - Practical Sessions:
-          - Introduction:
-              path: chapters/template-chapter/template-topic/
+          - Explorer:
+              path: chapters/introduction/lab/content/explorer
               extra:
-                - media/
+                - ../media/
+                - ../quiz/
               subsections:
-                - Reading/: reading/
-                - Drills/: drills/
-                - Guides/: guides/
-                - Slides: /build/embed_reveal/template-chapter-template-topic
+                - Time in Blockchain/: time.md
+                - Blocks/: blocks.md
+                - Block Leader/: leader.md
+                - Consensus Grup/: consensus.md
+                - Transactions/: transactions.md
+                - Blockchain Validators/: validators.md
+                - Blockchain Observers/: observers.md
+          - Observer:
+              path: chapters/introduction/lab/content/observer
+              extra:
+                - ../../media/
+                - ../../quiz/
+              subsections:
+                - Time in Blockchain/: time.md
+                - Blocks/: blocks.md
+                - Transactions/: transactions.md
+                - Leader/: leader.md
+                - Consensus Grup/: consensus.md
+                - Validators/: validators.md
+                - Observers/: observers.md
           - Wallet:
-              path: chapters/template-chapter/yet-another-topic/
+              path: chapters/introduction/lab/content/wallet
+              extra:
+                - ../../media/
+                - ../../quiz/
               subsections:
-                - Drills/: drills/
+                - Time in Blockchain/: time.md
+                - Blocks/: blocks.md
+                - Transactions/: transactions.md
+                - Leader/: leader.md
+                - Consensus Grup/: consensus.md
+                - Validators/: validators.md
+                - Observers/: observers.md
           - Basic Peer-to-Peer Blockchain:
               path: chapters/template-chapter/yet-another-topic/
               subsections:
