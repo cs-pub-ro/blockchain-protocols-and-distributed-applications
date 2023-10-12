@@ -14,8 +14,8 @@ make_assets:
     locations:
       - chapters/introduction/lecture/slides
       - chapters/protocol/lecture/slides
-      - chapters/case-study/lecture/slides
-      - chapters/wallet/lecture/slides
+      # - chapters/case-study/lecture/slides
+      # - chapters/wallet/lecture/slides
       - chapters/vm/lecture/slides
       - chapters/smart-contracts/lecture/slides
       - chapters/security/lecture/slides
@@ -32,8 +32,8 @@ embed_reveal:
     build:
       Introduction: slides/introduction
       Protocol: slides/protocol
-      Case-Study: slides/case-study
-      Wallet: slides/wallet
+      # Case-Study: slides/case-study
+      # Wallet: slides/wallet
       VM: slides/vm
       Smart-Contracts: slides/smart-contracts
       Security: slides/security
@@ -52,8 +52,8 @@ docusaurus:
           subsections:
             - Introduction: Introduction/Introduction.mdx
             - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
-            - Case Study: Case-Study/Case-Study.mdx
-            - Wallet: Wallet/Wallet.mdx
+            # - Case Study: Case-Study/Case-Study.mdx
+            # - Wallet: Wallet/Wallet.mdx
             - Virtual Machine: Virtual-Machine/Virtual-Machine.mdx
             - Smart Contracts: Smart-Contracts/Smart-Contracts.mdx
             - Security: Security/Security.mdx
