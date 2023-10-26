@@ -1,4 +1,4 @@
-# Observers
+# Blockchain Observers
 
 Observers are a type of nodes that `don't participate in the consensus` but keep a peer-to-peer communication with the rest of the blockchain.
 They are usually used to see the communication between nodes (ex: debugging). 
