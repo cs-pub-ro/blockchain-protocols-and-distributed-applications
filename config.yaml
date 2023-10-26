@@ -73,6 +73,7 @@ docusaurus:
                 - Transactions/: transactions.md
                 - Blockchain Validators/: validators.md
                 - Blockchain Observers/: observers.md
+                - Devnet Blockchains/: devnet_testnet.md
           - Observer:
               path: chapters/introduction/lab/content/observer
               extra:
