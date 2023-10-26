@@ -1,4 +1,4 @@
-# Validators
+# Blockchain Validators
 
 Every validators/node is publicly displayed on the explorer:
 * [MultiverX Validators](https://explorer.multiversx.com/validators);
@@ -54,4 +54,4 @@ The explorer offers details on each node participant to the blockchain.
 
 - Open 3 different nodes on [MultiversX Explorer](https://explorer.multiversx.com/nodes) and inspect them;
 - Open 3 different nodes on [Ethereum Explorer](https://etherscan.io/nodetracker/nodes) and inspect them;
-- Open 3 different nodes on [Solana Explorer](https://etherscan.io/nodetracker/nodes) and inspect them;
+- Open 3 different nodes on [Solana Explorer](https://solscan.io/validator) and inspect them;
