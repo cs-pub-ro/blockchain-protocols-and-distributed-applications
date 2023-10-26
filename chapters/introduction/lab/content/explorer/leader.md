@@ -23,5 +23,6 @@ We can see his public key, version of the software for the blockchain node and o
 
 ## Practice
 
-Open 3 different blocks in 3 different tabs. Observe that every time there is another leader.
+- Open 3 different blocks in 3 different tabs. Observe that every time there is another leader.
 Why do you think the system is designed this way?
+- Open 3 different blocks in 3 different tabs on Ethereum [Explorer](https://etherscan.io/). Observe that every time there is another leader.
