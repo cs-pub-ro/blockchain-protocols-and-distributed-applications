@@ -7,7 +7,7 @@ Here's how time is managed in blockchains:
 
 ## Rounds
 
-`Rounds`` refer to the cyclic or sequential stages of consensus protocols, particularly in proof-of-stake (PoS) and delegated proof-of-stake (DPoS) blockchains.
+`Rounds` refer to the cyclic or sequential stages of consensus protocols, particularly in proof-of-stake (PoS) and delegated proof-of-stake (DPoS) blockchains.
 Each blockchain has it's own length of rounds:
 - MultiversX - 6 seconds;
 - Ethereum - 12 seconds;
