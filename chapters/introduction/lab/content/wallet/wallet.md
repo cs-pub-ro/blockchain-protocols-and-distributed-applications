@@ -24,7 +24,7 @@ The next page is a test to see if you actually have saved the Secret Phrase. Ent
 
 You are one step away from getting your Keystore File. First, encrypt it with a password. 
 
-![Create Wallet](../../media/wallet_passwords.png
+![Wallet Password](../../media/wallet_passwords.png)
 
 In case you forget this password, you can get a new Keystore File with your secret phrase. Remembering it is always better.
 
