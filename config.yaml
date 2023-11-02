@@ -89,7 +89,7 @@ docusaurus:
               subsections:
                 - Wallet/: wallet.md
                 - Keystore/: keystore.md
-                - Access & Faucet: fauced.md
+                - Access & Faucet: faucet.md
                 - Send Transaction: send_tx.md
                 - Browser Web Wallet: browser_wallet.md
                 - Observer: observer.md
