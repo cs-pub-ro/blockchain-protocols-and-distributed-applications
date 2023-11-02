@@ -88,6 +88,11 @@ docusaurus:
                 # - ../../quiz/
               subsections:
                 - Wallet/: wallet.md
+                - Keystore/: keystore.md
+                - Access & Faucet: fauced.md
+                - Send Transaction: send_tx.md
+                - Browser Web Wallet: browser_wallet.md
+                - Observer: observer.md
       #     - Basic Peer-to-Peer Blockchain:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:
