@@ -79,14 +79,14 @@ docusaurus:
               extra:
                 - ../../media/
                 # - ../../quiz/
-              subsections:
+              sections:
                 - Observer/: observer.md
           - Wallet:
               path: chapters/introduction/lab/content/wallet
               extra:
                 - ../../media/
                 # - ../../quiz/
-              subsections:
+              sections:
                 - Wallet/: wallet.md
       #     - Basic Peer-to-Peer Blockchain:
       #         path: chapters/template-chapter/yet-another-topic/
