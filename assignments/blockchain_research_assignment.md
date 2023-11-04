@@ -1,4 +1,4 @@
-# Research Assignment (Bonus)
+# Blockchai nResearch Assignment (Bonus)
 
 The goal of this assignment is to create an essay that does a critical analysis of a blockchain solution: highlighting weak spots and strong spots.
 
@@ -8,5 +8,6 @@ The goal of this assignment is to create an essay that does a critical analysis 
 
 
 **Deadline**: Wednesday, 10 January 2024, 11:59 PM
+
 [Submission link](https://curs.upb.ro/2023/mod/assign/view.php?id=60373)
 

@@ -1,6 +1,7 @@
 # Semester Project
 
 The main assignment for this semester is a project on a blockchain. There are no restrictions regarding the blockchain.
+You can choose one of the idea below or you can create one of your own.
 
 ## Phase 1
 
