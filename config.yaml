@@ -75,10 +75,14 @@ docusaurus:
                 - Blockchain Observers/: observers.md
                 - Devnet Blockchains/: devnet_testnet.md
           - Observer:
-              path: chapters/introduction/lab/content/observer/observer.md
+              path: chapters/introduction/lab/content/observer/
               extra:
                 - ../../media/
                 # - ../../quiz/
+              subsections:
+                - Observers: observer.md
+
+
           - Wallet:
               path: chapters/introduction/lab/content/wallet
               extra:
