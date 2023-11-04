@@ -139,6 +139,7 @@ docusaurus:
               #   - Drills/: drills/
               #   - Guides/: guides/
                 # - Slides: /build/embed_reveal/template-chapter-template-topic
+      - Grading: util/grading.md
     # static_assets:
     #   - slides/Compute: /build/make_assets/content/chapters/introduction/lecture/_site
     config_meta:

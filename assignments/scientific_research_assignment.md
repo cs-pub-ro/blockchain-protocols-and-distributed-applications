@@ -10,7 +10,7 @@ Your task is to highligh weak spots and strong spots for each paper.
 You can start from one of the topics below, or propose a new one.
 We encourge you to find 2-3 similar papers on [Google Scholar](https://scholar.google.com/) related to your chosen topic.
 
-| Idea name    | Description |
+| Paper Name    | Link |
 | -------- | ------- |
 | Proof of Space with VDF: An Alternative Permissionless BFT Consensus Protocol, by Yuxuan Luo. | [Link](./papers/r1.pdf)
 | An Initial Framework for NFT Auction Mechanism Design: Impossibility Results and Solutions, by Andy Arditi, Pranav Garimidi, Dean Hirsch, and Iason Milionis.| [Link](./papers/r2.pdf)

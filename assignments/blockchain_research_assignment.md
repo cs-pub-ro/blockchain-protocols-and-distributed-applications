@@ -1,4 +1,4 @@
-# Blockchai nResearch Assignment (Bonus)
+# Blockchain Research Assignment
 
 The goal of this assignment is to create an essay that does a critical analysis of a blockchain solution: highlighting weak spots and strong spots.
 
