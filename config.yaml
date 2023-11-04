@@ -129,20 +129,18 @@ docusaurus:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:
       #           - Drills/: drills/
-      # - Assignments:
-      #     - Assignment1:
-      #         path: chapters/template-chapter/template-topic/
-      #         extra:
-      #           - media/
-      #         subsections:
-      #           - Reading/: reading/
-      #           - Drills/: drills/
-      #           - Guides/: guides/
-      #           # - Slides: /build/embed_reveal/template-chapter-template-topic
-      #     - Assignment2:
-      #         # path: chapters/template-chapter/yet-another-topic/embed_reveal/template-chapter-template-topic
-      #         subsections:
-      #           - Drills/: drills/
+      - Assignments:
+          - Project: assignments/project.md
+          - Blockchain Research Assignment: assignments/blockchain_research_assignment.md
+          - Scientific Research Assignment: assignments/scientific_research_assignment.md
+              # path: assignments/
+              # extra:
+              #   - media/
+              # subsections:
+              #   - Reading/: reading/
+              #   - Drills/: drills/
+              #   - Guides/: guides/
+                # - Slides: /build/embed_reveal/template-chapter-template-topic
     # static_assets:
     #   - slides/Compute: /build/make_assets/content/chapters/introduction/lecture/_site
     config_meta:

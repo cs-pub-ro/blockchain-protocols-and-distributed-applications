@@ -15,4 +15,4 @@ You can request test tokens from the Faucet tab.
 
 ### Practice
 
-Request tokens via Faucet functionality
+Request tokens via Faucet functionality.
