@@ -95,6 +95,12 @@ docusaurus:
                 - Send Transaction: send_tx.md
                 - Browser Web Wallet: browser_wallet.md
                 - Observer: observer.md
+          - Money:
+              path: chapters/money/lab/content
+              extra:
+                - ../media/
+              subsections:
+                - ESDT Tokens/: mint_tokens.md
       #     - Basic Peer-to-Peer Blockchain:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:
