@@ -30,15 +30,15 @@ embed_reveal:
     target: docusaurus
     extension: mdx
     build:
-      Introduction: slides/introduction
-      Protocol: slides/protocol
+      Introduction: slides/Introduction
+      # Protocol: slides/protocol
       # Case-Study: slides/case-study
       # Wallet: slides/wallet
-      VM: slides/vm
-      Smart-Contracts: slides/smart-contracts
-      Security: slides/security
-      Dapps: slides/dApps
-      Composability: slides/composability
+      # VM: slides/vm
+      # Smart-Contracts: slides/smart-contracts
+      # Security: slides/security
+      # Dapps: slides/dApps
+      # Composability: slides/composability
 
 docusaurus:
   plugin: docusaurus
