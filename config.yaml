@@ -100,7 +100,8 @@ docusaurus:
               extra:
                 - ../media/
               subsections:
-                - ESDT Tokens/: mint_tokens.md
+                - ESDT Tokens: mint_tokens.md
+                - Swap Tokens: swap.md
       #     - Basic Peer-to-Peer Blockchain:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:
