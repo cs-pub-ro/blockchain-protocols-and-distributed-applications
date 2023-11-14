@@ -156,7 +156,7 @@ docusaurus:
     #   - slides/Compute: /build/make_assets/content/chapters/introduction/lecture/_site
     config_meta:
       title: Blockchain Protocols and Distributed Applications
-      url: http://costincarabas.github.io/
+      url: http://cs-pub-ro.github.io/
       baseUrl: /blockchain-protocols-and-distributed-applications/
       onBrokenLinks: warn
       onBrokenMarkdownLinks: warn
