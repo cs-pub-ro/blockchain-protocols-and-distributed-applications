@@ -111,6 +111,9 @@ docusaurus:
                 - Peer to Peer Network : p2p_network.md
                 - The terminal : terminal.md
                 - Mine a block : mining.md
+                - Basic Wallet : basic_wallet.md
+                - Transactions : transactions.md
+                - Sources : sources.md
               extra:
                 - ../media/
 
