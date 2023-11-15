@@ -102,10 +102,19 @@ docusaurus:
               subsections:
                 - ESDT Tokens: mint_tokens.md
                 - Swap Tokens: swap.md
-      #     - Basic Peer-to-Peer Blockchain:
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
+          - Basic Peer-to-Peer Blockchain:
+              path: chapters/peer-to-peer/lab/content
+              subsections:
+                - What we will build? : what_we_build.md
+                - Why golang? : why_golang.md
+                - What is a discovery node ? : discovery_node.md
+                - Peer to Peer Network : p2p_network.md
+                - The terminal : terminal.md
+                - Mine a block : mining.md
+              extra:
+                - ../media/
+
+
       #     - Observers:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:
