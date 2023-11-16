@@ -1,7 +1,7 @@
 # Mining a block
 
-In this tutorial we will use the most simple and basic way to mine a block.We will use proof of work. 
-How proof of works?
+In this tutorial we will use the most simple and basic way to mine a block.We will use proof of work.
+
 
 ```
 sha256("0xs2rgi3p4jfbt43hrjweafwefwff"+0)="t09q3pfoewjaiougt80u9ropijdd"
