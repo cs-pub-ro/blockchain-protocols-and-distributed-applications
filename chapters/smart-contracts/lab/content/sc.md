@@ -8,7 +8,7 @@ You need to have mxpy installed. Follow the installation guide [here](https://do
 
 
 
-Clone the [Neversea](https://github.com/systems-cs-pub-ro/Foundation-Of-Blockchains/tree/master/labs/lab03/Neversea) project.
+Clone the [Neversea](https://github.com/systems-cs-pub-ro/Foundation-Of-Blockchains/tree/master/labs/lab05/neversea) project.
 
 ## Compile and deploy the Smart Contract template
 
