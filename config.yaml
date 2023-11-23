@@ -116,6 +116,13 @@ docusaurus:
                 - Sources : sources.md
               extra:
                 - ../media/
+          - Smart Contracts:
+              path: chapters/smart-contracts/lab/content
+              extra:
+                - ../media/
+              subsections:
+                - Neversea SC: sc.md
+
 
 
       #     - Observers:
