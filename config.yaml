@@ -119,10 +119,12 @@ docusaurus:
           - Smart Contracts:
               path: chapters/smart-contracts/lab/content
               subsections:
-                - Neversea SC: sc.md
-
-
-
+                - Prerequisites: prerequisites.md
+                - Empty SC: empty.md
+                - Adder SC: adder.md
+                - Deploy SC: deploy.md
+                - Call SC: sc_call.md
+                - Bonus - Neversea SC: sc.md
       #     - Observers:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:
