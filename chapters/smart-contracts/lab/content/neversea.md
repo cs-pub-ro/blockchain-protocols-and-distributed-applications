@@ -3,16 +3,10 @@
 You are the Never Sea Festival 2024 organizers and you decide to create the registration via blockchain.
 Starting from Smart Contract template you have to add more features to coordinate the event.
 
-## Prerequisites
-You need to have mxpy installed. Follow the installation guide [here](https://docs.multiversx.com/sdk-and-tools/sdk-py/installing-mxpy/).
-
-
 
 Clone the [Neversea](https://github.com/systems-cs-pub-ro/Foundation-Of-Blockchains/tree/master/labs/lab05/neversea) project.
 
 ## Compile and deploy the Smart Contract template
-
-Use [tutorial](https://docs.multiversx.com/developers/tutorials/counter/#build-the-contract) to build the smart contract.
 
 To check that the contract was **successfully built**, verify that there was a **wasm** (WebAssembly) file generate: **output/neversea.wasm**. This is the compiled code of your contract.
 

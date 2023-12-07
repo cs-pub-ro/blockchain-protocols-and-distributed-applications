@@ -120,11 +120,12 @@ docusaurus:
               path: chapters/smart-contracts/lab/content
               subsections:
                 - Prerequisites: prerequisites.md
+                - Create Wallet - command line: wallet_cmdline.md
                 - Empty SC: empty.md
                 - Adder SC: adder.md
                 - Deploy SC: deploy.md
                 - Call SC: sc_call.md
-                - Bonus - Neversea SC: sc.md
+                - Bonus - Neversea SC: neversea.md
       #     - Observers:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:

@@ -77,4 +77,10 @@ Notice the _MultiversX Testnet Explorer: https://testnet-explorer.multiversx.com
 Click on the link to see your transaction. 
 
 Notice the _Smart contract address: erd1qqqqqqqqqqqqqpgqgjdcmz3049s0g2zwm6dzfrnk5s3qwn8yjn2qltmga4_.
-Go to the [Testnet Explorer](https://testnet-explorer.multiversx.com) 
+Go to the [Testnet Explorer](https://testnet-explorer.multiversx.com) and search for your SC address.
+
+Notice the contract deployed on testnet:
+
+![Contract deployed on Testnet](../media/contract.png)
+
+Observe the fields **Owner**, **Deployed** (timestamp).
