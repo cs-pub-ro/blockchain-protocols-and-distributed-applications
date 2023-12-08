@@ -126,18 +126,8 @@ docusaurus:
                 - Deploy SC: deploy.md
                 - Call SC: sc_call.md
                 - Neversea SC: neversea.md
-      #     - Observers:
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
-      #     - Virtual Machine:
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
-      #     - Smart Contracts:
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
+              extra:
+                - ../media/
       #     - Fungible Tokens:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:
