@@ -128,6 +128,15 @@ docusaurus:
                 - Neversea SC: neversea.md
               extra:
                 - ../media/
+          - Tokens:
+              path: chapters/tokens/lab/content
+              subsections:
+                - Standards: standards.md
+                - Fungible: wallet_cmdline.md
+                - NFT: empty.md
+              extra:
+                - ../media/
+
       #     - Fungible Tokens:
       #         path: chapters/template-chapter/yet-another-topic/
       #         subsections:
