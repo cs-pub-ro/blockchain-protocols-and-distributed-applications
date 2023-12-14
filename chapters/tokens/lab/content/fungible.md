@@ -101,7 +101,45 @@ RolesAssigningTransaction {
 ### Practice
 
 * Observe the roles of your newly created token.
-* Add **ESDTRoleLocalMint** for your address.
+* Add **ESDTRoleLocalMint** and **ESDTRoleLocalBurn** for your address.
+* Mint 1000 tokens.
 
 
 You can read more about roles in the [documentation](https://docs.multiversx.com/tokens/esdt-tokens/#setting-and-unsetting-special-roles).
+
+## Burning ESDT Tokens
+
+Anyone that holds an amount of ESDT tokens may burn it at their discretion, effectively losing them permanently. This operation reduces the total supply of tokens, and cannot be undone, unless the token manager mints more tokens.
+
+Do you have roles for burning?
+
+```
+LocalBurnTransaction {
+    Sender: <address with ESDTRoleLocalBurn role>
+    Receiver: <same as sender>
+    Value: 0
+    GasLimit: 300000
+    Data: "ESDTLocalBurn" +
+          "@" + <token identifier in hexadecimal encoding> +
+          "@" + <supply to burn in hexadecimal encoding>
+}
+```
+
+### Practice
+
+* Burn 500 tokens
+
+
+## Other actions for ESDTTokens
+
+### Pausing and Unpausing
+
+The manager of an ESDT token may choose to suspend all transactions of the token, except minting, freezing/unfreezing and wiping. Check more details [here](https://docs.multiversx.com/tokens/esdt-tokens/#pausing-and-unpausing).
+
+### Freezing and Unfreezing
+
+The manager of an ESDT token may freeze the tokens held by a specific Account. As a consequence, no tokens may be transferred to or from the frozen Account. Freezing and unfreezing the tokens of an Account are operations designed to help token managers to comply with regulations. The manager of an ESDT token may choose to suspend all transactions of the token, except minting, freezing/unfreezing and wiping. Check more details [here](https://docs.multiversx.com/tokens/esdt-tokens/#freezing-and-unfreezing).
+
+### Wiping
+
+The manager of an ESDT token may wipe out all the tokens held by a frozen Account. This operation is similar to burning the tokens, but the Account must have been frozen beforehand, and it must be done by the token manager. Wiping the tokens of an Account is an operation designed to help token managers to comply with regulations. The manager of an ESDT token may choose to suspend all transactions of the token, except minting, freezing/unfreezing and wiping. Check more details [here](https://docs.multiversx.com/tokens/esdt-tokens/#wiping).
