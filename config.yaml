@@ -132,8 +132,8 @@ docusaurus:
               path: chapters/tokens/lab/content
               subsections:
                 - Standards: standards.md
-                - Fungible: wallet_cmdline.md
-                - NFT: empty.md
+                - Fungible: fungible.md
+                - NFT: nft.md
               extra:
                 - ../media/
 
