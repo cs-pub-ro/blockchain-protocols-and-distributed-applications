@@ -1,6 +1,6 @@
 # Fungible Tokens
 
-## Intro - Fungible vs Non-Fungible Tokens
+## Introduction - Fungible vs Non-Fungible Tokens
 
 * Fungibility refers to an asset's ability to be exchanged for something else of equal value;
 * Some examples of fungible assets include currencies, commodities, and precious stones;
