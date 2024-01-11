@@ -136,6 +136,12 @@ docusaurus:
                 - NFT: nft.md
               extra:
                 - ../media/
+          - Smart Contract Events:
+              path: chapters/smart-contracts/lab/content
+              subsections:
+                - SC Events: events.md
+              extra:
+                - ../media/
 
       #     - Fungible Tokens:
       #         path: chapters/template-chapter/yet-another-topic/
