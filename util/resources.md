@@ -3,7 +3,7 @@
 ## List of Resources:
 
 - [GitHub Repository](https://github.com/CostinCarabas/blockchain-protocols-and-distributed-applications)
-- [Moodle Class](https://curs.upb.ro/2023/course/view.php?id=4660) (used for homework submissions, quizzes, announcements, etc.)
+- [Moodle Class](https://curs.upb.ro/2024/course/view.php?id=1947) (used for homework submissions, quizzes, announcements, etc.)
 
 
 ## Books and interesting reading materials
@@ -14,6 +14,7 @@
 - [Ethereum Whitepaper](https://ethereum.org/en/whitepaper/);
 - [MultiversX Whitepaper](https://files.multiversx.com/multiversx-whitepaper.pdf);
 - [State of Crypto](docs/state-of-crypto.pdf)
+- [Step by step guide to becoming a blockchain developer in 2024](https://roadmap.sh/blockchain);
 - [Secure Development Workflow for Smart Contracts](https://github.com/crytic/building-secure-contracts/blob/master/development-guidelines/workflow.md#secure-development-workflow);
 - [DeFi Handbook — Introduction to Decentralized Finance](docs/defi.pdf)
 - [Cryptozombies learning game](https://cryptozombies.io/en/multiversx)

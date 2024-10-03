@@ -2,20 +2,20 @@
 
 | Section    | Percent of total grade |
 | -------- | ------- |
-| Lab involvement | 10% |
-| Project - Phase 1| 10% |
-| Project - Phase 1| 30% |
-| Scientific Reseach Assignment | 10%|
-| Blockchain Reseach Assignment | 10%|
-| Practical final exam | 30%  points |
-| Theoretical final exam | 10%  points |
-| **Total** | **110%** |
+| Lab involvement | 10p |
+| Homework 1| 15p |
+| Homework 2| 15p |
+| Project| 20p |
+| Lecture involvement | 10p (bonus)|
+| Practical final exam | 30p  points |
+| Theoretical final exam | 10p  points |
+| **Total** | **110p** |
 
 
 4.5 points are required to pass the class.
 There are no other requirements (such as a minimal grade for a given component).
 
-In case you don't pass the exam you may choose to keep the lab and assignments grade or the final exam grade for the next year. You cannot keep some parts of these grades. If choosing not to keep any grade, everything will be reset for at the beginning of the 2024-2025 academic year.
+In case you don't pass the exam you may choose to keep the lab and assignments grade or the final exam grade for the next year. You cannot keep some parts of these grades. If choosing not to keep any grade, everything will be reset for at the beginning of the 2025-2026 academic year.
 
 ## Practical Exam
 
@@ -27,7 +27,5 @@ In case you don't pass the exam you may choose to keep the lab and assignments g
 
 ## Theoretical Exam
 * Closed Book - access to any online/offline resources is considered cheating;
-* 2-3 open-ended questions;
 * 15 minutes;
-* Only general questions and will not be dependent to any blockchain solution;
 * The exam will take place on Moodle.
