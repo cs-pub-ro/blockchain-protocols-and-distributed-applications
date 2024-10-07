@@ -48,9 +48,9 @@ docusaurus:
     structure:
       - Introduction: chapters/README.md
       - Lectures:
-          path: /build/embed_reveal/Introduction/Introduction.mdx
-          # subsections:
-          #   - Introduction: Introduction/Introduction.mdx
+          path: /build/embed_reveal
+          subsections:
+            - Introduction: Introduction/Introduction.mdx
             # - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
             # - Case Study: Case-Study/Case-Study.mdx
             # - Wallet: Wallet/Wallet.mdx
@@ -60,6 +60,9 @@ docusaurus:
             # - Scaling dApps: Scaling-dApps/Scaling-dApps.mdx
             # - Composability: Composability/Composability.mdx
       - Practical Sessions:
+          - Env Setup:
+              path: chapters/introduction/lab/content/setup
+
           - Explorer:
               path: chapters/introduction/lab/content/explorer
               extra:
@@ -185,8 +188,8 @@ docusaurus:
       baseUrl: /blockchain-protocols-and-distributed-applications/
       onBrokenLinks: warn
       onBrokenMarkdownLinks: warn
-    # config_socials:
-    #   Main site: https://ocw.cs.pub.ro/courses/fob
-    #   OCW: https://ocw.cs.pub.ro/courses/fob
-    #   Facebook: https://www.facebook.com/zuck/
-    # copyright_string: Example Copyright
+    config_socials:
+      Main site: https://ocw.cs.pub.ro/courses/fob
+      OCW: https://ocw.cs.pub.ro/courses/fob
+      Facebook: https://www.facebook.com/zuck/
+    copyright_string: Example Copyright
