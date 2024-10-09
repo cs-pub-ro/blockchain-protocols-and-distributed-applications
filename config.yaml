@@ -48,9 +48,7 @@ docusaurus:
     structure:
       - Introduction: chapters/README.md
       - Lectures:
-          path: /build/embed_reveal
-          subsections:
-            - Introduction: Introduction/Introduction.mdx
+        - Introduction: /build/embed_reveal/Introduction/Introduction.mdx
             # - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
             # - Case Study: Case-Study/Case-Study.mdx
             # - Wallet: Wallet/Wallet.mdx
@@ -63,7 +61,7 @@ docusaurus:
           - Env Setup:
               path: chapters/introduction/lab/content/setup
               subsections:
-                - Env Setup: setup.md
+                - Setting up the Lab Environment: setup.md
           - Wallet:
               path: chapters/introduction/lab/content/wallet
               extra:
