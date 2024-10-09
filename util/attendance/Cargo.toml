@@ -1,0 +1,24 @@
+[package]
+name = "attendance"
+version = "0.0.0"
+publish = false
+edition = "2021"
+authors = ["you"]
+
+[lib]
+path = "src/attendance.rs"
+
+[dependencies.multiversx-sc]
+version = "0.53.1"
+
+[dev-dependencies]
+num-bigint = "0.4"
+
+[dev-dependencies.multiversx-sc-scenario]
+version = "0.53.1"
+
+[workspace]
+members = [
+    ".",
+    "meta",
+]
