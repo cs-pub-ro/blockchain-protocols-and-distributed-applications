@@ -26,8 +26,7 @@ We provide Linux virtual machines with all the setup ready.
 
 ### VirtualBox / VMware
 
-You can download the Linux virtual machine from [this link](https://repository.grid.pub.ro/cs/so/linux-2024/so-vm.ova).
-You will need to log in using your `UPB` account.
+You can download the Linux virtual machine from [this link](https://repository.grid.pub.ro/cs/so/linux-2024-2025/so-vm-gui-2024.ova).
 
 You can import the `.ova` file in [VirtualBox](https://www.virtualbox.org/) or [VMware](https://www.vmware.com/).
 Follow the instructions on the official websites for installation.
@@ -36,7 +35,6 @@ Follow the instructions on the official websites for installation.
 
 If you are using an `M1` Apple system, you will not be able to run the virtual machine using VirtualBox or VMware.
 You will need to use [`UTM`](https://mac.getutm.app/), along with a [`.qcow2`](https://repository.grid.pub.ro/cs/so/linux-2024/SO-Ubuntu-22-04-03-LTS.utm.zip) image.
-You will need to log in using your `UPB` account.
 
 After you install `UTM` and download and unzip the archive, you can import it using the `Open existing VM` option in `UTM`.
 
