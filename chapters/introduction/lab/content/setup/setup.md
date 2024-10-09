@@ -5,7 +5,7 @@ This includes the following:
 - rustup - The Rust toolchain installer
 - MetaMask - Ethereum wallet
 - mxpy - tool for interacting with the blockchain
-- sc-meta - tool for compiling smart contracts
+- sc-meta - universal smart contract management tool
 
 
 ## Rustup - The Rust toolchain installer
