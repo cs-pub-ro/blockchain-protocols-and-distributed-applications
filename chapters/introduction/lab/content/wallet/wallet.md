@@ -1,6 +1,8 @@
-# Setting up a Wallet
+# Setting up a Wallet via Browser
 
  We will use [MultiversX Testnet Wallet](https://testnet-wallet.multiversx.com/) to participate in the blockchain as a user.
+
+If you already have a wallet, there is no need to create another one.
 
 Go to [MultiversX Testnet Wallet](https://testnet-wallet.multiversx.com/) and create a new wallet by clicking **Create new one**.
 

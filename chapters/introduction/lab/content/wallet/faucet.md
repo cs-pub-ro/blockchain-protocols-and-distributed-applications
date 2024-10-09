@@ -1,6 +1,6 @@
 # Access a wallet
 
-Go to [Testnet Wallet](https://testnet-wallet.multiversx.com/) and click on "Connect with Keystore"; click Browse and locate your Keystore File [erd1… .json], then put in your password and click "Access Wallet".
+Go to [Testnet Wallet](https://testnet-wallet.multiversx.com/) and click on "PEM" (bottom of the screen); click *"Select a file"* and locate your wallet `new_wallet.pem`.
 
 ![Testnet Wallet](../../media/multiversx-testnet-wallet.png)
 

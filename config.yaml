@@ -62,7 +62,18 @@ docusaurus:
       - Practical Sessions:
           - Env Setup:
               path: chapters/introduction/lab/content/setup
-
+          - Wallet:
+              path: chapters/introduction/lab/content/wallet
+              extra:
+                - ../../media/
+              subsections:
+                - Cmd line wallet/: cmdline_wallet.md
+                - Wallet/: wallet.md
+                - Keystore/: keystore.md
+                - Access & Faucet: faucet.md
+                - Send Transaction: send_tx.md
+                - Browser Web Wallet: browser_wallet.md
+                - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
               extra:
@@ -84,18 +95,6 @@ docusaurus:
                 # - ../../quiz/
               subsections:
                 - Observers: observer.md
-          - Wallet:
-              path: chapters/introduction/lab/content/wallet
-              extra:
-                - ../../media/
-                # - ../../quiz/
-              subsections:
-                - Wallet/: wallet.md
-                - Keystore/: keystore.md
-                - Access & Faucet: faucet.md
-                - Send Transaction: send_tx.md
-                - Browser Web Wallet: browser_wallet.md
-                - Observer: observer.md
           - Money:
               path: chapters/money/lab/content
               extra:
