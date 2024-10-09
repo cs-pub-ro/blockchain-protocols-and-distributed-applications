@@ -48,7 +48,7 @@ docusaurus:
     structure:
       - Introduction: chapters/README.md
       - Lectures:
-          path: /build/embed_reveal/
+          path: /build/embed_reveal
           subsections:
             - Introduction: Introduction/Introduction.mdx
             # - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
