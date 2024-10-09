@@ -62,6 +62,8 @@ docusaurus:
       - Practical Sessions:
           - Env Setup:
               path: chapters/introduction/lab/content/setup
+              subsections:
+                - Env Setup: setup.md
           - Wallet:
               path: chapters/introduction/lab/content/wallet
               extra:
