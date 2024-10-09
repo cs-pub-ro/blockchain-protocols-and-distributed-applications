@@ -84,8 +84,6 @@ docusaurus:
                 # - ../../quiz/
               subsections:
                 - Observers: observer.md
-
-
           - Wallet:
               path: chapters/introduction/lab/content/wallet
               extra:
@@ -167,17 +165,11 @@ docusaurus:
       #         subsections:
       #           - Drills/: drills/
       - Assignments:
+          - Assignment 1: assignments/assignment1.md
+          - Assignment 2: assignments/assignment2.md
           - Project: assignments/project.md
-          - Blockchain Research Assignment: assignments/blockchain_research_assignment.md
-          - Scientific Research Assignment: assignments/scientific_research_assignment.md
-              # path: assignments/
-              # extra:
-              #   - media/
-              # subsections:
-              #   - Reading/: reading/
-              #   - Drills/: drills/
-              #   - Guides/: guides/
-                # - Slides: /build/embed_reveal/template-chapter-template-topic
+          # - Blockchain Research Assignment: assignments/blockchain_research_assignment.md
+          # - Scientific Research Assignment: assignments/scientific_research_assignment.md
       - Grading: util/grading.md
       - Resources: util/resources.md
     # static_assets:
