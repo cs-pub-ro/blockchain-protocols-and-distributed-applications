@@ -30,13 +30,14 @@ Here is an example of a MultiversX Keystore:
 
 At first, you will see an unappealing JSON file, which appears to contain magic parameters used for numerous complex cryptographic operations with unclear and vague purpose. But if you dig a little deeper you will see that it contains:
 
-kind - Can be secretKey or mnemonic and represents the input to be encrypted using the cipher;
-ciphertext - Your MultiversX mnemonic or secret key encrypted using the cipher algorithm below;
-cipher - The name of a symmetric AES algorithm;
-cipherparams - The parameters required for the cipher algorithm above;
-kdf - A key derivation function used to let you encrypt your keystore file with a password;
-kdfparams - The parameters required for the kdf algorithm above;
-mac - A code used to verify your password.
+- kind - Can be secretKey or mnemonic and represents the input to be encrypted using the cipher;
+- ciphertext - Your MultiversX mnemonic or secret key encrypted using the cipher algorithm below;
+- cipher - The name of a symmetric AES algorithm;
+- cipherparams - The parameters required for the cipher algorithm above;
+- kdf - A key derivation function used to let you encrypt your keystore file with a password;
+- kdfparams - The parameters required for the kdf algorithm above;
+- mac - A code used to verify your password.
+
 Keystore files created with the first major version of the web wallet (available prior February 14th, 2023) hold the encrypted secret key, instead of the encrypted mnemonic (as the new keystore files do). Though the older files are still compatible with the new web wallet - compatibility is achieved through the aforementioned "kind" field.
 
 When kind is set (or not set at all) to secretKey, the ciphertext field will contain the encrypted secret key, as it did before. However, when kind is set to mnemonic, the ciphertext field will contain the encrypted mnemonic instead.
