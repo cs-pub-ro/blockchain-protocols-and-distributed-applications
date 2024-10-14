@@ -4,7 +4,7 @@
 
 - [GitHub Repository](https://github.com/CostinCarabas/blockchain-protocols-and-distributed-applications)
 - [Moodle Class](https://curs.upb.ro/2024/course/view.php?id=1947) (used for homework submissions, quizzes, announcements, etc.)
-
+- [Planning](https://docs.google.com/spreadsheets/d/e/2PACX-1vSbaEavaQE8WgMM5QKNRFrrdETS6lYL6APvnAcAvIwYaMlpiL7hBJZqWW0q7wgWpu9LbCa2RUlH1qrB/pubhtml?gid=0&single=true)
 
 ## Books and interesting reading materials
 
@@ -18,6 +18,10 @@
 - [Secure Development Workflow for Smart Contracts](https://github.com/crytic/building-secure-contracts/blob/master/development-guidelines/workflow.md#secure-development-workflow);
 - [DeFi Handbook — Introduction to Decentralized Finance](docs/defi.pdf)
 - [Cryptozombies learning game](https://cryptozombies.io/en/multiversx)
+- [The Rust Programming Language](https://doc.rust-lang.org/book/)
+- [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
+- [Improving the Rust Book (really interactive)](https://rust-book.cs.brown.edu)
+- [Solidity docs](https://docs.soliditylang.org/en/v0.8.28/)
 
 ## Virtual Machine
 
