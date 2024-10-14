@@ -27,9 +27,10 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
     }
 
     #[endpoint(registerAttendance)]
-    fn register_attendance(&self) {
+    fn register_attendance(&self, secret_key: ManagedBuffer) {
         let caller = self.blockchain().get_caller();
         self.require_caller_registered(&caller);
+        self.require_is_secret_correct(&secret_key);
 
         self.attendance(&caller)
             .update(|attendance| *attendance += 1);
@@ -60,6 +61,18 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
         self.add_admin(admin);
     }
 
+    fn require_is_secret_correct(&self, secret_key: &ManagedBuffer) {
+        let current_epoch = self.blockchain().get_block_epoch();
+        let secret_key_mapper = self.secret_key(secret_key);
+
+        require!(!secret_key_mapper.is_empty(), "This secret key is incorect");
+        require!(
+            secret_key_mapper.get() == current_epoch + 10,
+            "This secret key is not available anymore"
+        );
+    }
+
+    #[inline]
     fn require_caller_registered(&self, caller: &ManagedAddress) {
         require!(
             self.students().contains(caller),
