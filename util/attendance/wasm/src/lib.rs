@@ -6,9 +6,9 @@
 
 // Init:                                 1
 // Upgrade:                              1
-// Endpoints:                           10
+// Endpoints:                           11
 // Async Callback (empty):               1
-// Total number of exported functions:  13
+// Total number of exported functions:  14
 
 #![no_std]
 
@@ -23,6 +23,7 @@ multiversx_sc_wasm_adapter::endpoints! {
         registerStudent => register_student
         registerAttendance => register_attendance
         registerSecretKey => register_secret_key
+        insertAdmin => insert_admin
         getStudents => students
         getAttendance => attendance
         getSecretKey => secret_key

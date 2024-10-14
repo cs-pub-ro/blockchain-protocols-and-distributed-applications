@@ -57,6 +57,18 @@
             "outputs": []
         },
         {
+            "name": "insertAdmin",
+            "onlyAdmin": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "admin",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
             "name": "getStudents",
             "mutability": "readonly",
             "inputs": [],
