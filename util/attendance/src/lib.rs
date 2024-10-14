@@ -2,21 +2,6 @@
 
 #[allow(unused_imports)]
 use multiversx_sc::imports::*;
-use multiversx_sc::{
-    codec,
-    proxy_imports::{NestedDecode, NestedEncode},
-};
-use multiversx_sc::{
-    derive::type_abi,
-    proxy_imports::{TopDecode, TopEncode},
-};
-
-#[type_abi]
-#[derive(TopEncode, TopDecode, NestedDecode, NestedEncode)]
-pub struct StudentStruct<M: ManagedTypeApi> {
-    pub address: ManagedAddress<M>,
-    pub name: ManagedBuffer<M>,
-}
 
 #[multiversx_sc::contract]
 pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
