@@ -73,7 +73,7 @@ docusaurus:
                 - Access & Faucet: faucet.md
                 - Send Transaction: send_tx.md
                 - Browser Web Wallet: browser_wallet.md
-                - Observer: observer.md
+                # - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
               extra:
