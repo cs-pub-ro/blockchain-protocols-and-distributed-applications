@@ -32,7 +32,7 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
         self.require_caller_registered(&caller);
 
         self.attendance(&caller)
-            .update(|attendance| *attendance += BigUint::from(1u64));
+            .update(|attendance| *attendance += 1);
     }
 
     #[only_admin]
@@ -73,7 +73,7 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
 
     #[view(getAttendance)]
     #[storage_mapper("attendance")]
-    fn attendance(&self, student_address: &ManagedAddress) -> SingleValueMapper<BigUint>;
+    fn attendance(&self, student_address: &ManagedAddress) -> SingleValueMapper<u64>;
 
     #[view(getSecretKey)]
     #[storage_mapper("secretKey")]
