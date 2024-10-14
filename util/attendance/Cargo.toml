@@ -17,6 +17,9 @@ num-bigint = "0.4"
 [dev-dependencies.multiversx-sc-scenario]
 version = "0.53.1"
 
+[dependencies.multiversx-sc-modules]
+version = "0.53.1"
+
 [workspace]
 members = [
     ".",

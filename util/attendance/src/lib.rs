@@ -19,9 +19,11 @@ pub struct StudentStruct<M: ManagedTypeApi> {
 }
 
 #[multiversx_sc::contract]
-pub trait Attendance {
+pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
     #[init]
-    fn init(&self) {}
+    fn init(&self, admins: MultiValueEncoded<ManagedAddress>) {
+        self.admins().extend(admins);
+    }
 
     #[only_owner]
     #[upgrade]
@@ -48,6 +50,20 @@ pub trait Attendance {
             .update(|attendance| *attendance += BigUint::from(1u64));
     }
 
+    #[only_admin]
+    #[endpoint(registerSecretKey)]
+    fn register_secret_key(&self, secret_key: ManagedBuffer) {
+        let current_epoch = self.blockchain().get_block_epoch();
+        let secret_key_mapper = self.secret_key(&secret_key);
+
+        require!(
+            secret_key_mapper.is_empty(),
+            "This secret key was already registered"
+        );
+
+        secret_key_mapper.set(current_epoch);
+    }
+
     fn require_caller_registered(&self, caller: &ManagedAddress) {
         require!(
             self.students().contains(caller),
@@ -62,4 +78,8 @@ pub trait Attendance {
     #[view(getAttendance)]
     #[storage_mapper("attendance")]
     fn attendance(&self, student_address: &ManagedAddress) -> SingleValueMapper<BigUint>;
+
+    #[view(getSecretKey)]
+    #[storage_mapper("secretKey")]
+    fn secret_key(&self, secret_key: &ManagedBuffer) -> SingleValueMapper<u64>;
 }

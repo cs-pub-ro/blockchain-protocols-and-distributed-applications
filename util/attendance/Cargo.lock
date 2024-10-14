@@ -80,6 +80,7 @@ name = "attendance"
 version = "0.0.0"
 dependencies = [
  "multiversx-sc",
+ "multiversx-sc-modules",
  "multiversx-sc-scenario",
  "num-bigint",
 ]
@@ -560,6 +561,15 @@ dependencies = [
  "toml",
  "wasmparser",
  "wasmprinter",
+]
+
+[[package]]
+name = "multiversx-sc-modules"
+version = "0.53.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "daeb48acbd39255868a3241798df2f85050f0ae8d82d6417bd2cd0e30a241855"
+dependencies = [
+ "multiversx-sc",
 ]
 
 [[package]]
