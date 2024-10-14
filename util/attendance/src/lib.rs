@@ -49,6 +49,17 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
         secret_key_mapper.set(current_epoch);
     }
 
+    #[only_admin]
+    #[endpoint(insertAdmin)]
+    fn insert_admin(&self, admin: ManagedAddress) {
+        require!(
+            !self.admins().contains(&admin),
+            "Admin has already been registered"
+        );
+
+        self.add_admin(admin);
+    }
+
     fn require_caller_registered(&self, caller: &ManagedAddress) {
         require!(
             self.students().contains(caller),
