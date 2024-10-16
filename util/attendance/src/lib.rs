@@ -30,10 +30,12 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
     fn register_attendance(&self, secret_key: ManagedBuffer) {
         let caller = self.blockchain().get_caller();
         self.require_caller_registered(&caller);
-        self.require_is_secret_correct(&secret_key);
+        self.require_is_secret_correct(&secret_key, &caller);
 
         self.attendance(&caller)
             .update(|attendance| *attendance += 1);
+        self.cooldown(&caller)
+            .set(self.blockchain().get_block_epoch());
     }
 
     #[only_admin]
@@ -53,22 +55,32 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
     #[only_admin]
     #[endpoint(insertAdmin)]
     fn insert_admin(&self, admin: ManagedAddress) {
-        require!(
-            !self.admins().contains(&admin),
-            "Admin has already been registered"
-        );
-
+        self.require_admin_not_registered(&admin);
         self.add_admin(admin);
     }
 
-    fn require_is_secret_correct(&self, secret_key: &ManagedBuffer) {
+    fn require_is_secret_correct(&self, secret_key: &ManagedBuffer, student: &ManagedAddress) {
         let current_epoch = self.blockchain().get_block_epoch();
         let secret_key_mapper = self.secret_key(secret_key);
 
         require!(!secret_key_mapper.is_empty(), "This secret key is incorect");
+        self.require_cooldown_has_passed(student, current_epoch);
+    }
+
+    fn require_cooldown_has_passed(&self, student: &ManagedAddress, current_epoch: u64) {
+        let student_cooldown = self.cooldown(student).get();
+
         require!(
-            secret_key_mapper.get() == current_epoch + 10,
-            "This secret key is not available anymore"
+            student_cooldown + 7 < current_epoch,
+            "The cooldown period has not passed"
+        );
+    }
+
+    #[inline]
+    fn require_admin_not_registered(&self, admin: &ManagedAddress) {
+        require!(
+            !self.admins().contains(admin),
+            "Admin has already been registered"
         );
     }
 
@@ -91,4 +103,7 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
     #[view(getSecretKey)]
     #[storage_mapper("secretKey")]
     fn secret_key(&self, secret_key: &ManagedBuffer) -> SingleValueMapper<u64>;
+
+    #[storage_mapper("cooldown")]
+    fn cooldown(&self, student: &ManagedAddress) -> SingleValueMapper<u64>;
 }
