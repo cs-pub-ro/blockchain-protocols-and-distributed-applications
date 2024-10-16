@@ -30,7 +30,7 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
     fn register_attendance(&self, secret_key: ManagedBuffer) {
         let caller = self.blockchain().get_caller();
         self.require_caller_registered(&caller);
-        self.require_is_secret_correct(&secret_key, &caller);
+        self.check_secret_key(&secret_key, &caller);
 
         self.attendance(&caller)
             .update(|attendance| *attendance += 1);
@@ -59,11 +59,10 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
         self.add_admin(admin);
     }
 
-    fn require_is_secret_correct(&self, secret_key: &ManagedBuffer, student: &ManagedAddress) {
+    fn check_secret_key(&self, secret_key: &ManagedBuffer, student: &ManagedAddress) {
         let current_epoch = self.blockchain().get_block_epoch();
-        let secret_key_mapper = self.secret_key(secret_key);
 
-        require!(!secret_key_mapper.is_empty(), "This secret key is incorect");
+        self.require_is_secret_correct(secret_key);
         self.require_cooldown_has_passed(student, current_epoch);
     }
 
@@ -73,6 +72,14 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
         require!(
             student_cooldown + 7 < current_epoch,
             "The cooldown period has not passed"
+        );
+    }
+
+    #[inline]
+    fn require_is_secret_correct(&self, secret_key: &ManagedBuffer) {
+        require!(
+            !self.secret_key(secret_key).is_empty(),
+            "This secret key is incorect"
         );
     }
 
