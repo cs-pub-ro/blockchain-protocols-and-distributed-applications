@@ -70,7 +70,7 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
         let student_cooldown = self.cooldown(student).get();
 
         require!(
-            student_cooldown + 7 < current_epoch,
+            student_cooldown + 6 < current_epoch,
             "The cooldown period has not passed"
         );
     }
