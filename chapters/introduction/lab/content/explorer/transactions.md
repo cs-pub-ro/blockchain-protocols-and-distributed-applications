@@ -8,7 +8,7 @@ We can see that there are 6 transactions in this group.
 
 ## Miniblocks
 
-Transactions are grouped in **miniblocks**.
+Cross-shard transactions are grouped in **miniblocks**.
 Each miniblock is a category with `Shard_source - Shard_destionation`.
 
 So, for the first miniblock we have 3 transactions from Shard1 to Shard2:
