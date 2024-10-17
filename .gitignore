@@ -60,3 +60,7 @@ _site/
 
 # Builder output folder
 /.output/
+
+# SC
+target/
+output/
