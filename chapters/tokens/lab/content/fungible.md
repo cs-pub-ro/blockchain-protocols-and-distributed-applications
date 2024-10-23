@@ -1,25 +1,67 @@
 # Fungible Tokens
 
-## Introduction - Fungible vs Non-Fungible Tokens
+## Issuance of fungible ESDT tokens via Web Wallet on MultiversX
 
-* Fungibility refers to an asset's ability to be exchanged for something else of equal value;
-* Some examples of fungible assets include currencies, commodities, and precious stones;
-* Non-fungible assets are unique, requiring much more complex valuation before a sale and include things like real estate, art, and sports cards.
+In this section you will learn how to mint tokens on MultiversX.
 
-Throughout the lab, you will need to convert values from decimals to hex to ascii, etc. Use [this](https://utils.multiversx.com/converters) tool to make your job easier.
+There are 2 types of tokens on MultiversX:
+* Native tokens - EGLD;
+* ESDT - eStandard Digital Token.
+
+In the previous section you learnt how to mint xEGLD on [MultiversX Testnet](https://testnet-wallet.multiversx.com/) using `Faucet` option.
+
+![Testnet Wallet](../media/testnet_wallet.png)
+
+### Mint ESDT via Web Wallet
+
+This time we use the `Create Token` option.
+
+Token Name:
+* length between 3 and 20 characters
+* alphanumeric characters only
+
+Token Ticker:
+* length between 3 and 10 characters
+* alphanumeric UPPERCASE only
+
+Number of decimals:
+* should be a numerical value between 0 and 18;
+* there are no floats on the blockchain;
+* a token with 3 decimals and value 1000 would be equal with value 1;
+* EGLD has 18 decimals and the value of 1000000000000000000 is 1 EGLD.
+
+Let's create a token new token:
+
+![Issue Token](../media/issue_token.png)
+
+and inspect the transaction 
+
+![Explorer Token Created](../media/explorer_token_created.png)
+
+Observe `Token Operations` field. We received `321.00 BPDA-208994` tokens. `BPDA-208994` is the **token ID**. The token ID is formed by appending to the token ticker the character **-** and 6 random hexadecimals characters. This is done because there might be mutiple tokens with the same ticker; the token ID is always unique.
+
+We can click on the token ID and see the details of the token:
+
+![Token Details](../media/token_details.png)
+
+Observe the fields **TOKEN**, **Supply**, **Holders**, **Transactions**, **Owner**, **Decimals**.
+
+Let create another token with the same input:
+
+![Issue Token2](../media/issue_token2.png)
+
+Observe that the token ID is different.
 
 ### Practice
 
-Think about the following example if fungible or non-fungible:
+* Create your own ESDT token;
+* Inspect the transaction;
+* Send some of your tokens to **erd1ld6er5zpdze3cynzkapur9qhzh826jje6n87g7tvdfrtszs8jn2qv44nqd**;
+* Create another token with the same ticker. Observer that the token ID is different and unique.
 
-* Diamond rock;
-* Penthouse apartment in Manhattan;
-* Mona Lisa painting;
-* LeBron James sport card;
-* LeBron James shirt he played in the 2020 NBA Finals;
-* A character in World of Warcraft.
+## Issuance of fungible ESDT tokens via cmdline on MultiversX
 
-## Issuance of fungible ESDT tokens
+Throughout the lab, you will need to convert values from decimals to hex to ascii, etc. Use [this](https://utils.multiversx.com/converters) tool to make your job easier.
 
 ESDT tokens are issued via a request to the Metachain, which is a transaction submitted by the Account which will manage the tokens. When issuing a token, one must provide a token name, a ticker, the initial supply, the number of decimals for display purpose and optionally additional properties. The **issuance cost is set to 0.05 EGLD**.
 
@@ -44,10 +86,11 @@ IssuanceTransaction {
 
 ### Practice
 
-* Issue a token of your own. Choose whatever name and ticker you want. Check the existance of your token via [Testnet Explorer](https://testnet-explorer.multiversx.com/).
+* Issue a token of your own using `mxpy`. Choose whatever name and ticker you want. Check the existance of your token via [Testnet Explorer](https://testnet-explorer.multiversx.com/).
 
+**Hint:** Use `mxpy --help`
 
-## Mint fungible ESDT tokens
+## Mint fungible ESDT tokens via cmdline
 
 ---
 **NOTE**
