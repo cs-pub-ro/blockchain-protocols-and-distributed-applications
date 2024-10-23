@@ -19,7 +19,7 @@ pub trait Attendance: multiversx_sc_modules::only_admin::OnlyAdminModule {
         let caller = self.blockchain().get_caller();
 
         require!(
-            self.students().contains(&caller),
+            !self.students().contains(&caller),
             "Student is already registered"
         );
 
