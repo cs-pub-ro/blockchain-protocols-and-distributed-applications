@@ -88,6 +88,15 @@ docusaurus:
                 - Blockchain Validators/: validators.md
                 - Blockchain Observers/: observers.md
                 - Devnet Blockchains/: devnet_testnet.md
+          - Tokens:
+              path: chapters/tokens/lab/content
+              subsections:
+                - Standards: standards.md
+                - Fungible & NonFugible Tokens: fungible-non-fungible.md
+                - Fungible: fungible.md
+                - NFT: nft.md
+              extra:
+                - ../media/
           - Observer:
               path: chapters/introduction/lab/content/observer/
               extra:
@@ -95,7 +104,7 @@ docusaurus:
                 # - ../../quiz/
               subsections:
                 - Observers: observer.md
-          - Money:
+          - Money (DeFi):
               path: chapters/money/lab/content
               extra:
                 - ../media/
@@ -126,14 +135,6 @@ docusaurus:
                 - Deploy SC: deploy.md
                 - Call SC: sc_call.md
                 - Neversea SC: neversea.md
-              extra:
-                - ../media/
-          - Tokens:
-              path: chapters/tokens/lab/content
-              subsections:
-                - Standards: standards.md
-                - Fungible: fungible.md
-                - NFT: nft.md
               extra:
                 - ../media/
           - Smart Contract Events:
