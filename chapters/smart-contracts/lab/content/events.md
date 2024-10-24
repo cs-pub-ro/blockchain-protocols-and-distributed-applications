@@ -23,7 +23,7 @@ Notice there are 4 data fields:
 * `SBPT-774fbd` - the token ID;
 * `1` - the nonce;
 * `1` - the value (the *Smart* display feature doesn't know how to interpret that but the *Decimal* option does);
-* `erd1ld6er5zpdze3cynzkapur9qhzh826jje6n87g7tvdfrtszs8jn2qv44nqd` - the destination address.
+* `erd1mqa9wttlzwwdvwgk9dzsfdn79lv5raw0tfe9ynvn0dg92hpruvaqhhd2gx` - the destination address.
 
 
 Let's inspect a more complex operation and check all the log events.

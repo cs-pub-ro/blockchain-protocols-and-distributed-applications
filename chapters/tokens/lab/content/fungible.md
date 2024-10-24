@@ -56,7 +56,7 @@ Observe that the token ID is different.
 
 * Create your own ESDT token;
 * Inspect the transaction;
-* Send some of your tokens to **erd1ld6er5zpdze3cynzkapur9qhzh826jje6n87g7tvdfrtszs8jn2qv44nqd**;
+* Send some of your tokens to **erd1mqa9wttlzwwdvwgk9dzsfdn79lv5raw0tfe9ynvn0dg92hpruvaqhhd2gx**;
 * Create another token with the same ticker. Observer that the token ID is different and unique.
 
 ## Issuance of fungible ESDT tokens via cmdline on MultiversX
