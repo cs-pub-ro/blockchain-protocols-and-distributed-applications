@@ -64,3 +64,11 @@ _site/
 # SC
 target/
 output/
+
+# Rust package manager files
+**/*.rs.bk
+
+# Other
+.DS_Store
+.vscode/
+.idea/
