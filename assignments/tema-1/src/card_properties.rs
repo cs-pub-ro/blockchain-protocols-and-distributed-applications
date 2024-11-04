@@ -1,10 +1,10 @@
 use multiversx_sc::derive_imports::*;
 
-#[derive(TopEncode, TopDecode)]
+#[derive(TypeAbi, TopEncode, TopDecode, PartialEq)]
 pub struct CardProperties {
     pub class: Class,
-    pub power: Power,
     pub rarity: Rarity,
+    pub power: Power,
 }
 
 impl CardProperties {
@@ -17,7 +17,7 @@ impl CardProperties {
     }
 }
 
-#[derive(TopEncode,TypeAbi, NestedEncode, NestedDecode)]
+#[derive(TypeAbi, TopEncode, NestedEncode, NestedDecode, PartialEq)]
 pub enum Rarity {
     Common,
     Rare,
@@ -37,7 +37,7 @@ impl Rarity {
     }
 }
 
-#[derive(TopEncode, TypeAbi, NestedEncode, NestedDecode)]
+#[derive(TopEncode, TypeAbi, NestedEncode, NestedDecode, PartialEq)]
 pub enum Class {
     Warrior,
     Mage,
@@ -67,7 +67,7 @@ impl Class {
     }
 }
 
-#[derive(TopEncode, TypeAbi, NestedEncode, NestedDecode)]
+#[derive(TopEncode, TypeAbi, NestedEncode, NestedDecode, PartialEq)]
 pub enum Power {
     Low,
     Medium,

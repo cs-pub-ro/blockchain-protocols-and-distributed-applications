@@ -6,9 +6,9 @@
 
 // Init:                                 1
 // Upgrade:                              1
-// Endpoints:                            6
+// Endpoints:                           10
 // Async Callback:                       1
-// Total number of exported functions:   9
+// Total number of exported functions:  13
 
 #![no_std]
 
@@ -22,10 +22,14 @@ multiversx_sc_wasm_adapter::endpoints! {
         upgrade => upgrade
         issueNft => issue_nft
         createNftWithAttributes => create_nft_with_attributes
+        getYourNftCardProperties => get_your_nft_card_properties
         exchangeNft => exchange_nft
         getTokenId => get_token_id
         getTokenData => get_token_data
         tokenId => token_id
+        nftSupply => nft_supply
+        cardsProperties => cards_properties
+        studentsCards => students_cards
     )
 }
 
