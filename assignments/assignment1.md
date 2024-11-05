@@ -53,7 +53,7 @@ attributes as the BPDA-NFT, otherwise the SC will tell you that the NFT's do not
 - Basically, make sure you have done the [Setting up the Lab Environment](https://cs-pub-ro.github.io/blockchain-protocols-and-distributed-applications/Practical%20Sessions/Env%20Setup/setup) section.
 
 ### 2. Interacting with the Smart Contract:
-- **Smart Contract Address**: **erd1qqqqqqqqqqqqqpgqu7ga346e5nfnmsxcm8hxpgthvx86paw5uvaqh4f3xf**
+- **Smart Contract Address**: **erd1qqqqqqqqqqqqqpgqn47g2ayjujplvnls3tvqh7527mgd3jh9uvaqhedzkr**
 - **Smart Contract Code**: [See the assignment for the first homework](https://github.com/cs-pub-ro/blockchain-protocols-and-distributed-applications/tree/main/assignments)
 
 #### Core Interactions:
