@@ -35,12 +35,12 @@ a NFT they own with one of the NFTs which is stored inside the contract, that ex
 A complete flow would look like this.
 
 - Through your API, query the SC and see the available NFTs
-- Choose one of the NFT's you want to trade with, for example one with:
+- Call the appropriate function from the SC that will return the NFT you should try to trade with. Each NFT has:
   - power: Medium
   - class: Priest
   - rarity: Legendary
 - We will call it BPDA-NFT
-- Once you have chosen your BPDA-NFT, you need to create your own NFT that must be send to the contract in order to receive the SC's NFT. Let's call it Student-NFT
+- Once the contract assigned your BPDA-NFT, you need to create your own NFT that must be sent to the contract in order to receive the SC's NFT. Let's call it Student-NFT
 - In order to receive the BPDA-NFT, the Student-NFT must be created with exactly the same
 attributes as the BPDA-NFT, otherwise the SC will tell you that the NFT's do not match.
 - Note: the Student-NFT must be named with your moodle account. For example, if your institutional account is cristian.paris@stud.acs.upb.ro, your moodle account is **cristian.paris**
@@ -60,7 +60,11 @@ attributes as the BPDA-NFT, otherwise the SC will tell you that the NFT's do not
 - **Query Smart Contract Data**: Query the smart contract for available NFTs and their metadata.
   - **Function to call**: See the view functions inside the SC. You may also need to use the Python/Rust/TS/JS/etc SDK to gather more information about the NFT's, after you get the tokenId.
   - **Return**: A list of NFTs with details such as token ID, rarity, and owner.
-  
+
+- **Get Your Assigned NFT**: Call the `getYourNftCardProperties` endpoint to receive the properties of the NFT you have to trade with.
+
+- **Get the NFT nonce**: Query the smart contract for the available NFTs, parse the data and then get the NFT's nonce. You will need the nonce for the exchange part.
+
 - **Exchange NFTs**: Implement a function to exchange an NFT with another user. This simulates a trading card game scenario where players exchange cards.
   - **Function to call**: See the `exchangeNFT(nonce)` inside the SC
   - **Requirements**: Make sure the NFT you are going to send has your moodle ID as name and the exact attributes as the one you are trying to trade with.
@@ -97,3 +101,5 @@ Note: It is not enough to show the lab assistant the code. During the lab, you m
 - **Questions and Help**: Please ask any questions on the forum.
 
 ## Useful Resources
+- [The official docs](https://docs.multiversx.com/)
+- [Course site](https://cs-pub-ro.github.io/blockchain-protocols-and-distributed-applications/)
