@@ -97,7 +97,7 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
         require!(!self.token_id().is_empty(), "NFT not issued");
 
         let student_address = self.blockchain().get_caller();
-        require!(self.student_address().contains(&student_address), "Congratulations! You already finished the homework!");
+        require!(!self.student_address().contains(&student_address), "Congratulations! You already finished the homework!");
 
         let mut rand_source = RandomnessSource::new();
         let vec_len = self.cards_properties().len();
