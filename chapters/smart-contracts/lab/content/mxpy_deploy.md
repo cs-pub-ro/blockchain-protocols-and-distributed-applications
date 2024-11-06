@@ -1,6 +1,6 @@
-# Smart Contract deployment
+# Smart Contract deployment via Python (mxpy)
 
-Let's deploy our first smart contract on the blockchain. For this we will use `mxpy` tools previously installed.
+Let's deploy our smart contract on the blockchain. For this we will use `mxpy` tools previously installed.
 We will deploy the `adder` contract from the previous section.
 
 In the [repo](https://github.com/multiversx/mx-contracts-rs/tree/main/contracts/adder/) there is a folder named [interaction](https://github.com/multiversx/mx-contracts-rs/tree/main/contracts/adder/interaction).

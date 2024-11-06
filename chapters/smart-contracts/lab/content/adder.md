@@ -16,8 +16,12 @@ pub trait Adder {
         self.sum().set(initial_value);
     }
 
+    #[upgrade]
+    fn upgrade(&self, initial_value: BigUint) {
+        self.init(initial_value);
+    }
+
     /// Add desired amount to the storage variable.
-    #[payable("*")]
     #[endpoint]
     fn add(&self, value: BigUint) {
         self.sum().update(|sum| *sum += value);
@@ -25,16 +29,18 @@ pub trait Adder {
 }
 ```
 
-We notice 3 functions:
-* sum - this is a global variable, a `SingleValueMapper` (a single value) of type BigUint (unsigned integer);
-* init - the constructor;
-* add - function that increments the global variable (`sum`) with the `value` parameter;
+We notice 4 functions:
+* **sum** - this is a global variable, a `SingleValueMapper` (a single value) of type BigUint (unsigned integer);
+* **init** - the constructor;
+* **add** - function that increments the global variable (`sum`) with the `value` parameter;
+* **upgrade** - function executed when upgrading the contract.
 
 We notice 5 types of adnotations:
-* #[view(getSum)] - this is a function that allows you to read the variable by calling the paramter(`getSum`);
-* #[storage_mapper("sum")] - this is a global variable (also called a storage) stored in the contract
-* #[init] - the constructor function
-* #[endpoint] - An endpoint is a function callable directly by the user.
+* #[view(getSum)] - this is a function that allows you to read the storage variable by calling the function `getSum`;
+* #[storage_mapper("sum")] - this is a global **variable** (also called a storage) stored at the contract address;
+* #[init] - the constructor function; this is called when deploying the contract;
+* #[upgrade]  - this functon is called when upgrading the contract;
+* #[endpoint] - an endpoint is a function callable directly by the user; Afunction not having this adnotating will not be exposed publicly.
 
 
 [Here](https://github.com/multiversx/mx-contracts-rs/blob/main/contracts/adder/src/adder.rs) is the smart contract code listed above and [here](https://github.com/multiversx/mx-contracts-rs/tree/main/contracts/adder) are all the files needed for compilation. 
@@ -102,3 +108,7 @@ total 16
 ```
 
 We notice that the resulted contract (`adder.wasm`) has 685 bytes.
+
+## Practice
+
+* Compile the Adder contract.

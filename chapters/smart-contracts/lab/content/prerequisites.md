@@ -1,5 +1,7 @@
 # Prerequisites
 
+All of these prerequisites were done at the first lab. You can skip this section if you have already done this.
+
 ## Install mxpy - blockchain interaction
 
 We use `mxpy` to interact with the blockchain.
