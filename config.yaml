@@ -102,6 +102,7 @@ docusaurus:
               subsections:
                 - Prerequisites: prerequisites.md
                 - Empty SC: empty.md
+                - Empty Interactor: rust_interactors.md
                 - Adder SC: adder.md
                 - Rust Deploy SC: cargo_deploy.md
                 - Mxpy Deploy SC: mxpy_deploy.md
