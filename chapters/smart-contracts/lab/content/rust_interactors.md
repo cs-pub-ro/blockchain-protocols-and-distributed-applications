@@ -5,7 +5,7 @@ Rust interactors are used to interact with the blockchain via Rust.
 Let's do this for the empty SC:
 
 ```bash
- sc-meta all snippets
+sc-meta all snippets
  /Users/costincarabas/mvx/mx-contracts-rs/contracts/empty
 
 Found 1 contract crates.
@@ -18,15 +18,16 @@ Calling `cargo run snippets`
 ```
 
 A new folder `interactor` was created.
-This will generated code for all the endpoints and view function you created.
+This will generate code for all the endpoints and view functions you created.
 
 As this is a new and separate Rust binary, you must add it to the main `Cargo.toml`'s members:
 
-```Rust
+```toml
 members = [
 [...]
   "contracts/empty/interactor",
 [...]
+]
 ```
 
 Now you can use it:

@@ -1,8 +1,7 @@
 # Smart Contract deployment via Rust
 
 
-Let's deploy our smart contract on the blockchain. For this we will use `mxpy` tools previously installed.
-We will deploy the `adder` contract from the previous section.
+Let's deploy our smart contract(SC) on the blockchain. We will deploy the `adder` contract from the previous section.
 
 In the [repo](https://github.com/multiversx/mx-contracts-rs/tree/main/contracts/adder/) there is a folder named [interact](https://github.com/multiversx/mx-contracts-rs/tree/main/contracts/adder/interact).
 
@@ -86,7 +85,7 @@ We will be using `deploy` async function to deploy our `adder` smart contract:
     }
 ```
 
-The interactor will make a call to the blockchain from a wallet address. This is a test address and it's referenced from the [MultiversX Framework SDK](https://github.com/multiversx/mx-sdk-rs/tree/master/framework/snippets/src/test_wallets).
+The interactor will make a call to the blockchain from a wallet address. This is a test address and it's referenced from the [MultiversX Framework SDK](https://github.com/multiversx/mx-sdk-rs/tree/master/sdk/core/src/test_wallets).
 
 
 Let's deploy a contract:
@@ -103,11 +102,12 @@ deploy address: erd1qqqqqqqqqqqqqpgqef8xmsatt4tkf5ycv538a2kme3h7dy37a4sqygv9p5
 
 Notice the:
 * sender's nonce - how many transactions he initiated;
-* sc deploy tx hash - the hash of transaction where we deployed the code on a new SC;
+* sc deploy tx hash - the hash of the transaction where we deployed the code on a new SC;
 * deploy address - the address where the new SC is located.
 
-**Question 1:** Will this transaction show on the explorer?
-**Question 2:** Will all the validators executed this transaction?
+**Question 1:** Will this transaction show on the Explorer?
+
+**Question 2:** Will all the validators execute this transaction?
 
 
 ## SC Query
@@ -131,12 +131,13 @@ Let's read the storage from the SC:
     }
 ```
 
-Notice that we will make a `query` on the blockchain to retrieve an information.
+Notice that we will make a `query` on the blockchain to retrieve information.
 
-**Question 1:** Will this transaction show on the explorer?
-**Question 2:** Will all the validators executed this transaction?
+**Question 1:** Will this transaction show on the Explorer?
 
-Remeber from the `main` function and the `basic_interact_cli.rs` file that we need to call the `sum` parameter:
+**Question 2:** Will all the validators execut this transaction?
+
+Remember from the `main` function and the `basic_interact_cli.rs` file that we need to call the `sum` parameter:
 ```bash
 $ cargo run sum
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.36s
@@ -167,7 +168,7 @@ Let's execute our first endpoint, the `add` function:
     }
 ```
 
-Notice that we use the `tx` functionality of the interactor. We call the `add` function of the smart contract.
+Notice that we use the `tx` functionality of the interactor. We call the `add` endpoint of the smart contract.
 
 Please inspect [basic_interact.rs](https://github.com/multiversx/mx-contracts-rs/blob/add-potlock-contract/contracts/adder/interact/src/basic_interact.rs) file one more time:
 
@@ -224,5 +225,6 @@ Let's check that the storage was incremented:
 sum: 6
 ```
 
-**Question 1:** Will these transactions (endpoint calling) show on the explorer?
-**Question 2:** Will all the validators executed these transactions ((endpoint calling)?
+**Question 1:** Will these transactions (endpoint calling) show on the Explorer?
+
+**Question 2:** Will all the validators execute these transactions (endpoint calling)?

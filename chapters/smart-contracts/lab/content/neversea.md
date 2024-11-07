@@ -1,6 +1,6 @@
 # Never Sea Festival Smart Contract
 
-You are the Never Sea Festival 2025 organizers and you decide to create the registration via blockchain.
+You are the NeverSea Festival 2025 organizers and you decide to create the registration via blockchain.
 Starting from Smart Contract template you have to add more features to coordinate the event.
 
 You can use the empty SC template:
@@ -41,7 +41,7 @@ For any further actions, please check the compilation on your local machine (and
 Any modification of the contract must be succeeded by a compilation and deployment!
 ---
 
-You can use [this](https://github.com/systems-cs-pub-ro/Foundation-Of-Blockchains/blob/master/labs/lab05/neversea/src/empty.rs) contract as an inpiration.
+You can use [this](https://github.com/systems-cs-pub-ro/Foundation-Of-Blockchains/blob/master/labs/lab05/neversea/src/empty.rs) contract as an inspiration.
 
 
 ## Constructor
@@ -52,13 +52,13 @@ Implement the `upgrade` function so that it won't take any argument.
 ## Storages
 
 Add 2 storages:
-* participants - a set of addresses (you can use `ManagedAddress`) that stores the participants list;
-* registration_fee - you can use `BigUint` to store the fee;
+* `participants` - a set of addresses (you can use `ManagedAddress`) that stores the participants list;
+* `registration_fee` - you can use `BigUint` to store the fee.
 
 ## Add endpoints
 
 Add a `register` endpoint where clients will pay the fee via EGLD to register to the festival.
-Add a `update_registration_fees` endpoint where the owner can update the fee. Use `#[only_owner]` adnotation so that the endpoint can be called only by the owner.
+Add a `update_registration_fees` endpoint where the owner can update the fee. Use `#[only_owner]` annotation so that the endpoint can be called only by the owner.
 
 
 ## Practice
@@ -79,6 +79,6 @@ Add a `update_registration_fees` endpoint where the owner can update the fee. Us
 ---
 
 **Hint**
-Use #[only_owner] endpoint annotation.
+Use `#[only_owner]` endpoint annotation.
 
 ---
