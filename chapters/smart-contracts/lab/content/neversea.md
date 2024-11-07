@@ -1,25 +1,65 @@
 # Never Sea Festival Smart Contract
 
-You are the Never Sea Festival 2024 organizers and you decide to create the registration via blockchain.
+You are the NeverSea Festival 2025 organizers and you decide to create the registration via blockchain.
 Starting from Smart Contract template you have to add more features to coordinate the event.
 
+You can use the empty SC template:
+```bash
+$ sc-meta new --name my_neversea_2025 --template empty
+[...]
 
-Clone the [Neversea](https://github.com/systems-cs-pub-ro/Foundation-Of-Blockchains/tree/master/labs/lab05/neversea) project.
+$ ll my-neversea-2025/
+total 16
+drwxr-xr-x@  8 costincarabas  staff   256B Nov  6 04:21 .
+drwxr-x---+ 54 costincarabas  staff   1.7K Nov  6 04:21 ..
+-rw-r--r--@  1 costincarabas  staff   343B Nov  6 04:21 Cargo.toml
+drwxr-xr-x@  4 costincarabas  staff   128B Nov  6 04:21 meta
+-rw-r--r--@  1 costincarabas  staff    26B Nov  6 04:21 multiversx.json
+drwxr-xr-x@  3 costincarabas  staff    96B Nov  6 04:21 scenarios
+drwxr-xr-x@  3 costincarabas  staff    96B Nov  6 04:21 src
+drwxr-xr-x@  4 costincarabas  staff   128B Nov  6 04:21 tests
+```
 
-## Compile and deploy the Smart Contract template
+There are several other templates:
+```bash
+$ sc-meta templates
+empty
+ping-pong-egld
+crypto-zombies
+adder
+```
 
-To check that the contract was **successfully built**, verify that there was a **wasm** (WebAssembly) file generate: **output/neversea.wasm**. This is the compiled code of your contract.
+## Compile the Smart Contract template
 
-To check that the contract was successfully deployed, check the devnet/testnet.
+To check that the contract was **successfully built**, verify that there was a **wasm** (WebAssembly) file generate: **output/your-contract-name.wasm**. This is the compiled code of your contract.
 
 ---
 **NOTE**
 
-Check the deployment on the explorer. Do not assume that the contract was successfully deployed if there are no command line errors.
+For any further actions, please check the compilation on your local machine (and the deployment on the explorer, if it's the case). Do not assume that the contract was successfully compiled and deployed.
 
 Any modification of the contract must be succeeded by a compilation and deployment!
-
 ---
+
+You can use [this](https://github.com/systems-cs-pub-ro/Foundation-Of-Blockchains/blob/master/labs/lab05/neversea/src/empty.rs) contract as an inspiration.
+
+
+## Constructor
+
+Implement the `init` function so that it will take an argument that it's the registration fee and set a `registration_fee` storage.
+Implement the `upgrade` function so that it won't take any argument.
+
+## Storages
+
+Add 2 storages:
+* `participants` - a set of addresses (you can use `ManagedAddress`) that stores the participants list;
+* `registration_fee` - you can use `BigUint` to store the fee.
+
+## Add endpoints
+
+Add a `register` endpoint where clients will pay the fee via EGLD to register to the festival.
+Add a `update_registration_fees` endpoint where the owner can update the fee. Use `#[only_owner]` annotation so that the endpoint can be called only by the owner.
+
 
 ## Practice
 
@@ -39,6 +79,6 @@ Any modification of the contract must be succeeded by a compilation and deployme
 ---
 
 **Hint**
-Use #[only_owner] endpoint annotation.
+Use `#[only_owner]` endpoint annotation.
 
 ---

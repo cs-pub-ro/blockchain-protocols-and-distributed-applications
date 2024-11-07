@@ -1,19 +1,20 @@
 # Prerequisites
 
+All of these prerequisites were done at the first lab. You can skip this section if you have already done this.
+
 ## Install mxpy - blockchain interaction
 
 We use `mxpy` to interact with the blockchain.
 
 To install `mxpy` run:
 ```bash
-wget -O mxpy-up.py https://raw.githubusercontent.com/multiversx/mx-sdk-py-cli/main/mxpy-up.py
-python3 mxpy-up.py
+pipx install multiversx-sdk-cli --force
 ```
 
 To check the successful installation:
 ```bash
 $ mxpy --version
-MultiversX Python CLI (mxpy) 6.1.3
+MultiversX Python CLI (mxpy) 9.8.1
 ```
 
 If you encounter any errors, follow the guide [here](https://docs.multiversx.com/sdk-and-tools/sdk-py/installing-mxpy/).
@@ -30,7 +31,7 @@ $ cargo install multiversx-sc-meta
 To check for successful installation:
 ```bash
 $ sc-meta --version
-multiversx-sc-meta 0.45.1
+multiversx-sc-meta 0.54.0
 ```
 
 If you encounter any errors, follow the guide [here](https://docs.multiversx.com/developers/meta/sc-meta#introduction).
