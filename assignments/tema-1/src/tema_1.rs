@@ -120,7 +120,7 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
         require!(nonce <= self.nft_supply().len() as u64, "NFT not found");
 
         let caller_address = self.blockchain().get_caller();
-        require!(self.student_address().contains(&caller_address), "Congratulations! You already finished the homework!");
+        require!(!self.student_address().contains(&caller_address), "Congratulations! You already finished the homework!");
 
         let nft_payment = self.call_value().single_esdt();
         let nft_student_data = self.blockchain().get_esdt_token_data(
