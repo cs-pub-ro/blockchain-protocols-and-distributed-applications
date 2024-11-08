@@ -104,7 +104,7 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
         let rand_index = rand_source.next_usize_in_range(1, vec_len + 1);
 
         let rand_card_properties = self.cards_properties().get(rand_index);
-        self.students_cards(self.blockchain().get_caller()).set(&rand_card_properties);
+        self.students_cards(student_address).set(&rand_card_properties);
 
         rand_card_properties
     }
@@ -119,8 +119,8 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
         require!(nonce > 0, "NFTs can't have a nonce of 0");
         require!(nonce <= self.nft_supply().len() as u64, "NFT not found");
 
-        let caller_address = self.blockchain().get_caller();
-        require!(!self.student_address().contains(&caller_address), "Congratulations! You already finished the homework!");
+        let student_address = self.blockchain().get_caller();
+        require!(!self.student_address().contains(&student_address), "Congratulations! You already finished the homework!");
 
         let nft_payment = self.call_value().single_esdt();
         let nft_student_data = self.blockchain().get_esdt_token_data(
@@ -129,7 +129,11 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
             nft_payment.token_nonce,
         );
 
-        require!(nft_student_data.try_decode_attributes::<CardProperties>().unwrap() == self.students_cards(caller_address.clone()).get(), "NFT data mismatch");
+        let is_empty = self.students_cards(student_address.clone()).is_empty();
+        require!(!is_empty, "You need to get your card first");
+
+        let student_card = self.students_cards(student_address.clone()).get();
+        require!(nft_student_data.try_decode_attributes::<CardProperties>().unwrap() == student_card, "NFT data mismatch");
 
         let mut index_to_remove: usize = 0;
         let nft_data = self.token_id().get_all_token_data(nonce);
@@ -143,7 +147,7 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
         if index_to_remove > 0 {
             self.cards_properties().swap_remove(index_to_remove + 1);
             self.nft_supply().set(nonce as usize, &nft_student_data);
-            self.student_address().insert(caller_address);
+            self.student_address().insert(student_address);
             self.send_nft_to_caller(nonce);
         }
     }
