@@ -132,24 +132,29 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
         let is_empty = self.students_cards(student_address.clone()).is_empty();
         require!(!is_empty, "You need to get your card first");
 
-        let student_card = self.students_cards(student_address.clone()).get();
-        require!(nft_student_data.try_decode_attributes::<CardProperties>().unwrap() == student_card, "NFT data mismatch");
+        let student_card_attributes = self.students_cards(student_address.clone()).get();
+        let payment_card_attributes = nft_student_data.try_decode_attributes::<CardProperties>().unwrap();
+        require!(payment_card_attributes == student_card_attributes, "Card attributes do not match with those returned by getYourNftCardProperties");
+
+        let nft_data = self.token_id().get_all_token_data(nonce);
+        let nft_data_attributes = nft_data.try_decode_attributes::<CardProperties>().unwrap();
+        require!(payment_card_attributes == nft_data_attributes, "Card attributes do not match with the one you want to exchange");
 
         let mut index_to_remove: usize = 0;
-        let nft_data = self.token_id().get_all_token_data(nonce);
         for (index, card) in self.cards_properties().iter().enumerate() {
-            if card == nft_data.try_decode_attributes::<CardProperties>().unwrap() {
+            if card == nft_data_attributes {
                 index_to_remove = index;
                 break;
             }
         }
 
-        if index_to_remove > 0 {
-            self.cards_properties().swap_remove(index_to_remove + 1);
-            self.nft_supply().set(nonce as usize, &nft_student_data);
-            self.student_address().insert(student_address);
-            self.send_nft_to_caller(nonce);
-        }
+        require!(index_to_remove > 0, "We could not remove the card from the list");
+
+        self.cards_properties().swap_remove(index_to_remove + 1);
+        self.nft_supply().set(nonce as usize, &nft_student_data);
+        self.student_address().insert(student_address);
+        self.send_nft_to_caller(nonce);
+
     }
 
     // Private helper functions
