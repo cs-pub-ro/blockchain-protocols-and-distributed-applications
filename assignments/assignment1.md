@@ -58,7 +58,7 @@ attributes as the BPDA-NFT, otherwise the SC will tell you that the NFT's do not
 
 ### 2. Interacting with the Smart Contract
 
-- **Smart Contract Address**: **erd1qqqqqqqqqqqqqpgqtpxhlcckhltvs3pf3dj6ullt4nt6e7ahuvaqcetetf**
+- **Smart Contract Address**: **erd1qqqqqqqqqqqqqpgqrqz7r8yl5dav2z0fgnn302l2w7xynygruvaq76m26j**
 - **Smart Contract Code**: [See the assignment for the first homework on GitHub](https://github.com/cs-pub-ro/blockchain-protocols-and-distributed-applications/tree/main/assignments/tema-1)
 
 ### Core Interactions
