@@ -100,8 +100,8 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
         require!(!self.student_address().contains(&student_address), "Congratulations! You already finished the homework!");
 
         let mut rand_source = RandomnessSource::new();
-        let vec_len = self.cards_properties().len();
-        let rand_index = rand_source.next_usize_in_range(1, vec_len + 1);
+        let cards_properties_len = self.cards_properties().len();
+        let rand_index = rand_source.next_usize_in_range(1, cards_properties_len + 1);
 
         let rand_card_properties = self.cards_properties().get(rand_index);
         self.students_cards(student_address).set(&rand_card_properties);
@@ -140,7 +140,8 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
         let nft_data_attributes = nft_data.try_decode_attributes::<CardProperties>().unwrap();
         require!(payment_card_attributes == nft_data_attributes, "Card attributes do not match with the one you want to exchange");
 
-        let mut index_to_remove: usize = 0;
+        let cards_properties_len = self.cards_properties().len();
+        let mut index_to_remove: usize = cards_properties_len + 1;
         for (index, card) in self.cards_properties().iter().enumerate() {
             if card == nft_data_attributes {
                 index_to_remove = index;
@@ -148,7 +149,7 @@ pub trait Tema1: default_issue_callbacks::DefaultIssueCallbacksModule {
             }
         }
 
-        require!(index_to_remove > 0, "We could not remove the card from the list");
+        require!(index_to_remove < cards_properties_len, "We didn't find the card you want to exchange");
 
         self.cards_properties().swap_remove(index_to_remove + 1);
         self.nft_supply().set(nonce as usize, &nft_student_data);
