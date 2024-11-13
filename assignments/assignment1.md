@@ -82,6 +82,10 @@ attributes as the BPDA-NFT, otherwise the SC will tell you that the NFT's do not
 
 You can also deploy the homework's SC for local testing.
 
+### How do I know if I have successfully finished the homework?
+
+The homework is done if, at the end of the aforementioned flow, you have a **BPDA-TRADING-CARD** NFT in your MultiversX wallet. Any further attempts to call the functions `getYourNftCardProperties` or `exchangeNFT` will result in a SC error with the following message: **Congratulations! You already finished the homework!**.
+
 ### 3. Frontend Application (BONUS 1)
 
 Develop a simple front-end (React or other frameworks) that allows users to interact with the smart contract through a web interface.
