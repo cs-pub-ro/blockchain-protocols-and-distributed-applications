@@ -41,8 +41,6 @@ For any further actions, please check the compilation on your local machine (and
 Any modification of the contract must be succeeded by a compilation and deployment!
 ---
 
-You can use [this](https://github.com/systems-cs-pub-ro/Foundation-Of-Blockchains/blob/master/labs/lab05/neversea/src/empty.rs) contract as an inspiration.
-
 
 ## Constructor
 
