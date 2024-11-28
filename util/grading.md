@@ -4,8 +4,8 @@
 | -------- | ------- |
 | Lab involvement | 10p |
 | Homework 1| 15p |
-| Homework 2| 15p |
-| Project| 20p |
+| <s>Homework 2</s>| <s>15p |
+| Project| <s>20p</s> 35p |
 | Lecture involvement | 10p (bonus)|
 | Practical final exam | 30p  points |
 | Theoretical final exam | 10p  points |
