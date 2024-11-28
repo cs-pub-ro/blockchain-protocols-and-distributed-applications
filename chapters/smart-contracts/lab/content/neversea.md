@@ -72,8 +72,6 @@ Add a `update_registration_fees` endpoint where the owner can update the fee. Us
 * BONUS: Create a feature to enable 50% discount vouchers for friends and partners. Create a list of hardcoded discount codes. Create a new endpoint that receives a discount code as a parameter and registers a user with 50% discount.
 
 
-
-
 ---
 
 **Hint**

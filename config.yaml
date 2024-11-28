@@ -110,6 +110,12 @@ docusaurus:
                 - Neversea SC: neversea.md
               extra:
                 - ../media/
+          - Learning Rust:
+              path: chapters/rust/content
+              subsections:
+                - Objectives: rust.md
+                - Tour of Rust: tour-of-rust.md
+                - CryptoZombies: cryptozombies.md
           - Observer:
               path: chapters/introduction/lab/content/observer/
               extra:
