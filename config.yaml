@@ -116,6 +116,12 @@ docusaurus:
                 - Objectives: rust.md
                 - Tour of Rust: tour-of-rust.md
                 - CryptoZombies: cryptozombies.md
+          - Decentralized Applications:
+              path: chapters/dApps/lab/content/
+              extra:
+                - ../media/
+              subsections:
+                - Building your first dApp: dApp.md
           - Observer:
               path: chapters/introduction/lab/content/observer/
               extra:
