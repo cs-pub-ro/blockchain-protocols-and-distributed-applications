@@ -149,10 +149,10 @@ Next step is to deploy the smart contract to the blockchain.
 Make sure `wallet_owner.pem` is in the right folder, the smart contract is built and let's get to the deployment.
 For now let's continue with the default values.
 
-At path `contract/ping-pong/interact` we will run:
+At path `contract/ping-pong/interactor` we will run:
 
 ```bash
-cargo run deploy --ping-amount 5 --duration-in-seconds 300
+cargo run deploy --ping-amount 5 --duration-in-seconds 3000
 ```
 
 We'll take a look at the log output. We have 2 elements that need our attention: the contract address and the transaction hash. Let's check them in the [Devnet Explorer](https://devnet-explorer.multiversx.com).
