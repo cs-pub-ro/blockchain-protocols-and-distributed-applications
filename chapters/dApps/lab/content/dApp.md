@@ -44,10 +44,6 @@ For the web app we'll have two pages:
 
 ### Blockchain Layer (The Backend)
 
-We will create a smart contract that can handle the deposit (**ping**), claim (**pong**) and status actions (**did_user_ping**, **get_time_to_pong**). Let's say that, for now, this smart contract plays the role of an API in a dApp. Also, this is where our business logic resides.
-
-### **Blockchain Layer (The Backend)**
-
 We will create a smart contract that can handle:
 - `ping`: user sends some EGLD to be locked in the contract for a period of time;
 - `pong`: user can take back funds from the contract;
@@ -280,10 +276,3 @@ You can see the amount of time you'll have to wait until you can pong.
 After the time interval has passed, you can claim the funds by clicking the Pong button.
 Another blockchain transaction will wait to be processed, this time the amount will be zero, as we only have to invoke the `pong` function (specified in the _data_ field).
 The transaction will trigger a success message and the funds will be returned to the wallet.
-
-[comment]: # (mx-context-auto)
-
-## Step by step tutorial
-
-Please follow the [tutorial](https://docs.multiversx.com/developers/tutorials/your-first-dapp) and create your first dApp.
-Interact with the dApp and observe the blockchain transactions.
