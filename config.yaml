@@ -122,6 +122,19 @@ docusaurus:
                 - ../media/
               subsections:
                 - Building your first dApp: dApp.md
+          - Smart Contract Events:
+              path: chapters/smart-contracts/lab/content/
+              subsections:
+                - SC Events: events.md
+              extra:
+                - ../media/
+          - DeFi:
+              path: chapters/money/lab/content/
+              extra:
+                - ../media/
+              subsections:
+                - ESDT Tokens: mint_tokens.md
+                - Swap Tokens: swap.md
           - Observer:
               path: chapters/introduction/lab/content/observer/
               extra:
@@ -148,12 +161,6 @@ docusaurus:
                 - Basic Wallet : basic_wallet.md
                 - Transactions : transactions.md
                 - Sources : sources.md
-              extra:
-                - ../media/
-          - Smart Contract Events:
-              path: chapters/smart-contracts/lab/content
-              subsections:
-                - SC Events: events.md
               extra:
                 - ../media/
 

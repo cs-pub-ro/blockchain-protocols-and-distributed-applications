@@ -1,5 +1,7 @@
 # Events
 
+In this section you will learn what Smart Contract Events are, how to see what events were emitted in a transaction and how to emit one yourself.
+
 Key Takeaways:
 * Events in smart contracts serve as a communication mechanism between the contract and user interfaces;
 * By emitting events, smart contracts can notify external applications or listeners about specific actions or changes;
