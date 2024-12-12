@@ -66,3 +66,6 @@ And when you want to emit an event, just call the function:
 ```rust
     self.the_function_you_call_when_you_want_to_emit_en_event(field1, field2, field3, field4);
 ```
+
+## Task
+Last time you interacted with the [ping-pong contract](https://github.com/multiversx/mx-ping-pong-sc). This time, you have to inspect the contract and call an endpoint that emits an event. Don't forget to check the logs!
