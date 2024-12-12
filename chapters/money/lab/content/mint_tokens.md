@@ -32,7 +32,7 @@ Let's create a token new token:
 
 ![Issue Token](../media/issue_token.png)
 
-and inspect the transaction 
+and inspect the transaction.
 
 ![Explorer Token Created](../media/explorer_token_created.png)
 

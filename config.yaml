@@ -122,6 +122,19 @@ docusaurus:
                 - ../media/
               subsections:
                 - Building your first dApp: dApp.md
+          - Smart Contract Events:
+              path: chapters/smart-contracts/lab/content/
+              subsections:
+                - SC Events: events.md
+              extra:
+                - ../media/
+          - DeFi:
+              path: chapters/money/lab/content/
+              extra:
+                - ../media/
+              subsections:
+                - ESDT Tokens: mint_tokens.md
+                - Swap Tokens: swap.md
           - Observer:
               path: chapters/introduction/lab/content/observer/
               extra:
@@ -129,13 +142,6 @@ docusaurus:
                 # - ../../quiz/
               subsections:
                 - Observers: observer.md
-          - Money (DeFi):
-              path: chapters/money/lab/content
-              extra:
-                - ../media/
-              subsections:
-                - ESDT Tokens: mint_tokens.md
-                - Swap Tokens: swap.md
           - Basic Peer-to-Peer Blockchain:
               path: chapters/peer-to-peer/lab/content
               subsections:
@@ -150,33 +156,6 @@ docusaurus:
                 - Sources : sources.md
               extra:
                 - ../media/
-          - Smart Contract Events:
-              path: chapters/smart-contracts/lab/content
-              subsections:
-                - SC Events: events.md
-              extra:
-                - ../media/
-
-      #     - Fungible Tokens:
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
-      #     - Non Fungible Tokens (NFT):
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
-      #     - dApps:
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
-      #     - Security:
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
-      #     - DeFi:
-      #         path: chapters/template-chapter/yet-another-topic/
-      #         subsections:
-      #           - Drills/: drills/
       - Assignments:
           - Assignment 1: assignments/assignment1.md
           - Assignment 2: assignments/assignment2.md
