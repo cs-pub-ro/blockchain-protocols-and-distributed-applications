@@ -14,7 +14,7 @@ Best of _"luck"_!
 
 Here is the code that is executed:
 ```Rust
-  #[endpoint]
+    #[endpoint]
     fn coinflip(&self) -> bool {
         let lucky = self.flip_coin();
         let caller = self.blockchain().get_caller();
