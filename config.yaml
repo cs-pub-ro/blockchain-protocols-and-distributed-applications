@@ -135,14 +135,21 @@ docusaurus:
               subsections:
                 - ESDT Tokens: mint_tokens.md
                 - Swap Tokens: swap.md
-          - Observer:
+          - CTF:
+              path: chapters/ctf/
+              subsections:
+                - Intro: ctf.md
+                - Bump: bump.md
+                - Coinflip: coinflip.md
+                - GassPass: gaspass.md
+          - Observer (Extra):
               path: chapters/introduction/lab/content/observer/
               extra:
                 - ../../media/
                 # - ../../quiz/
               subsections:
                 - Observers: observer.md
-          - Basic Peer-to-Peer Blockchain:
+          - Basic Peer-to-Peer Blockchain (Extra):
               path: chapters/peer-to-peer/lab/content
               subsections:
                 - What we will build? : what_we_build.md
