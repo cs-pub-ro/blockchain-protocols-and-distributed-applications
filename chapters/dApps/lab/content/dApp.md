@@ -201,7 +201,7 @@ cd dapp
 
 ### **Configure the app**
 
-Use the preferred editor and customize the Smart Contract Address located in `src/config/config-devnet.tsx`
+Use the preferred editor and customize the Smart Contract Address located in `src/config/config.devnet.tsx`
 
 Then edit this instruction, and change it to the contract address that was shown in the [previous step](./your-first-dapp.md#customize-and-deploy).
 
