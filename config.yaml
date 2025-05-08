@@ -176,7 +176,7 @@ docusaurus:
     config_meta:
       title: Blockchain Protocols and Distributed Applications
       url: http://costincarabas.github.io/
-      baseUrl: /blockchain-protocols-and-distributed-applications/
+      baseUrl: /workshop-blockchain-protocols-and-distributed-applications/
       onBrokenLinks: warn
       onBrokenMarkdownLinks: warn
     config_socials:
