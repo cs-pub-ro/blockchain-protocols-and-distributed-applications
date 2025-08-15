@@ -1,0 +1,22 @@
+@page {
+    size: A4;
+    margin: 20mm 15mm 25mm 15mm;
+}
+
+/* Improve code block readability in print */
+pre code {
+    font-size: 10pt !important;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+h1,
+h2,
+h3 {
+    page-break-after: avoid;
+}
+
+img,
+table {
+    page-break-inside: avoid;
+}

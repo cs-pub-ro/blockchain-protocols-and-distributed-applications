@@ -1,0 +1,166 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.81.0",
+            "commitHash": "eeb90cda1969383f56a2637cbd3037bdf598841c",
+            "commitDate": "2024-09-04",
+            "channel": "Stable",
+            "short": "rustc 1.81.0 (eeb90cda1 2024-09-04)"
+        },
+        "contractCrate": {
+            "name": "attendance",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.53.2"
+        }
+    },
+    "name": "Attendance",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "admins",
+                "type": "variadic<Address>",
+                "multi_arg": true
+            }
+        ],
+        "outputs": []
+    },
+    "upgradeConstructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "registerStudent",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "registerAttendance",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "registerSecretKey",
+            "onlyAdmin": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "secret_key",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "insertAdmin",
+            "onlyAdmin": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "admin",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getStudents",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<Address>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getAttendance",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "student_address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getSecretKey",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "secret_key",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "isAdmin",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "addAdmin",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "removeAdmin",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getAdmins",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<Address>",
+                    "multi_result": true
+                }
+            ]
+        }
+    ],
+    "esdtAttributes": [],
+    "hasCallback": false,
+    "types": {}
+}
