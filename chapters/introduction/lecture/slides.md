@@ -11,8 +11,6 @@ revealOptions:
 
 1. [Introduction](#intro)
 
----
-
 # Software Stack
 
 ----

@@ -1,0 +1,149 @@
+site_name: Blockchain Protocols and Distributed Applications
+site_description: A curated textbook derived from the BPDA Master's curriculum
+site_author: Costin Carabaș
+
+# Use a child docs directory with symlinks to the original content
+docs_dir: book
+
+theme:
+  name: material
+  features:
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - content.code.annotate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+  icon:
+    logo: material/book-education
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+extra_css:
+  - styles/print.css
+
+plugins:
+  - search
+  - redirects
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - footnotes
+  - def_list
+  - attr_list
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist
+  - pymdownx.emoji
+
+nav:
+  - Cover: cover.md
+  - Preface: preface.md
+  - Home: chapters/introduction/lecture/slides/intro.md
+  - Introduction:
+    - Slides: chapters/introduction/lecture/slides/intro.md
+    - Lab / Setup: chapters/introduction/lab/content/setup/setup.md
+    - Lab / Wallet:
+      - Overview: chapters/introduction/lab/content/wallet/wallet.md
+      - Browser Wallet: chapters/introduction/lab/content/wallet/browser_wallet.md
+      - Command-line Wallet: chapters/introduction/lab/content/wallet/cmdline_wallet.md
+      - Keystore: chapters/introduction/lab/content/wallet/keystore.md
+      - Faucet: chapters/introduction/lab/content/wallet/faucet.md
+      - Send Transaction: chapters/introduction/lab/content/wallet/send_tx.md
+      - Observer (from Wallet): chapters/introduction/lab/content/wallet/observer.md
+    - Lab / Observer: chapters/introduction/lab/content/observer/observer.md
+    - Lab / Explorer:
+      - Blocks: chapters/introduction/lab/content/explorer/blocks.md
+      - Consensus: chapters/introduction/lab/content/explorer/consensus.md
+      - Devnet vs Testnet: chapters/introduction/lab/content/explorer/devnet_testnet.md
+      - Leader: chapters/introduction/lab/content/explorer/leader.md
+      - Observers: chapters/introduction/lab/content/explorer/observers.md
+      - Time: chapters/introduction/lab/content/explorer/time.md
+      - Transactions: chapters/introduction/lab/content/explorer/transactions.md
+      - Validators: chapters/introduction/lab/content/explorer/validators.md
+
+  - Smart Contracts:
+    - Slides: chapters/smart-contracts/lecture/slides/smart-contracts.md
+    - Lab / Prerequisites: chapters/smart-contracts/lab/content/prerequisites.md
+    - Lab / Empty Template: chapters/smart-contracts/lab/content/empty.md
+    - Lab / Adder: chapters/smart-contracts/lab/content/adder.md
+    - Lab / Events: chapters/smart-contracts/lab/content/events.md
+    - Lab / Rust Interactors: chapters/smart-contracts/lab/content/rust_interactors.md
+    - Lab / Deploy via mxpy: chapters/smart-contracts/lab/content/mxpy_deploy.md
+    - Lab / Contract Calls via mxpy: chapters/smart-contracts/lab/content/mxpy_sc_call.md
+    - Lab / Neversea NFT: chapters/smart-contracts/lab/content/neversea.md
+
+  - Tokens:
+    - Lab / Overview: chapters/tokens/lab/content/standards.md
+    - Lab / Fungible Tokens: chapters/tokens/lab/content/fungible.md
+    - Lab / Non-Fungible Tokens: chapters/tokens/lab/content/nft.md
+    - Lab / Fungible vs Non-Fungible: chapters/tokens/lab/content/fungible-non-fungible.md
+
+  - dApps:
+    - Slides: chapters/dApps/lecture/slides/dApps.md
+    - Lab / dApp Walkthrough: chapters/dApps/lab/content/dApp.md
+
+  - Money and DeFi:
+    - Slides: chapters/money/lecture/slides/intro.md
+    - Lab / Mint Tokens: chapters/money/lab/content/mint_tokens.md
+    - Lab / Swap: chapters/money/lab/content/swap.md
+    - Lab / Provide Liquidity: chapters/money/lab/content/liq_provider.md
+    - Lab / Lend & Borrow: chapters/money/lab/content/lend_borrow.md
+
+  - Composability:
+    - Slides: chapters/composability/lecture/slides/composability.md
+    - Lab / Notes: chapters/composability/lab/content/README.md
+
+  - Protocol:
+    - Slides: chapters/protocol/lecture/slides/protocol.md
+    - Lab / Build a Basic Blockchain: chapters/protocol/lab/content/basic-blockchain/README.md
+
+  - Security:
+    - Slides: chapters/security/lecture/slides/security.md
+    - Lab / Notes: chapters/security/lab/content/README.md
+
+  - Peer-to-Peer:
+    - Lab / What We Build: chapters/peer-to-peer/lab/content/what_we_build.md
+    - Lab / Why Golang: chapters/peer-to-peer/lab/content/why_golang.md
+    - Lab / Terminal: chapters/peer-to-peer/lab/content/terminal.md
+    - Lab / P2P Network: chapters/peer-to-peer/lab/content/p2p_network.md
+    - Lab / Discovery Node: chapters/peer-to-peer/lab/content/discovery_node.md
+    - Lab / Transactions: chapters/peer-to-peer/lab/content/transactions.md
+    - Lab / Mining: chapters/peer-to-peer/lab/content/mining.md
+    - Lab / Sources: chapters/peer-to-peer/lab/content/sources.md
+
+  - Virtual Machines:
+    - Slides: chapters/vm/lecture/slides/vm.md
+    - Lab / VM Deep Dive: chapters/vm/lab/content/vm/README.md
+
+  - CTFs:
+    - Overview: chapters/ctf/ctf.md
+    - Coinflip: chapters/ctf/coinflip.md
+    - Bump: chapters/ctf/bump.md
+    - GasPass: chapters/ctf/gaspass.md
+
+  - Appendices:
+    - Assignments:
+      - Assignment 1: assignments/assignment1.md
+      - Assignment 2: assignments/assignment2.md
+      - Scientific Research Assignment: assignments/scientific_research_assignment.md
+      - Blockchain Research Assignment: assignments/blockchain_research_assignment.md
+      - Project: assignments/project.md
+    - Course Resources: util/resources.md
+    - Course Grading: util/grading.md
+    - Rust Primer:
+      - Rust Overview: chapters/rust/content/rust.md
+      - Tour of Rust: chapters/rust/content/tour-of-rust.md
+      - CryptoZombies (Rust): chapters/rust/content/cryptozombies.md
+
+
