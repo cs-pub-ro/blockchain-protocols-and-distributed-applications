@@ -1,15 +1,4 @@
 ---
-title: "Introduction to Blockchains"
-revealOptions:
-  background-color: 'aquamarine'
-  transition: 'none'
-  slideNumber: true
-  autoAnimateDuration: 0.0
----
-
-# Introduction to Blockchains
-
-1. [Introduction](#intro)
 
 # Software Stack
 

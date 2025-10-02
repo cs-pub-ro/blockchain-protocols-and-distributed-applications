@@ -30,7 +30,7 @@ embed_reveal:
     target: docusaurus
     extension: mdx
     build:
-      Introduction: slides/Introduction
+      Introduction: chapters/introduction/lecture/slides
       # Protocol: slides/protocol
       # Case-Study: slides/case-study
       # Wallet: slides/wallet
@@ -48,7 +48,7 @@ docusaurus:
     structure:
       - Introduction: chapters/README.md
       - Lectures:
-        - Introduction: /build/embed_reveal/Introduction/Introduction.mdx
+        - Introduction: chapters/introduction/lecture/slides/intro.md
             # - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
             # - Case Study: Case-Study/Case-Study.mdx
             # - Wallet: Wallet/Wallet.mdx
