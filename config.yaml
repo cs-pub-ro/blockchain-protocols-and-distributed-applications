@@ -48,15 +48,16 @@ docusaurus:
     structure:
       - Introduction: chapters/README.md
       - Lectures:
-        - Introduction: Introduction/Introduction.mdx
-            # - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
-            # - Case Study: Case-Study/Case-Study.mdx
-            # - Wallet: Wallet/Wallet.mdx
-            # - Virtual Machine: Virtual-Machine/Virtual-Machine.mdx
-            # - Smart Contracts: Smart-Contracts/Smart-Contracts.mdx
-            # - Security: Security/Security.mdx
-            # - Scaling dApps: Scaling-dApps/Scaling-dApps.mdx
-            # - Composability: Composability/Composability.mdx
+          subsections:
+            - Introduction: /build/embed_reveal/Introduction/Introduction.mdx
+            # - Blockchain Protocols: /build/embed_reveal/Protocol/Protocol.mdx
+            # - Case Study: /build/embed_reveal/Case-Study/Case-Study.mdx
+            # - Wallet: /build/embed_reveal/Wallet/Wallet.mdx
+            # - Virtual Machine: /build/embed_reveal/VM/VM.mdx
+            # - Smart Contracts: /build/embed_reveal/Smart-Contracts/Smart-Contracts.mdx
+            # - Security: /build/embed_reveal/Security/Security.mdx
+            # - Scaling dApps: /build/embed_reveal/Dapps/Dapps.mdx
+            # - Composability: /build/embed_reveal/Composability/Composability.mdx
       - Practical Sessions:
           - Env Setup:
               path: chapters/introduction/lab/content/setup
@@ -171,7 +172,8 @@ docusaurus:
       - Grading: util/grading.md
       - Resources: util/resources.md
     static_assets:
-      - slides/introduction: static/slides/introduction
+      - slides/introduction: /build/make_assets/chapters/introduction/lecture/_site
+      # - slides/protocol: /build/make_assets/chapters/protocol/lecture/_site
     config_meta:
       title: Blockchain Protocols and Distributed Applications
       url: https://cs-pub-ro.github.io/
