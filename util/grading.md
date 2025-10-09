@@ -3,9 +3,8 @@
 | Section    | Percent of total grade |
 | -------- | ------- |
 | Lab involvement | 10p |
-| Homework 1| 15p |
-| <s>Homework 2</s>| <s>15p</s> |
-| Project| <s>20p</s> 35p |
+| Homework | 15p |
+| Project| 35p |
 | Lecture involvement | 10p (bonus)|
 | Practical final exam | 30p  points |
 | Theoretical final exam | 10p  points |
@@ -15,7 +14,7 @@
 4.5 points are required to pass the class.
 There are no other requirements (such as a minimal grade for a given component).
 
-In case you don't pass the exam you may choose to keep the lab and assignments grade or the final exam grade for the next year. You cannot keep some parts of these grades. If choosing not to keep any grade, everything will be reset for at the beginning of the 2025-2026 academic year.
+In case you don't pass the exam you may choose to keep the lab and assignments grade or the final exam grade for the next year. You cannot keep some parts of these grades. If choosing not to keep any grade, everything will be reset for at the beginning of the next academic year.
 
 ## Practical Exam
 

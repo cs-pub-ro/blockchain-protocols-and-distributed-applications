@@ -113,7 +113,7 @@ Present a reproducible way of exploiting the SC or generating unwanted behavior.
 
 - **Testing**: The assignment will be tested on the MultiversX Devnet. Ensure that you use the appropriate network when deploying and interacting with the contract.
 - **Collaboration**: This is an individual assignment. Each student must submit its own code. Also, each student must present their GitHub during the lab and show that the last changes have been committed before the deadline. You will be asked to clone the repository on the spot.
-- **Questions and Help**: Please ask any questions on the [Forum](https://curs.upb.ro/2024/mod/forum/view.php?id=56665).
+- **Questions and Help**: Please ask any questions on the [Forum](https://curs.upb.ro/2025/mod/forum/view.php?id=29899).
 
 ## Useful Resources
 

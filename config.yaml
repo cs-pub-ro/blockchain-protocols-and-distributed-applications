@@ -31,14 +31,14 @@ embed_reveal:
     extension: mdx
     build:
       Introduction: chapters/introduction/lecture/_site
-      # Protocol: slides/protocol
-      # Case-Study: slides/case-study
-      # Wallet: slides/wallet
-      # VM: slides/vm
-      # Smart-Contracts: slides/smart-contracts
-      # Security: slides/security
-      # Dapps: slides/dApps
-      # Composability: slides/composability
+      # Protocol: chapters/protocol/lecture/_site
+      # Case-Study: chapters/case-study/lecture/_site
+      # Wallet: chapters/wallet/lecture/_site
+      # VM: chapters/vm/lecture/_site
+      # Smart-Contracts: chapters/smart-contracts/lecture/_site
+      # Security: chapters/security/lecture/_site
+      # Dapps: chapters/dApps/lecture/_site
+      # Composability: chapters/composability/lecture/_site
 
 docusaurus:
   plugin: docusaurus
@@ -48,7 +48,7 @@ docusaurus:
     structure:
       - Introduction: chapters/README.md
       - Lectures:
-        - Introduction: intro-slides-presentation.md
+        - Introduction: docs/intro-slides-presentation.md
             # - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
             # - Case Study: Case-Study/Case-Study.mdx
             # - Wallet: Wallet/Wallet.mdx
@@ -164,15 +164,14 @@ docusaurus:
               extra:
                 - ../media/
       - Assignments:
-          - Assignment 1: assignments/assignment1.md
-          - Assignment 2: assignments/assignment2.md
+          - Assignment (2024-2025): assignments/assignment1.md
           - Project: assignments/project.md
           # - Blockchain Research Assignment: assignments/blockchain_research_assignment.md
           # - Scientific Research Assignment: assignments/scientific_research_assignment.md
       - Grading: util/grading.md
       - Resources: util/resources.md
-    # static_assets:
-    #   - slides/Compute: /build/make_assets/content/chapters/introduction/lecture/_site
+    static_assets:
+      - slides/introduction: static/slides/introduction
     config_meta:
       title: Blockchain Protocols and Distributed Applications
       url: https://cs-pub-ro.github.io/

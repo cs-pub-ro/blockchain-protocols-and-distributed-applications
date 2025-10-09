@@ -15,8 +15,8 @@ Submit a PDF file containing a description of your idea:
 Each student should submit the PDF file (ex. for a team of 2 students, there will be 2 submissions).
 Keep it brief. 1 page is enough; hard cap is 2 pages.
 
-[Submission link](https://curs.upb.ro/2024/mod/assign/view.php?id=81433&forceview=1)
-**Deadline**: Monday, 16 December 2024, 11:59 PM
+[Submission link](https://curs.upb.ro/2025/mod/assign/view.php?id=29907)
+**Deadline**: Monday, 3 November 2025, 11:59 PM
 
 ## Phase 2 - Project documentation
 
@@ -30,8 +30,7 @@ Submit a PDF file containing:
 Each student should submit the PDF file (ex. for a team of 2 students, there will be 2 submissions).
 
 
-[Submission link](https://curs.upb.ro/2024/mod/assign/view.php?id=81438&forceview=1)
-**Deadline**: Monday, 13 January 2024, 11:59 PM
+**Deadline**: Monday, 19 January 2026, 11:59 PM
 
 ## Phase 3 - Project presentation
 
@@ -42,7 +41,6 @@ During the lecture & practical session you will have the chance to demo your pro
 * You can do the project **by yourself** or in **a team of two**.
 * There are no minimum requirements. You can do a dApp, a VSCode tool that helps blockchain development, or a GitHub CI solution that helps the development process. Be creative;
 * There are no blockchain restrictions. You can use whatever blockchain solution you want.
-
 
 ## List of ideas
 

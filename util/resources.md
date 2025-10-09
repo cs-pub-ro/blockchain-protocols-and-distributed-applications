@@ -3,8 +3,8 @@
 ## List of Resources:
 
 - [GitHub Repository](https://github.com/CostinCarabas/blockchain-protocols-and-distributed-applications)
-- [Moodle Class](https://curs.upb.ro/2024/course/view.php?id=1947) (used for homework submissions, quizzes, announcements, etc.)
-- [Planning](https://docs.google.com/spreadsheets/d/e/2PACX-1vSbaEavaQE8WgMM5QKNRFrrdETS6lYL6APvnAcAvIwYaMlpiL7hBJZqWW0q7wgWpu9LbCa2RUlH1qrB/pubhtml?gid=0&single=true)
+- [Moodle Class](https://curs.upb.ro/2025/course/view.php?id=1887) (used for homework submissions, quizzes, announcements, etc.)
+# - [Planning](https://docs.google.com/spreadsheets/d/e/2PACX-1vSbaEavaQE8WgMM5QKNRFrrdETS6lYL6APvnAcAvIwYaMlpiL7hBJZqWW0q7wgWpu9LbCa2RUlH1qrB/pubhtml?gid=0&single=true)
 
 ## Books and interesting reading materials
 
@@ -22,6 +22,9 @@
 - [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
 - [Improving the Rust Book (really interactive)](https://rust-book.cs.brown.edu)
 - [Solidity docs](https://docs.soliditylang.org/en/v0.8.28/)
+- [Solana Developer Bootcamp 2024 Part 1](https://www.youtube.com/watch?v=amAq-WHAFs8)
+- [Solana Developer Bootcamp 2024 Part 2](https://www.youtube.com/watch?v=HOdYZSe1uhE)
+
 
 ## Virtual Machine
 
