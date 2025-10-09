@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Blockchains"
+title: "Blockchain Protocols and Distributed Applications"
 revealOptions:
   background-color: 'aquamarine'
   transition: 'none'
@@ -7,8 +7,8 @@ revealOptions:
   autoAnimateDuration: 0.0
 ---
 
-# Introduction to Blockchains
+# Blockchain Protocols and Distributed Applications
 
-1. [Introduction](#intro)
+1. [Introduction](#introduction)
 
 !INCLUDE "slides/intro.md"
