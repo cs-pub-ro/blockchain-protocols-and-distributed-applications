@@ -29,6 +29,7 @@ embed_reveal:
   options:
     target: docusaurus
     extension: mdx
+    base_path: /blockchain-protocols-and-distributed-applications/slides
     build:
       Introduction: chapters/introduction/lecture/_site
       # Protocol: chapters/protocol/lecture/_site
@@ -172,8 +173,8 @@ docusaurus:
       - Grading: util/grading.md
       - Resources: util/resources.md
     static_assets:
-      - slides/introduction: /build/make_assets/chapters/introduction/lecture/_site
-      # - slides/protocol: /build/make_assets/chapters/protocol/lecture/_site
+      - slides/Introduction: /build/make_assets/chapters/introduction/lecture/_site
+      # - slides/Protocol: /build/make_assets/chapters/protocol/lecture/_site
     config_meta:
       title: Blockchain Protocols and Distributed Applications
       url: https://cs-pub-ro.github.io/
