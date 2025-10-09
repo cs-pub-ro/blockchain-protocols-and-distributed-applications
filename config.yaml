@@ -48,7 +48,7 @@ docusaurus:
     structure:
       - Introduction: chapters/README.md
       - Lectures:
-        - Introduction: docs/intro-slides-presentation.md
+        - Introduction: Introduction/Introduction.mdx
             # - Blockchain Protocols: Blockchain-Protocols/Blockchain-Protocols.mdx
             # - Case Study: Case-Study/Case-Study.mdx
             # - Wallet: Wallet/Wallet.mdx
