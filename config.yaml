@@ -32,7 +32,7 @@ embed_reveal:
     extension: mdx
     base_path: /blockchain-protocols-and-distributed-applications/slides
     build:
-      Introduction: chapters/introduction/lecture/_site
+      Introduction: slides/Introduction
       # Protocol: chapters/protocol/lecture/_site
       # Case-Study: chapters/case-study/lecture/_site
       # Wallet: chapters/wallet/lecture/_site

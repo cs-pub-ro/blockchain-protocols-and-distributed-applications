@@ -50,9 +50,10 @@ jobs:
           mkdir -p slides-output/Introduction
           cp -r chapters/introduction/lecture/_site/* slides-output/Introduction/
           # Also create a copy for docusaurus build compatibility
-          mkdir -p build-compat/chapters/introduction/lecture/_site
-          cp -r chapters/introduction/lecture/_site/* build-compat/chapters/introduction/lecture/_site/
+          mkdir -p slides/Introduction
+          cp -r chapters/introduction/lecture/_site/* slides/Introduction/
           ls -la slides-output/Introduction/
+          ls -la slides/Introduction/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
