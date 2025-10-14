@@ -22,7 +22,7 @@ make_assets:
       # - chapters/dApps/lecture
       # - chapters/composability/lecture
     args:
-      - all
+      - html
 
 embed_reveal:
   plugin: reveal_embed
