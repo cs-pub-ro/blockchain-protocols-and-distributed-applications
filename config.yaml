@@ -173,7 +173,7 @@ docusaurus:
       - Grading: util/grading.md
       - Resources: util/resources.md
     static_assets:
-      - slides/Introduction: /build/make_assets/chapters/introduction/lecture/_site
+      - slides/Introduction: chapters/introduction/lecture/_site
       # - slides/Protocol: /build/make_assets/chapters/protocol/lecture/_site
     config_meta:
       title: Blockchain Protocols and Distributed Applications
