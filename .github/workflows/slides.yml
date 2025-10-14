@@ -1,6 +1,10 @@
 name: Build and Deploy Slides
 
 on:
+  workflow_run:
+    workflows: ["Template Repo - Github Page"]
+    types:
+      - completed
   push:
     branches:
       - main
@@ -53,6 +57,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./slides-output
           publish_branch: gh-pages
+          destination_dir: slides
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Deploy lecture slides'
