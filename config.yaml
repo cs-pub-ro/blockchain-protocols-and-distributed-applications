@@ -1,0 +1,189 @@
+stages:
+  - make_assets
+  - embed_reveal
+  - docusaurus
+
+build_dir: /build
+output_type: last
+output_dir: /output
+
+make_assets:
+  plugin: command
+  options:
+    command: bash
+    locations:
+      - chapters/introduction/lecture
+      # - chapters/protocol/lecture
+      # - chapters/case-study/lecture/slides
+      # - chapters/wallet/lecture/slides
+      # - chapters/vm/lecture
+      # - chapters/smart-contracts/lecture
+      # - chapters/security/lecture
+      # - chapters/dApps/lecture
+      # - chapters/composability/lecture
+    args:
+      - -c
+      - "make html && ls -la _site/ && echo 'Build completed successfully'"
+
+embed_reveal:
+  plugin: reveal_embed
+  options:
+    target: docusaurus
+    extension: mdx
+    base_path: /blockchain-protocols-and-distributed-applications/slides
+    build:
+      Introduction: chapters/introduction/lecture/_site
+      # Protocol: chapters/protocol/lecture/_site
+      # Case-Study: chapters/case-study/lecture/_site
+      # Wallet: chapters/wallet/lecture/_site
+      # VM: chapters/vm/lecture/_site
+      # Smart-Contracts: chapters/smart-contracts/lecture/_site
+      # Security: chapters/security/lecture/_site
+      # Dapps: chapters/dApps/lecture/_site
+      # Composability: chapters/composability/lecture/_site
+
+docusaurus:
+  plugin: docusaurus
+  options:
+    course_name: Blockchain Protocols and Distributed Applications
+    sidebar: js
+    structure:
+      - Introduction: chapters/README.md
+      - Lectures:
+          subsections:
+            - Introduction: /build/embed_reveal/Introduction/Introduction.mdx
+            # - Blockchain Protocols: /build/embed_reveal/Protocol/Protocol.mdx
+            # - Case Study: /build/embed_reveal/Case-Study/Case-Study.mdx
+            # - Wallet: /build/embed_reveal/Wallet/Wallet.mdx
+            # - Virtual Machine: /build/embed_reveal/VM/VM.mdx
+            # - Smart Contracts: /build/embed_reveal/Smart-Contracts/Smart-Contracts.mdx
+            # - Security: /build/embed_reveal/Security/Security.mdx
+            # - Scaling dApps: /build/embed_reveal/Dapps/Dapps.mdx
+            # - Composability: /build/embed_reveal/Composability/Composability.mdx
+      - Practical Sessions:
+          - Env Setup:
+              path: chapters/introduction/lab/content/setup
+              subsections:
+                - Setting up the Lab Environment: setup.md
+          - Wallet:
+              path: chapters/introduction/lab/content/wallet
+              extra:
+                - ../../media/
+              subsections:
+                - Cmd line wallet/: cmdline_wallet.md
+                - Wallet/: wallet.md
+                - Keystore/: keystore.md
+                - Access & Faucet: faucet.md
+                - Send Transaction: send_tx.md
+                - Browser Web Wallet: browser_wallet.md
+                # - Observer: observer.md
+          - Explorer:
+              path: chapters/introduction/lab/content/explorer
+              extra:
+                - ../../media/
+                # - ../../quiz/
+              subsections:
+                - Time in Blockchain/: time.md
+                - Blocks/: blocks.md
+                - Block Leader/: leader.md
+                - Consensus Grup/: consensus.md
+                - Transactions/: transactions.md
+                - Blockchain Validators/: validators.md
+                - Blockchain Observers/: observers.md
+                - Devnet Blockchains/: devnet_testnet.md
+          - Tokens:
+              path: chapters/tokens/lab/content
+              subsections:
+                - Standards: standards.md
+                - Fungible & NonFugible Tokens: fungible-non-fungible.md
+                - Fungible: fungible.md
+                - NFT: nft.md
+              extra:
+                - ../media/
+          - Smart Contracts:
+              path: chapters/smart-contracts/lab/content
+              subsections:
+                - Prerequisites: prerequisites.md
+                - Empty SC: empty.md
+                - Empty Interactor: rust_interactors.md
+                - Adder SC: adder.md
+                - Rust Deploy SC: cargo_deploy.md
+                - Mxpy Deploy SC: mxpy_deploy.md
+                - Mxpy Call SC: mxpy_sc_call.md
+                - Neversea SC: neversea.md
+              extra:
+                - ../media/
+          - Learning Rust:
+              path: chapters/rust/content
+              subsections:
+                - Objectives: rust.md
+                - Tour of Rust: tour-of-rust.md
+                - CryptoZombies: cryptozombies.md
+          - Decentralized Applications:
+              path: chapters/dApps/lab/content/
+              extra:
+                - ../media/
+              subsections:
+                - Building your first dApp: dApp.md
+          - Smart Contract Events:
+              path: chapters/smart-contracts/lab/content/
+              subsections:
+                - SC Events: events.md
+              extra:
+                - ../media/
+          - DeFi:
+              path: chapters/money/lab/content/
+              extra:
+                - ../media/
+              subsections:
+                - ESDT Tokens: mint_tokens.md
+                - Swap Tokens: swap.md
+          - CTF:
+              path: chapters/ctf/
+              subsections:
+                - Intro: ctf.md
+                - Bump: bump.md
+                - Coinflip: coinflip.md
+                - GassPass: gaspass.md
+          - Observer (Extra):
+              path: chapters/introduction/lab/content/observer/
+              extra:
+                - ../../media/
+                # - ../../quiz/
+              subsections:
+                - Observers: observer.md
+          - Basic Peer-to-Peer Blockchain (Extra):
+              path: chapters/peer-to-peer/lab/content
+              subsections:
+                - What we will build? : what_we_build.md
+                - Why golang? : why_golang.md
+                - What is a discovery node ? : discovery_node.md
+                - Peer to Peer Network : p2p_network.md
+                - The terminal : terminal.md
+                - Mine a block : mining.md
+                - Basic Wallet : basic_wallet.md
+                - Transactions : transactions.md
+                - Sources : sources.md
+              extra:
+                - ../media/
+      - Assignments:
+          - Assignment (2024-2025): assignments/assignment1.md
+          - Project: assignments/project.md
+          # - Blockchain Research Assignment: assignments/blockchain_research_assignment.md
+          # - Scientific Research Assignment: assignments/scientific_research_assignment.md
+      - Grading: util/grading.md
+      - Resources: util/resources.md
+    # static_assets:
+      # - slides/Introduction: chapters/introduction/lecture/_site
+      # - slides/Protocol: /build/make_assets/chapters/protocol/lecture/_site
+    config_meta:
+      title: Blockchain Protocols and Distributed Applications
+      url: https://cs-pub-ro.github.io/
+      baseUrl: /blockchain-protocols-and-distributed-applications/
+      onBrokenLinks: warn
+      onBrokenMarkdownLinks: warn
+    config_socials:
+      Main site: https://ocw.cs.pub.ro/courses/fob
+      OCW: https://ocw.cs.pub.ro/courses/fob
+      Facebook: https://www.facebook.com/zuck/
+    copyright_string: Example Copyright
