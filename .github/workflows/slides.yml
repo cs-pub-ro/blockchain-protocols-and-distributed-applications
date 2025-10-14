@@ -1,0 +1,59 @@
+name: Build and Deploy Slides
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'chapters/**/lecture/**'
+      - 'common/makefile/**'
+      - '.github/workflows/slides.yml'
+
+jobs:
+  build-slides:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          npm install -g reveal-md
+          pip install MarkdownPP
+
+      - name: Build slides
+        run: |
+          cd chapters/introduction/lecture
+          make clean
+          make html
+          ls -la _site/
+          echo "Slides built successfully"
+
+      - name: Prepare slides directory
+        run: |
+          mkdir -p slides-output/Introduction
+          cp -r chapters/introduction/lecture/_site/* slides-output/Introduction/
+          ls -la slides-output/Introduction/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./slides-output
+          publish_branch: gh-pages
+          destination_dir: slides
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy lecture slides'
