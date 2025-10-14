@@ -49,15 +49,17 @@ jobs:
         run: |
           mkdir -p slides-output/Introduction
           cp -r chapters/introduction/lecture/_site/* slides-output/Introduction/
+          # Also create a copy for docusaurus build compatibility
+          mkdir -p build-compat/chapters/introduction/lecture/_site
+          cp -r chapters/introduction/lecture/_site/* build-compat/chapters/introduction/lecture/_site/
           ls -la slides-output/Introduction/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./slides-output
+          publish_dir: .
           publish_branch: gh-pages
-          destination_dir: slides
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Deploy lecture slides'
