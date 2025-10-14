@@ -1,0 +1,14 @@
+---
+title: "Blockchain Protocols and Distributed Applications"
+revealOptions:
+  background-color: 'aquamarine'
+  transition: 'none'
+  slideNumber: true
+  autoAnimateDuration: 0.0
+---
+
+# Blockchain Protocols and Distributed Applications
+
+1. [Introduction](#introduction)
+
+!INCLUDE "slides/intro.md"
