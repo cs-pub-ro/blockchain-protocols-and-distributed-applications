@@ -22,42 +22,42 @@
 
 ### Course Structure
 
-- **Lectures:** Theoretical understanding of blockchain concepts
-- **Practical Sessions:** Hands-on experience with blockchain tools and development
-- **Projects:** (Collaborative) projects to build real-world blockchain applications
-- **Assessments:** Hands-on assignments
-- **Guest Lectures:** Insights from industry experts and blockchain professionals
-  - MultiversX
-  - Solana
-  - TBD
+- **Lectures:** Theoretical understanding of blockchain concepts <!-- .element: class="fragment" -->
+- **Practical Sessions:** Hands-on experience with blockchain tools and development <!-- .element: class="fragment" -->
+- **Projects:** (Collaborative) projects to build real-world blockchain applications <!-- .element: class="fragment" -->
+- **Assessments:** Hands-on assignments <!-- .element: class="fragment" -->
+- **Guest Lectures:** Insights from industry experts and blockchain professionals <!-- .element: class="fragment" -->
+  - MultiversX <!-- .element: class="fragment" -->
+  - Solana <!-- .element: class="fragment" -->
+  - TBD <!-- .element: class="fragment" -->
 
 ---
 
 ### Team
 
-- **Costin Carabaș** - costin.carabas@upb.ro
-- **Bianca Ialangi** - bianca.ialangi@stud.acs.upb.ro
-- **Cristian Paris** - cristian.paris@stud.acs.upb.ro
-- **Andrei Baltariu** - andrei.baltariu@stud.acs.upb.ro
+- **Costin Carabaș** - costin.carabas@upb.ro <!-- .element: class="fragment" -->
+- **Bianca Ialangi** - bianca.ialangi@stud.acs.upb.ro <!-- .element: class="fragment" -->
+- **Cristian Paris** - cristian.paris@stud.acs.upb.ro <!-- .element: class="fragment" -->
+- **Andrei Baltariu** - andrei.baltariu@stud.acs.upb.ro <!-- .element: class="fragment" -->
 
 ---
 
 ### Curriculum Overview
 
-| Week | Start | End | Lecture | Practical Sessions |
-|------|-------|-----|---------|-------------------|
-| 1 | 6-Oct-2025 | 10-Oct-2025 | Introduction | Setup & First Transaction |
-| 2 | 13-Oct-2025 | 17-Oct-2025 | Bitcoin - Blockchain V1 | First Transaction & CLI |
-| 3 | 20-Oct-2025 | 24-Oct-2025 | Ethereum - Blockchain V2 | Fungible Tokens & NFT |
-| 4 | 27-Oct-2025 | 31-Oct-2025 | Consensus Mechanisms | Smart Contracts (1) |
-| 5 | 3-Nov-2025 | 7-Nov-2025 | Blockchain Protocols (BFT) | Smart Contracts (2) |
-| 6 | 10-Nov-2025 | 14-Nov-2025 | MultiversX vs Solana - Blockchain V3 | Smart Contracts (3) |
-| 7 | 17-Nov-2025 | 21-Nov-2025 | VM | dApps |
-| 8 | 24-Nov-2025 | 28-Nov-2025 | Privacy and Security in Blockchain | dApps |
-| 9 | 1-Dec-2025 | 5-Dec-2025 | Scaling | Projects brainstorming |
-| 10 | 8-Dec-2025 | 12-Dec-2025 | Fungible & NFT & Use Cases | Projects brainstorming |
-| 11 | 15-Dec-2025 | 19-Dec-2025 | Tokenomics | DeFi (1) |
-| 12 | 11-Jan-2026 | 17-Jan-2026 | DeFi | DeFi (2) |
+| Week | Lecture | Practical |
+|------|---------|-----------|
+| 1 | Introduction | Setup & First Transaction |
+| 2 | Bitcoin - Blockchain V1 | First Transaction & CLI |
+| 3 | Ethereum - Blockchain V2 | Fungible Tokens & NFT |
+| 4 | Consensus Mechanisms | Smart Contracts (1) |
+| 5 | Blockchain Protocols (BFT) | Smart Contracts (2) |
+| 6 | MultiversX vs Solana - Blockchain V3 | Smart Contracts (3) |
+| 7 | VM | dApps |
+| 8 | Privacy and Security in Blockchain | dApps |
+| 9 | Scaling | Projects brainstorming |
+| 10 | Fungible & NFT & Use Cases | Projects brainstorming |
+| 11 | Tokenomics | DeFi (1) |
+| 12 | DeFi | DeFi (2) |
 
 *subject to change*
 
@@ -65,50 +65,50 @@
 
 ### Course Objectives
 
-- Understand the fundamental principles of blockchain technology
-- Differentiate between various blockchain protocols and their use cases
-- Develop and deploy smart contracts on platforms like MultiversX and Solana
-- Analyze the security and privacy aspects of blockchain applications
-- Explore tokenomics and its impact on decentralized finance
-- Build decentralized applications (dApps) integrating blockchain features
+- Understand the fundamental principles of blockchain technology <!-- .element: class="fragment" -->
+- Differentiate between various blockchain protocols and their use cases <!-- .element: class="fragment" -->
+- Develop and deploy smart contracts on platforms like MultiversX and Solana <!-- .element: class="fragment" -->
+- Analyze the security and privacy aspects of blockchain applications <!-- .element: class="fragment" -->
+- Explore tokenomics and its impact on decentralized finance <!-- .element: class="fragment" -->
+- Build decentralized applications (dApps) integrating blockchain features <!-- .element: class="fragment" -->
 
 ---
 
 ### Focus
 
-- **Science & Technology of Blockchain**
-- **Not about:** hype, investment, trading, getting rich
+- **Science & Technology of Blockchain** <!-- .element: class="fragment" -->
+- **Not about:** hype, investment, trading, getting rich <!-- .element: class="fragment" -->
 
 ---
 
 ### Getting Started
 
-**Prerequisites:**
-- Basic understanding of computer science and programming
+**Prerequisites:** <!-- .element: class="fragment" -->
+- Basic understanding of computer science and programming <!-- .element: class="fragment" -->
 
-**Tools You'll Use:**
-- **Wallets:** MultiversX Wallet, Solflare, MetaMask
-- **Development Environments:** Visual Studio Code, Solana Playground, Remix
-- **Blockchain Platforms:** Ethereum, MultiversX, Solana
+**Tools You'll Use:** <!-- .element: class="fragment" -->
+- **Wallets:** MultiversX Wallet, Solflare, MetaMask <!-- .element: class="fragment" -->
+- **Development Environments:** Visual Studio Code, Solana Playground, Remix <!-- .element: class="fragment" -->
+- **Blockchain Platforms:** Ethereum, MultiversX, Solana <!-- .element: class="fragment" -->
 
-**Setup:** @ first practical session
+**Setup:** @ first practical session <!-- .element: class="fragment" -->
 
-**Expectations:**
-- Active participation in lectures and practical sessions
-- Completion of assignment and project
-- Engagement in discussions and collaborative learning
+**Expectations:** <!-- .element: class="fragment" -->
+- Active participation in lectures and practical sessions <!-- .element: class="fragment" -->
+- Completion of assignment and project <!-- .element: class="fragment" -->
+- Engagement in discussions and collaborative learning <!-- .element: class="fragment" -->
 
 ---
 
 ### What is Web3?
 
-**The Evolution of the Internet:**
+**The Evolution of the Internet:** <!-- .element: class="fragment" -->
 
-1. **First Era (1990-2005):** Open protocols that were decentralized and community-governed. Most value accrued to users and builders.
+1. **First Era (1990-2005):** Open protocols that were decentralized and community-governed. Most value accrued to users and builders. <!-- .element: class="fragment" -->
 
-2. **Second Era (2005-2020):** Siloed, centralized services. Most value accrued to a handful of large tech companies.
+2. **Second Era (2005-2020):** Siloed, centralized services. Most value accrued to a handful of large tech companies. <!-- .element: class="fragment" -->
 
-3. **Third Era (2020+):** Web3 - combines the decentralized, community-governed ethos of the first era with the advanced, modern functionality of the second era.
+3. **Third Era (2020+):** Web3 - combines the decentralized, community-governed ethos of the first era with the advanced, modern functionality of the second era. <!-- .element: class="fragment" -->
 
 *Source: https://cdixon.mirror.xyz/0GBv9WRI-LQE6F4r2gGczG6AVeFlNuvt3HETHZ5A93U*
 
@@ -116,47 +116,45 @@
 
 ### Web3 Architecture
 
-![Web3 Architecture](media/session01_page_13.png)
+![Web3 Architecture](media/web3_architecture.png)
 
-*Source: ©2022 Andreessen Horowitz. All rights reserved worldwide*
+#### Source: ©2022 Andreessen Horowitz. All rights reserved worldwide
 
 ---
 
 ### Web3 Ecosystem
 
-![Web3 Ecosystem](media/session01_page_14.png)
+![Web3 Ecosystem](media/web3_ecosystem.png)
 
-*Source: ©2022 Andreessen Horowitz. All rights reserved worldwide*
+#### Source: ©2022 Andreessen Horowitz. All rights reserved worldwide
 
 ---
 
 ### Blockchain
 
-**Network that:**
-- No one owns it
-- Anyone can use it
+**Network that:** <!-- .element: class="fragment" -->
+- No one owns it <!-- .element: class="fragment" -->
+- Anyone can use it <!-- .element: class="fragment" -->
 
-**Use cases:**
-- **Money:** Bitcoin
-- **Computer:** Ethereum
-- **Filesystem:** Filecoin
-- **Exchange:** Uniswap
+**Use cases:** <!-- .element: class="fragment" -->
+- **Money:** Bitcoin <!-- .element: class="fragment" -->
+- **Computer:** Ethereum <!-- .element: class="fragment" -->
+- **Filesystem:** Filecoin <!-- .element: class="fragment" -->
+- **Exchange:** Uniswap <!-- .element: class="fragment" -->
 
 ---
 
 ### Why Blockchain Matters
 
-- **Trustless Transactions** - No need for intermediaries
-- **Enhanced Security** - Cryptographic principles ensure data integrity
-- **Transparency** - All transactions are publicly recorded
-- **Efficiency** - Streamlined processes reduce costs and time
-- **Innovation** - Enables new business models and applications
+- **Trustless Transactions** - No need for intermediaries <!-- .element: class="fragment" -->
+- **Enhanced Security** - Cryptographic principles ensure data integrity <!-- .element: class="fragment" -->
+- **Transparency** - All transactions are publicly recorded <!-- .element: class="fragment" -->
+- **Efficiency** - Streamlined processes reduce costs and time <!-- .element: class="fragment" -->
+- **Innovation** - Enables new business models and applications <!-- .element: class="fragment" -->
 
 ---
 
 ### Bitcoin & Pizza
-
-![Bitcoin Pizza](media/session01_page_17.png)
 
 ---
 
@@ -181,10 +179,8 @@
 - $41 total
 - $20.50 per pizza
 
-**October 3, 2024:**
-- $600,000,000 total
-- $300,000,000 per pizza
-
-![Bitcoin Value](media/session01_page_21.png)
+**October, 2025:**
+- $1,000,000,000 total
+- $550,000,000 per pizza
 
 ---
