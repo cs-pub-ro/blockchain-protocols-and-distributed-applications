@@ -22,23 +22,23 @@
 
 ### Course Structure
 
-- **Lectures:** Theoretical understanding of blockchain concepts <!-- .element: class="fragment" -->
-- **Practical Sessions:** Hands-on experience with blockchain tools and development <!-- .element: class="fragment" -->
-- **Projects:** (Collaborative) projects to build real-world blockchain applications <!-- .element: class="fragment" -->
-- **Assessments:** Hands-on assignments <!-- .element: class="fragment" -->
-- **Guest Lectures:** Insights from industry experts and blockchain professionals <!-- .element: class="fragment" -->
-  - MultiversX <!-- .element: class="fragment" -->
-  - Solana <!-- .element: class="fragment" -->
-  - TBD <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->**Lectures:** Theoretical understanding of blockchain concepts
+- <!-- .element: class="fragment" -->**Practical Sessions:** Hands-on experience with blockchain tools and development
+- <!-- .element: class="fragment" -->**Projects:** (Collaborative) projects to build real-world blockchain applications
+- <!-- .element: class="fragment" -->**Assessments:** Hands-on assignments
+- <!-- .element: class="fragment" -->**Guest Lectures:** Insights from industry experts and blockchain professionals
+  - <!-- .element: class="fragment" -->MultiversX
+  - <!-- .element: class="fragment" -->Solana
+  - <!-- .element: class="fragment" -->TBD
 
 ---
 
 ### Team
 
-- **Costin Carabaș** - costin.carabas@upb.ro <!-- .element: class="fragment" -->
-- **Bianca Ialangi** - bianca.ialangi@stud.acs.upb.ro <!-- .element: class="fragment" -->
-- **Cristian Paris** - cristian.paris@stud.acs.upb.ro <!-- .element: class="fragment" -->
-- **Andrei Baltariu** - andrei.baltariu@stud.acs.upb.ro <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->**Costin Carabaș** - costin.carabas@upb.ro
+- <!-- .element: class="fragment" -->**Bianca Ialangi** - bianca.ialangi@stud.acs.upb.ro
+- <!-- .element: class="fragment" -->**Cristian Paris** - cristian.paris@stud.acs.upb.ro
+- <!-- .element: class="fragment" -->**Andrei Baltariu** - andrei.baltariu@stud.acs.upb.ro
 
 ---
 
@@ -65,38 +65,38 @@
 
 ### Course Objectives
 
-- Understand the fundamental principles of blockchain technology <!-- .element: class="fragment" -->
-- Differentiate between various blockchain protocols and their use cases <!-- .element: class="fragment" -->
-- Develop and deploy smart contracts on platforms like MultiversX and Solana <!-- .element: class="fragment" -->
-- Analyze the security and privacy aspects of blockchain applications <!-- .element: class="fragment" -->
-- Explore tokenomics and its impact on decentralized finance <!-- .element: class="fragment" -->
-- Build decentralized applications (dApps) integrating blockchain features <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->Understand the fundamental principles of blockchain technology
+- <!-- .element: class="fragment" -->Differentiate between various blockchain protocols and their use cases
+- <!-- .element: class="fragment" -->Develop and deploy smart contracts on platforms like MultiversX and Solana
+- <!-- .element: class="fragment" -->Analyze the security and privacy aspects of blockchain applications
+- <!-- .element: class="fragment" -->Explore tokenomics and its impact on decentralized finance
+- <!-- .element: class="fragment" -->Build decentralized applications (dApps) integrating blockchain features
 
 ---
 
 ### Focus
 
-- **Science & Technology of Blockchain** <!-- .element: class="fragment" -->
-- **Not about:** hype, investment, trading, getting rich <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->**Science & Technology of Blockchain**
+- <!-- .element: class="fragment" -->**Not about:** hype, investment, trading, getting rich
 
 ---
 
 ### Getting Started
 
 **Prerequisites:** <!-- .element: class="fragment" -->
-- Basic understanding of computer science and programming <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->Basic understanding of computer science and programming
 
 **Tools You'll Use:** <!-- .element: class="fragment" -->
-- **Wallets:** MultiversX Wallet, Solflare, MetaMask <!-- .element: class="fragment" -->
-- **Development Environments:** Visual Studio Code, Solana Playground, Remix <!-- .element: class="fragment" -->
-- **Blockchain Platforms:** Ethereum, MultiversX, Solana <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->**Wallets:** MultiversX Wallet, Solflare, MetaMask
+- <!-- .element: class="fragment" -->**Development Environments:** Visual Studio Code, Solana Playground, Remix
+- <!-- .element: class="fragment" -->**Blockchain Platforms:** Ethereum, MultiversX, Solana
 
 **Setup:** @ first practical session <!-- .element: class="fragment" -->
 
 **Expectations:** <!-- .element: class="fragment" -->
-- Active participation in lectures and practical sessions <!-- .element: class="fragment" -->
-- Completion of assignment and project <!-- .element: class="fragment" -->
-- Engagement in discussions and collaborative learning <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->Active participation in lectures and practical sessions
+- <!-- .element: class="fragment" -->Completion of assignment and project
+- <!-- .element: class="fragment" -->Engagement in discussions and collaborative learning
 
 ---
 
@@ -104,11 +104,11 @@
 
 **The Evolution of the Internet:** <!-- .element: class="fragment" -->
 
-1. **First Era (1990-2005):** Open protocols that were decentralized and community-governed. Most value accrued to users and builders. <!-- .element: class="fragment" -->
+1. <!-- .element: class="fragment" -->**First Era (1990-2005):** Open protocols that were decentralized and community-governed. Most value accrued to users and builders.
 
-2. **Second Era (2005-2020):** Siloed, centralized services. Most value accrued to a handful of large tech companies. <!-- .element: class="fragment" -->
+2. <!-- .element: class="fragment" -->**Second Era (2005-2020):** Siloed, centralized services. Most value accrued to a handful of large tech companies.
 
-3. **Third Era (2020+):** Web3 - combines the decentralized, community-governed ethos of the first era with the advanced, modern functionality of the second era. <!-- .element: class="fragment" -->
+3. <!-- .element: class="fragment" -->**Third Era (2020+):** Web3 - combines the decentralized, community-governed ethos of the first era with the advanced, modern functionality of the second era.
 
 *Source: https://cdixon.mirror.xyz/0GBv9WRI-LQE6F4r2gGczG6AVeFlNuvt3HETHZ5A93U*
 
@@ -133,24 +133,24 @@
 ### Blockchain
 
 **Network that:** <!-- .element: class="fragment" -->
-- No one owns it <!-- .element: class="fragment" -->
-- Anyone can use it <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->No one owns it
+- <!-- .element: class="fragment" -->Anyone can use it
 
 **Use cases:** <!-- .element: class="fragment" -->
-- **Money:** Bitcoin <!-- .element: class="fragment" -->
-- **Computer:** Ethereum <!-- .element: class="fragment" -->
-- **Filesystem:** Filecoin <!-- .element: class="fragment" -->
-- **Exchange:** Uniswap <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->**Money:** Bitcoin
+- <!-- .element: class="fragment" -->**Computer:** Ethereum
+- <!-- .element: class="fragment" -->**Filesystem:** Filecoin
+- <!-- .element: class="fragment" -->**Exchange:** Uniswap
 
 ---
 
 ### Why Blockchain Matters
 
-- **Trustless Transactions** - No need for intermediaries <!-- .element: class="fragment" -->
-- **Enhanced Security** - Cryptographic principles ensure data integrity <!-- .element: class="fragment" -->
-- **Transparency** - All transactions are publicly recorded <!-- .element: class="fragment" -->
-- **Efficiency** - Streamlined processes reduce costs and time <!-- .element: class="fragment" -->
-- **Innovation** - Enables new business models and applications <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->**Trustless Transactions** - No need for intermediaries
+- <!-- .element: class="fragment" -->**Enhanced Security** - Cryptographic principles ensure data integrity
+- <!-- .element: class="fragment" -->**Transparency** - All transactions are publicly recorded
+- <!-- .element: class="fragment" -->**Efficiency** - Streamlined processes reduce costs and time
+- <!-- .element: class="fragment" -->**Innovation** - Enables new business models and applications
 
 ---
 
