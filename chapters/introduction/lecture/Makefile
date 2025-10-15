@@ -20,6 +20,7 @@ html: $(SITE)
 $(SITE): $(SLIDES)
 	@echo "=== Building slides ==="
 	@echo "Current directory: $(PWD)"
+	@echo "Working directory: $$(pwd)"
 	@echo "Source file: $(SLIDES)"
 	@echo "Output file: $(SLIDES_OUT)"
 	@echo "Site directory: $(SITE)"
