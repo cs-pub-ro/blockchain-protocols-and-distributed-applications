@@ -10,7 +10,7 @@ output_dir: /output
 make_assets:
   plugin: command
   options:
-    command: bash
+    command: make
     locations:
       - chapters/introduction/lecture
       # - chapters/protocol/lecture
@@ -22,8 +22,7 @@ make_assets:
       # - chapters/dApps/lecture
       # - chapters/composability/lecture
     args:
-      - -c
-      - "make html && ls -la _site/ && echo 'Build completed successfully'"
+      - html
 
 embed_reveal:
   plugin: reveal_embed
