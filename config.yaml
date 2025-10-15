@@ -1,6 +1,8 @@
 stages:
   - make_assets
+  - prepare_view
   - embed_reveal
+  - quizzes
   - docusaurus
 
 build_dir: /build
@@ -22,16 +24,15 @@ make_assets:
       # - chapters/dApps/lecture
       # - chapters/composability/lecture
     args:
-      - html
+      - all
 
 embed_reveal:
   plugin: reveal_embed
   options:
     target: docusaurus
     extension: mdx
-    base_path: /blockchain-protocols-and-distributed-applications/slides
     build:
-      Introduction: chapters/introduction/lecture/_site
+      Introduction: slides/Introduction
       # Protocol: chapters/protocol/lecture/_site
       # Case-Study: chapters/case-study/lecture/_site
       # Wallet: chapters/wallet/lecture/_site
@@ -44,7 +45,7 @@ embed_reveal:
 docusaurus:
   plugin: docusaurus
   options:
-    course_name: Blockchain Protocols and Distributed Applications
+    course_name: BPDA
     sidebar: js
     structure:
       - Introduction: chapters/README.md
