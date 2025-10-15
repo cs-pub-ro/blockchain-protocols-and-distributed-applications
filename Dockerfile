@@ -8,7 +8,6 @@ RUN apt-get update && \
 RUN pip install MarkdownPP
 # Verify installation
 RUN which markdown-pp || echo "markdown-pp not found in PATH"
-RUN python -c "import markdownpp; print('MarkdownPP module available')"
 
 # Install node LTS (16)
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
