@@ -7,38 +7,49 @@
 ### What is a Blockchain?
 
 - A distributed ledger technology
-<!-- .element: class="fragment" -->
 - Immutable record of transactions
-<!-- .element: class="fragment" -->
 - Decentralized and transparent
-<!-- .element: class="fragment" -->
 - Secured by cryptography
-<!-- .element: class="fragment" -->
 
 ----
 
 ### Key Characteristics
 
-| Characteristic    | Description                                |
-| :---------------: | :----------------------------------------: |
-| Decentralized     | No single point of control                 |
-| Transparent       | All transactions are visible               |
-| Immutable         | Cannot alter historical records            |
-| Secure            | Cryptographically protected                |
-| Distributed       | Replicated across multiple nodes           |
+<table>
+<tr>
+<th>Characteristic</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>Decentralized</td>
+<td>No single point of control</td>
+</tr>
+<tr>
+<td>Transparent</td>
+<td>All transactions are visible</td>
+</tr>
+<tr>
+<td>Immutable</td>
+<td>Cannot alter historical records</td>
+</tr>
+<tr>
+<td>Secure</td>
+<td>Cryptographically protected</td>
+</tr>
+<tr>
+<td>Distributed</td>
+<td>Replicated across multiple nodes</td>
+</tr>
+</table>
 
 ----
 
 ### Blockchain Components
 
 - **Blocks**: Containers for transaction data
-<!-- .element: class="fragment" -->
 - **Chain**: Cryptographic links between blocks
-<!-- .element: class="fragment" -->
 - **Consensus**: Agreement mechanism among nodes
-<!-- .element: class="fragment" -->
 - **Smart Contracts**: Self-executing code
-<!-- .element: class="fragment" -->
 
 ----
 
