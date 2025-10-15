@@ -19,10 +19,14 @@ $(SITE): $(SLIDES)
 	$(RVMD) $(SLIDES_OUT) --static $@
 
 videos:
-	for TARGET in $(TARGETS); do \
-		$(FFMPEG) -framerate 0.5 -f image2 -y \
-			-i "$(MEDIA_DIR)/$$TARGET/$$TARGET-%d.svg" -vf format=yuv420p $(MEDIA_DIR)/$$TARGET-generated.gif; \
-	done
+	@if [ -d "$(MEDIA_DIR)" ] && [ -n "$(TARGETS)" ]; then \
+		for TARGET in $(TARGETS); do \
+			$(FFMPEG) -framerate 0.5 -f image2 -y \
+				-i "$(MEDIA_DIR)/$$TARGET/$$TARGET-%d.svg" -vf format=yuv420p $(MEDIA_DIR)/$$TARGET-generated.gif; \
+		done; \
+	else \
+		echo "No media directory or targets defined, skipping video generation"; \
+	fi
 
 open: $(SITE)
 	$(OPEN) $</index.html

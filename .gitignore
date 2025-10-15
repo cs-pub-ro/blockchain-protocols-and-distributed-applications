@@ -58,6 +58,9 @@ dkms.conf
 # reveal-md slides output folder
 _site/
 
+# Generated markdown files
+**/slides.md
+
 # Builder output folder
 /.output/
 
