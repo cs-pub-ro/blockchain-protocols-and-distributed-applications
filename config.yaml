@@ -1,8 +1,6 @@
 stages:
   - make_assets
-  - prepare_view
   - embed_reveal
-  - quizzes
   - docusaurus
 
 build_dir: /build
