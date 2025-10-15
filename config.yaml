@@ -32,7 +32,7 @@ embed_reveal:
     extension: mdx
     base_path: /blockchain-protocols-and-distributed-applications/slides
     build:
-      Introduction: slides/Introduction
+      Introduction: chapters/introduction/lecture/_site
       # Protocol: chapters/protocol/lecture/_site
       # Case-Study: chapters/case-study/lecture/_site
       # Wallet: chapters/wallet/lecture/_site
@@ -173,8 +173,8 @@ docusaurus:
           # - Scientific Research Assignment: assignments/scientific_research_assignment.md
       - Grading: util/grading.md
       - Resources: util/resources.md
-    # static_assets:
-      # - slides/Introduction: chapters/introduction/lecture/_site
+    static_assets:
+      - slides/Introduction: chapters/introduction/lecture/_site
       # - slides/Protocol: /build/make_assets/chapters/protocol/lecture/_site
     config_meta:
       title: Blockchain Protocols and Distributed Applications
