@@ -99,3 +99,138 @@ To verify that it's correctly installed, run:
 ```shell
 sc-meta --version
 ```
+
+
+## Ethereum prerequisites
+
+### MetaMask
+
+MetaMask is a web browser extension and mobile app that allows you to manage your Ethereum private keys. 
+By doing so, it serves as a wallet for Ether and other tokens, and allows you to interact with decentralized applications, or *dapps*.
+
+Please visit [this](https://support.metamask.io/getting-started/getting-started-with-metamask/#how-to-install-metamask) to install MetaMask as a browser extension (Safari is not supported) or as a mobile app.
+
+
+### Hardhat
+
+Hardhat is a development environment for Ethereum software. It consists of different components for editing, compiling, debugging and deploying your smart contracts and dApps, all of which work together to create a complete development environment.
+
+To install Hardhat, use:
+```shell
+npm install --save-dev hardhat
+```
+
+To verify that hardhat is install, run:
+```shell
+$ npx hardhat
+888    888                      888 888               888
+888    888                      888 888               888
+888    888                      888 888               888
+8888888888  8888b.  888d888 .d88888 88888b.   8888b.  888888
+888    888     "88b 888P"  d88" 888 888 "88b     "88b 888
+888    888 .d888888 888    888  888 888  888 .d888888 888
+888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
+888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
+
+👷 Welcome to Hardhat v2.22.12 👷‍
+
+? What do you want to do? … 
+  Create a JavaScript project
+  Create a TypeScript project
+  Create a TypeScript project (with Viem)
+  Create an empty hardhat.config.js
+❯ Quit
+```
+
+For the ones that prefer, there is a [Hardhat for Visual Studio Code](https://hardhat.org/hardhat-vscode/docs/overview).
+
+## Solana prerequisites
+
+### Solana CLI Tools
+
+The Solana Command Line Interface (CLI) tools allow you to interact with Solana clusters, manage accounts, and deploy programs.
+
+Install the Solana CLI tools using the official installer:
+
+```shell
+sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+```
+
+**Note**: If you encounter an SSL connection error (like `curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL`), try these alternative methods:
+
+**Method 1 - Use Homebrew (Recommended for macOS):**
+```shell
+brew install solana
+```
+
+**Method 2 - Download script manually:**
+```shell
+curl -O https://release.solana.com/stable/install
+sh install
+```
+
+**Method 3 - Try with different curl options:**
+```shell
+curl --tlsv1.2 --proto '=https' -sSfL https://release.solana.com/stable/install | sh
+```
+
+
+After installation, you need to add the Solana programs to your system's PATH. Add the following line to your shell profile (e.g., `~/.bash_profile`, `~/.zshrc`, or `~/.bashrc`):
+
+```shell
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+```
+
+Then reload your shell profile:
+
+```shell
+source ~/.bash_profile
+```
+
+To verify that the Solana CLI was installed successfully, run:
+
+```shell
+solana --version
+```
+
+### Solana Test Validator
+
+For local development and testing, you can run a local Solana cluster using the test validator:
+
+```shell
+solana-test-validator
+```
+
+This command starts a local Solana cluster that you can use for development. It's recommended to run this command in a separate terminal window that remains open during development.
+
+To configure the CLI to use the local validator:
+
+```shell
+solana config set --url localhost
+```
+
+### Anchor Framework
+
+Anchor is a framework for Solana that simplifies smart contract development by providing a convenient way to build Solana programs.
+
+Install Anchor using the Anchor Version Manager (AVM):
+
+```shell
+cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+avm install latest
+avm use latest
+```
+
+To verify that Anchor is correctly installed, run:
+
+```shell
+anchor --version
+```
+
+### Solana Web3.js
+
+For client-side development, you'll need the Solana Web3.js library. Install it using npm:
+
+```shell
+npm install @solana/web3.js
+```

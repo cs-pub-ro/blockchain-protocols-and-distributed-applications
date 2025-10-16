@@ -120,18 +120,25 @@ docusaurus:
                 - Objectives: rust.md
                 - Tour of Rust: tour-of-rust.md
                 - CryptoZombies: cryptozombies.md
-          - Smart Contract Events:
-              path: chapters/smart-contracts/lab/content/
-              subsections:
-                - SC Events: events.md
-              extra:
-                - ../media/
           - Decentralized Applications:
               path: chapters/dApps/lab/content/
               extra:
                 - ../media/
               subsections:
                 - Building your first dApp: dApp.md
+          - Smart Contract Events:
+              path: chapters/smart-contracts/lab/content/
+              subsections:
+                - SC Events: events.md
+              extra:
+                - ../media/
+          - DeFi:
+              path: chapters/money/lab/content/
+              extra:
+                - ../media/
+              subsections:
+                - ESDT Tokens: mint_tokens.md
+                - Swap Tokens: swap.md
           - CTF:
               path: chapters/ctf/
               subsections:
