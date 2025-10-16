@@ -227,29 +227,6 @@ To verify that Anchor is correctly installed, run:
 anchor --version
 ```
 
-### Phantom Wallet
-
-Phantom is a popular Solana wallet that allows you to manage your Solana private keys and interact with Solana dApps.
-
-Please visit [this](https://phantom.app/download) to install Phantom as a browser extension or as a mobile app.
-
-### Solflare Wallet
-
-Solflare is another popular non-custodial wallet for Solana that offers additional features like native staking and advanced DeFi integrations.
-
-**Installation:**
-- **Browser Extension**: Visit [Solflare's official website](https://solflare.com/) and install the browser extension
-- **Mobile App**: Download from [App Store](https://apps.apple.com/app/solflare-wallet/id1536038880) or [Google Play Store](https://play.google.com/store/apps/details?id=com.solflare.mobile)
-- **Web App**: Access directly through your browser at [solflare.com](https://solflare.com/)
-
-**Key Features:**
-- Native SOL staking with validator selection
-- NFT management and display
-- DeFi protocol integrations
-- Multi-network support (Mainnet, Testnet, Devnet)
-- Hardware wallet support
-
-
 ### Solana Web3.js
 
 For client-side development, you'll need the Solana Web3.js library. Install it using npm:

@@ -74,6 +74,8 @@ docusaurus:
                 - Access & Faucet: faucet.md
                 - Send Transaction: send_tx.md
                 - Browser Web Wallet: browser_wallet.md
+                - Solana Wallet: solana_wallet.md
+                - Ethereum Wallet: ethereum_wallet.md
                 # - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
