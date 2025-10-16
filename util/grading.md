@@ -6,8 +6,8 @@
 | Homework | 15p |
 | Project| 35p |
 | Lecture involvement | 10p (bonus)|
-| Practical final exam | 30p  points |
-| Theoretical final exam | 10p  points |
+| Practical final exam | 30p |
+| Theoretical final exam | 10p |
 | **Total** | **110p** |
 
 
