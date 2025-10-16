@@ -227,7 +227,7 @@ Consider your needs:
 
 ### Step 5: Fund Your Wallet
 1. **Mainnet**: Buy SOL from exchanges and transfer to your wallet
-2. **Testnet**: Use faucets to get test SOL (see [Testnet Guide](../setup/testnet-wallets.md))
+2. **Testnet**: Use faucets to get test SOL (see [Testnet Guide](/chapters/introduction/lab/content/setup/testnet-wallets.md))
 
 ---
 
@@ -262,7 +262,7 @@ Consider your needs:
 ## Additional Resources
 
 - [Solana Official Wallets](https://solana.com/solana-wallets)
-- [Testnet Wallets Guide](../setup/testnet-wallets.md)
+- [Testnet Wallets Guide](/chapters/introduction/lab/content/setup/testnet-wallets.md)
 - [Solana Documentation](https://docs.solana.com/)
 - [Security Best Practices](https://docs.solana.com/terminology#wallet)
 
