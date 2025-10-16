@@ -63,6 +63,7 @@ docusaurus:
               path: chapters/introduction/lab/content/setup
               subsections:
                 - Setting up the Lab Environment: setup.md
+                - Testnet Wallets: testnet-wallets.md
           - Wallet:
               path: chapters/introduction/lab/content/wallet
               extra:

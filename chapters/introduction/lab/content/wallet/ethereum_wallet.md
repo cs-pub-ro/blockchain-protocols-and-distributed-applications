@@ -254,7 +254,7 @@ MyEtherWallet is a web-based wallet that gives users full control over their pri
 ## Additional Resources
 
 - [Ethereum Official Wallets](https://ethereum.org/en/wallets/)
-- [Testnet Wallets Guide](../setup/testnet-wallets.md)
+- [Testnet Wallets Guide](/chapters/introduction/lab/content/setup/testnet-wallets.md)
 - [Ethereum Documentation](https://ethereum.org/en/developers/docs/)
 - [Security Best Practices](https://ethereum.org/en/developers/docs/security/)
 
