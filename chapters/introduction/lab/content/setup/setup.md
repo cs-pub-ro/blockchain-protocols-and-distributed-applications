@@ -6,6 +6,10 @@ This includes the following:
 - MetaMask - Ethereum wallet
 - mxpy - tool for interacting with the blockchain
 - sc-meta - universal smart contract management tool
+- Solana CLI - tool for interacting with Solana blockchain
+- Anchor - Solana smart contract framework
+- Phantom - Solana wallet
+- Solflare - Alternative Solana wallet with advanced features
 
 
 ## Rustup - The Rust toolchain installer
@@ -139,3 +143,117 @@ $ npx hardhat
 ```
 
 For the ones that prefer, there is a [Hardhat for Visual Studio Code](https://hardhat.org/hardhat-vscode/docs/overview).
+
+## Solana prerequisites
+
+### Solana CLI Tools
+
+The Solana Command Line Interface (CLI) tools allow you to interact with Solana clusters, manage accounts, and deploy programs.
+
+Install the Solana CLI tools using the official installer:
+
+```shell
+sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+```
+
+**Note**: If you encounter an SSL connection error (like `curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL`), try these alternative methods:
+
+**Method 1 - Use Homebrew (Recommended for macOS):**
+```shell
+brew install solana
+```
+
+**Method 2 - Download script manually:**
+```shell
+curl -O https://release.solana.com/stable/install
+sh install
+```
+
+**Method 3 - Try with different curl options:**
+```shell
+curl --tlsv1.2 --proto '=https' -sSfL https://release.solana.com/stable/install | sh
+```
+
+
+After installation, you need to add the Solana programs to your system's PATH. Add the following line to your shell profile (e.g., `~/.bash_profile`, `~/.zshrc`, or `~/.bashrc`):
+
+```shell
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+```
+
+Then reload your shell profile:
+
+```shell
+source ~/.bash_profile
+```
+
+To verify that the Solana CLI was installed successfully, run:
+
+```shell
+solana --version
+```
+
+### Solana Test Validator
+
+For local development and testing, you can run a local Solana cluster using the test validator:
+
+```shell
+solana-test-validator
+```
+
+This command starts a local Solana cluster that you can use for development. It's recommended to run this command in a separate terminal window that remains open during development.
+
+To configure the CLI to use the local validator:
+
+```shell
+solana config set --url localhost
+```
+
+### Anchor Framework
+
+Anchor is a framework for Solana that simplifies smart contract development by providing a convenient way to build Solana programs.
+
+Install Anchor using the Anchor Version Manager (AVM):
+
+```shell
+cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+avm install latest
+avm use latest
+```
+
+To verify that Anchor is correctly installed, run:
+
+```shell
+anchor --version
+```
+
+### Phantom Wallet
+
+Phantom is a popular Solana wallet that allows you to manage your Solana private keys and interact with Solana dApps.
+
+Please visit [this](https://phantom.app/download) to install Phantom as a browser extension or as a mobile app.
+
+### Solflare Wallet
+
+Solflare is another popular non-custodial wallet for Solana that offers additional features like native staking and advanced DeFi integrations.
+
+**Installation:**
+- **Browser Extension**: Visit [Solflare's official website](https://solflare.com/) and install the browser extension
+- **Mobile App**: Download from [App Store](https://apps.apple.com/app/solflare-wallet/id1536038880) or [Google Play Store](https://play.google.com/store/apps/details?id=com.solflare.mobile)
+- **Web App**: Access directly through your browser at [solflare.com](https://solflare.com/)
+
+**Key Features:**
+- Native SOL staking with validator selection
+- NFT management and display
+- DeFi protocol integrations
+- Multi-network support (Mainnet, Testnet, Devnet)
+- Hardware wallet support
+
+
+### Solana Web3.js
+
+For client-side development, you'll need the Solana Web3.js library. Install it using npm:
+
+```shell
+npm install @solana/web3.js
+```
