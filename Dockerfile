@@ -1,4 +1,4 @@
-FROM ghcr.io/open-education-hub/openedu-builder:0.5.1
+FROM ghcr.io/open-education-hub/openedu-builder:0.6.1
 
 # Install tools.
 RUN apt-get update && \
