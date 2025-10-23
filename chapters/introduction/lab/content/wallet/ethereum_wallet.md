@@ -27,8 +27,6 @@ Browser-based wallets accessible without installation, convenient but less secur
 ### Mobile Wallets
 Smartphone applications for managing Ethereum assets on the go.
 
-
- [Quiz 1](questions/ethereum_wallet_types.md)
 ---
 
 ## Popular Ethereum Wallets

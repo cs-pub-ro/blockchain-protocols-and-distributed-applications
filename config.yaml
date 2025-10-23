@@ -92,7 +92,7 @@ docusaurus:
                 - Browser Web Wallet: browser_wallet.md
                 - Solana Wallet: solana_wallet.md
                 - Ethereum Wallet: ethereum_wallet.md
-                # - Wallet Quiz: quiz.md
+                - Wallet Quiz: quiz.md
                 # - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
@@ -183,8 +183,8 @@ docusaurus:
                 - Sources : sources.md
               extra:
                 - ../media/
-      - Quizzes:
-          - Wallet Quiz: chapters/introduction/lab/content/wallet/quiz.md
+      # - Quizzes:
+      #     - Wallet Quiz: chapters/introduction/lab/content/wallet/quiz.md
       - Assignments:
           - Assignment (2024-2025): assignments/assignment1.md
           - Project: assignments/project.md
