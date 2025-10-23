@@ -92,7 +92,7 @@ docusaurus:
                 - Browser Web Wallet: browser_wallet.md
                 - Solana Wallet: solana_wallet.md
                 - Ethereum Wallet: ethereum_wallet.md
-                - Wallet Quiz: quiz.md
+                - Wallet Quiz: wallet_quiz.md
                 # - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
