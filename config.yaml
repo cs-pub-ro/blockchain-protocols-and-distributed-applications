@@ -80,7 +80,7 @@ docusaurus:
                 - Setting up the Lab Environment: setup.md
                 - Testnet Wallets: testnet-wallets.md
           - Wallet:
-              path: chapters/introduction/lab/content/wallet
+              path: chapters/introduction/lab
               extra:
                 - ../../media/
               subsections:
@@ -101,6 +101,7 @@ docusaurus:
                         - Wallet Recovery: wallet_recovery.md
                         - Transaction Verification: transaction_verification.md
                 - Content: 
+                    path: content/wallet
                     subsections:
                         - Cmd line wallet/: cmdline_wallet.md
                         - Wallet/: wallet.md
