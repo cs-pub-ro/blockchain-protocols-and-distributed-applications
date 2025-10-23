@@ -55,6 +55,7 @@ quizzes:
       - /build/prepare_view/.view/lab*.md
 
 docusaurus:
+  input: $$quizzes$$
   plugin: docusaurus
   options:
     course_name: BPDA
