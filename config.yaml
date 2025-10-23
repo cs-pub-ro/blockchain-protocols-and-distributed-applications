@@ -1,6 +1,7 @@
 stages:
   - make_assets
   - embed_reveal
+  - quizzes
   - docusaurus
 
 build_dir: /build
@@ -40,6 +41,19 @@ embed_reveal:
       # Dapps: chapters/dApps/lecture/_site
       # Composability: chapters/composability/lecture/_site
 
+quizzes:
+  plugin: quizify
+  options:
+    parser_type: python
+    parser: md_parser.py
+    quiz_type: link
+    quiz_embed: iframe_inline
+    quiz_regex: \[Quiz.*\]\((questions\/.*\.md)\)
+    template: simple_quiz
+    iframe_template: docusaurus_iframe
+    locations:
+      - /build/prepare_view/.view/lab*.md
+
 docusaurus:
   plugin: docusaurus
   options:
@@ -77,6 +91,7 @@ docusaurus:
                 - Browser Web Wallet: browser_wallet.md
                 - Solana Wallet: solana_wallet.md
                 - Ethereum Wallet: ethereum_wallet.md
+                - Wallet Quiz: quiz.md
                 # - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
@@ -167,6 +182,9 @@ docusaurus:
                 - Sources : sources.md
               extra:
                 - ../media/
+      - Quizzes:
+          - Wallet Quiz: chapters/introduction/lab/content/wallet/quiz.md
+          # Add more quiz sections as they are created
       - Assignments:
           - Assignment (2024-2025): assignments/assignment1.md
           - Project: assignments/project.md
