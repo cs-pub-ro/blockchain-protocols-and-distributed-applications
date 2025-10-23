@@ -84,31 +84,33 @@ docusaurus:
               extra:
                 - ../../media/
               subsections:
-                - Cmd line wallet/: cmdline_wallet.md
-                - Wallet/: wallet.md
-                - Keystore/: keystore.md
-                - Access & Faucet: faucet.md
-                - Send Transaction: send_tx.md
-                - Browser Web Wallet: browser_wallet.md
-                - Solana Wallet: solana_wallet.md
-                - Ethereum Wallet: ethereum_wallet.md
                 - Questions: 
-                  path: questions
-                  subsections: 
-                    - Ethereum Wallet Types: ethereum_wallet_types.md
-                    - MetaMask Features: metamask_features.md
-                    - Solana Wallet Popularity: solana_popular_wallet.md
-                    - Security Best Practices: seed_phrase_security.md
-                    - MultiversX Command Line: mxpy_command.md
-                    - Keystore File Components: keystore_components.md
-                    - Hardware Wallet Security: hardware_wallet_security.md
-                    - Wallet Address Format: wallet_address_format.md
-                    - Faucet Functionality: faucet_purpose.md
-                    - Multi-chain Support: multichain_support.md
-                    - Keystore Encryption: keystore_encryption.md
-                    - Wallet Recovery: wallet_recovery.md
-                    - Transaction Verification: transaction_verification.md
-                # - Observer: observer.md
+                    path: questions
+                    subsections: 
+                        - Ethereum Wallet Types: ethereum_wallet_types.md
+                        - MetaMask Features: metamask_features.md
+                        - Solana Wallet Popularity: solana_popular_wallet.md
+                        - Security Best Practices: seed_phrase_security.md
+                        - MultiversX Command Line: mxpy_command.md
+                        - Keystore File Components: keystore_components.md
+                        - Hardware Wallet Security: hardware_wallet_security.md
+                        - Wallet Address Format: wallet_address_format.md
+                        - Faucet Functionality: faucet_purpose.md
+                        - Multi-chain Support: multichain_support.md
+                        - Keystore Encryption: keystore_encryption.md
+                        - Wallet Recovery: wallet_recovery.md
+                        - Transaction Verification: transaction_verification.md
+                - Content: 
+                    subsections:
+                        - Cmd line wallet/: cmdline_wallet.md
+                        - Wallet/: wallet.md
+                        - Keystore/: keystore.md
+                        - Access & Faucet: faucet.md
+                        - Send Transaction: send_tx.md
+                        - Browser Web Wallet: browser_wallet.md
+                        - Solana Wallet: solana_wallet.md
+                        - Ethereum Wallet: ethereum_wallet.md
+                        # - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
               extra:
