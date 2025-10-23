@@ -82,7 +82,7 @@ docusaurus:
           - Wallet:
               path: chapters/introduction/lab
               extra:
-                - ../../media/
+                - media/
               subsections:
                 - Questions: 
                     path: questions
