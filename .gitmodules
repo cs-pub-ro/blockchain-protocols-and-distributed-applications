@@ -1,0 +1,3 @@
+[submodule "subscription-sc"]
+	path = subscription-sc
+	url = git@github.com:andreiblt1304/subscription-sc.git
