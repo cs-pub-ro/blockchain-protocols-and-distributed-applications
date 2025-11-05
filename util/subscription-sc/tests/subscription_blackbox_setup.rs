@@ -13,7 +13,7 @@ pub const SUBSCRIPTION_ADDRESS: TestSCAddress = TestSCAddress::new("subscription
 pub const OWNER_ADDRESS: TestAddress = TestAddress::new("owner");
 pub const STUDENT_ADDRESS: TestAddress = TestAddress::new("student");
 
-const INITIAL_BALANCE: u64 = 5_000_000_000_000_000_000;
+const INITIAL_BALANCE: u64 = 5_000_000_000_000_000_000; // 5 EGLD
 
 pub struct SubscriptionContractTestState {
     pub world: ScenarioWorld,
