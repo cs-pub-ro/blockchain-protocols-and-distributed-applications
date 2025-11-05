@@ -84,34 +84,34 @@ docusaurus:
               extra:
                 - media/
               subsections:
-                - Questions: 
+                - Questions:
                     path: questions
-                    subsections: 
-                        - Ethereum Wallet Types: ethereum_wallet_types.md
-                        - MetaMask Features: metamask_features.md
-                        - Solana Wallet Popularity: solana_popular_wallet.md
-                        - Security Best Practices: seed_phrase_security.md
-                        - MultiversX Command Line: mxpy_command.md
-                        - Keystore File Components: keystore_components.md
-                        - Hardware Wallet Security: hardware_wallet_security.md
-                        - Wallet Address Format: wallet_address_format.md
-                        - Faucet Functionality: faucet_purpose.md
-                        - Multi-chain Support: multichain_support.md
-                        - Keystore Encryption: keystore_encryption.md
-                        - Wallet Recovery: wallet_recovery.md
-                        - Transaction Verification: transaction_verification.md
-                - Content: 
+                    subsections:
+                      - Ethereum Wallet Types: ethereum_wallet_types.md
+                      - MetaMask Features: metamask_features.md
+                      - Solana Wallet Popularity: solana_popular_wallet.md
+                      - Security Best Practices: seed_phrase_security.md
+                      - MultiversX Command Line: mxpy_command.md
+                      - Keystore File Components: keystore_components.md
+                      - Hardware Wallet Security: hardware_wallet_security.md
+                      - Wallet Address Format: wallet_address_format.md
+                      - Faucet Functionality: faucet_purpose.md
+                      - Multi-chain Support: multichain_support.md
+                      - Keystore Encryption: keystore_encryption.md
+                      - Wallet Recovery: wallet_recovery.md
+                      - Transaction Verification: transaction_verification.md
+                - Content:
                     path: content/wallet
                     subsections:
-                        - Cmd line wallet/: cmdline_wallet.md
-                        - Wallet/: wallet.md
-                        - Keystore/: keystore.md
-                        - Access & Faucet: faucet.md
-                        - Send Transaction: send_tx.md
-                        - Browser Web Wallet: browser_wallet.md
-                        - Solana Wallet: solana_wallet.md
-                        - Ethereum Wallet: ethereum_wallet.md
-                        # - Observer: observer.md
+                      - Cmd line wallet/: cmdline_wallet.md
+                      - Wallet/: wallet.md
+                      - Keystore/: keystore.md
+                      - Access & Faucet: faucet.md
+                      - Send Transaction: send_tx.md
+                      - Browser Web Wallet: browser_wallet.md
+                      - Solana Wallet: solana_wallet.md
+                      - Ethereum Wallet: ethereum_wallet.md
+                      # - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
               extra:
@@ -146,6 +146,7 @@ docusaurus:
                 - Mxpy Deploy SC: mxpy_deploy.md
                 - Mxpy Call SC: mxpy_sc_call.md
                 - Neversea SC: neversea.md
+                - Subscription SC: subscription.md
               extra:
                 - ../media/
           - Learning Rust:
@@ -190,15 +191,15 @@ docusaurus:
           - Basic Peer-to-Peer Blockchain (Extra):
               path: chapters/peer-to-peer/lab/content
               subsections:
-                - What we will build? : what_we_build.md
-                - Why golang? : why_golang.md
-                - What is a discovery node ? : discovery_node.md
-                - Peer to Peer Network : p2p_network.md
-                - The terminal : terminal.md
-                - Mine a block : mining.md
-                - Basic Wallet : basic_wallet.md
-                - Transactions : transactions.md
-                - Sources : sources.md
+                - What we will build?: what_we_build.md
+                - Why golang?: why_golang.md
+                - What is a discovery node ?: discovery_node.md
+                - Peer to Peer Network: p2p_network.md
+                - The terminal: terminal.md
+                - Mine a block: mining.md
+                - Basic Wallet: basic_wallet.md
+                - Transactions: transactions.md
+                - Sources: sources.md
               extra:
                 - ../media/
       # - Quizzes:
