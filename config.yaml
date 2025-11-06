@@ -130,7 +130,7 @@ docusaurus:
               path: chapters/tokens/lab/content
               subsections:
                 - Standards: standards.md
-                - Fungible & NonFugible Tokens: fungible-non-fungible.md
+                - Fungible & NonFungible Tokens: fungible-non-fungible.md
                 - Fungible: fungible.md
                 - NFT: nft.md
               extra:
