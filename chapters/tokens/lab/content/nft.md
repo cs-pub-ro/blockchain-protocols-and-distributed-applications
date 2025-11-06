@@ -13,7 +13,6 @@ The flow of issuing and transferring non-fungible tokens is:
 
 ## Issuance of NFT tokens
 
-<!-- One has to perform an issuance transaction in order to register a non-fungible token. -->
 Non-Fungible Tokens(NFTs) are issued via a request to the Metachain, which is a transaction submitted by the Account which will manage the tokens.
 
 The issuance transaction must provide the following:
