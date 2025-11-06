@@ -8,7 +8,7 @@ Inspect the image below:
 ![Blocks on MultiversX](../../media/blocks.png)
 
 We can observe 4 blocks from 1 second ago for 4 different shards: Shard0, Shard1, Shard2, Metachain.
-These shard a sub-blockchains and enables MultiversX to scale. You can read more about shard [here](https://docs.multiversx.com/technology/adaptive-state-sharding).
+These shards are sub-blockchains and enable MultiversX to scale. You can read more about sharding [here](https://docs.multiversx.com/technology/adaptive-state-sharding).
 
 We can observe 4 more blocks from 7 seconds ago. That's because each shard outputs a block every 6 seconds.
 
