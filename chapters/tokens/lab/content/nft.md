@@ -1,54 +1,49 @@
 # Non-Fungible Tokens (NFTs)
 
-These NFTs are unique, one-of-a-kind tokens that are built on blockchain technology, allowing for secure ownership and transfer of these assets.
-Every token is assigned a unique identification code(ticker) and metadata that distinguishes it from every other token.
+NFTs are unique, one-of-a-kind tokens that are built on blockchain technology, allowing for secure ownership and transfer of these assets.
+
+Every token is assigned a unique identification code(ticker) and metadata that distinguish it from every other token.
 
 The flow of issuing and transferring non-fungible tokens is:
-* register/issue the token (this step creates an empty collection);
+
+* register/issue the token - this step creates an empty collection;
 * set roles to the address that will create the NFT/SFTs;
 * create the NFT/SFT;
 * transfer quantity(es).
 
-
 ## Issuance of NFT tokens
 
-One has to perform an issuance transaction in order to register a non-fungible token.
-Non-Fungible Tokens are issued via a request to the Metachain, which is a transaction submitted by the Account which will manage the tokens.
-When issuing a token, one must provide a **token name**, a **ticker** and optionally **additional properties**. This transaction has the form:
+Non-Fungible Tokens(NFTs) are issued via a request to the Metachain, which is a transaction submitted by the Account which will manage the tokens.
 
-```
-IssuanceTransaction {
-    Sender: <account address of the token manager>
-    Receiver: erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u
-    Value: 50000000000000000 # (0.05 EGLD)
-    GasLimit: 60000000
-    Data: "issueNonFungible" +
-          "@" + <token name in hexadecimal encoding> +
-          "@" + <token ticker in hexadecimal encoding>
-}
+The issuance transaction must provide the following:
 
+* **Token Name**;
+* **Token Ticker**;
+* **Additional Properties** (Optional).
+
+```sh
+mxpy token issue-non-fungible \
+--token-name <Token Name> \
+--token-ticker <Token Ticker> \
+--proxy <Devnet or Testnet Proxy> \
+--pem <Path to Wallet>
 ```
 
 Optionally, the properties can be set when issuing a token. Example:
 
-```
-IssuanceTransaction {
-    Sender: <account address of the token manager>
-    Receiver: erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u
-    Value: 50000000000000000 # (0.05 EGLD)
-    GasLimit: 60000000
-    Data: "issueNonFungible" +
-          "@" + <token name in hexadecimal encoding> +
-          "@" + <token ticker in hexadecimal encoding> +
-          "@" + <"canFreeze" hexadecimal encoded> + "@" + <"true" or "false" hexadecimal encoded> +
-          "@" + <"canWipe" hexadecimal encoded> + "@" + <"true" or "false" hexadecimal encoded> +
-          "@" + <"canPause" hexadecimal encoded> + "@" + <"true" or "false" hexadecimal encoded> +
-          "@" + <"canTransferNFTCreateRole" hexadecimal encoded> + "@" + <"true" or "false" hexadecimal encoded> +
-          "@" + <"canChangeOwner" hexadecimal encoded> + "@" + <"true" or "false" hexadecimal encoded> +
-          "@" + <"canUpgrade" hexadecimal encoded> + "@" + <"true" or "false" hexadecimal encoded> +
-          "@" + <"canAddSpecialRoles" hexadecimal encoded> + "@" + <"true" or "false" hexadecimal encoded> +
-          ...
-}
+```sh
+mxpy token issue-non-fungible \
+--token-name <Token Name> \
+--token-ticker <Token Ticker> \
+--cannot-freeze \
+--cannot-wipe \
+--cannot-pause \
+--cannot-change-owner \
+--cannot-upgrade \
+--cannot-add-special-roles \
+--cannot-transfer-nft-create-role \
+--proxy <Devnet or Testnet Proxy> \
+--pem <Path to Wallet>
 ```
 
 ### Practice
@@ -57,19 +52,24 @@ Let's create our first NFT collection. We will make a transaction to the testnet
 To install the tool check the [prerequisites section](../../../smart-contracts/lab/content/prerequisites.md).
 
 ```bash
-costin@Byblos:~$ mxpy contract call erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u --pem ~/multiversX/keys/shard0.pem --proxy https://testnet-api.multiversx.com --chain T --recall-nonce --gas-limit 60000000 --value 50000000000000000 --function issueNonFungible --arguments 0x425044414578616d706c65546f6b656e 0x42504441  --send
+mxpy token issue-non-fungible \
+--token-name BPDAExampleToken \
+--token-ticker BPDA \
+--proxy https://testnet-api.multiversx.com \
+--pem ~/multiversX/keys/shard0.pem \
+--send
 ```
 
-We called that specific contract, signed with my pem to authenticate myself in the blockchain, used testnet proxy and chain, sent 0.05 EGLD, called **issueNonFungible**, using 2 parameters:
-* 0x425044414578616d706c65546f6b656e which is the name - **BPDAExampleToken** in hex;
-* 0x42504441 which is the ticker - **BPDA** in hex.
+We called the `issueNonFungible` **built-in function**, signed the transaction with a **PEM** file for blockchain authentication, and used the **testnet** proxy. This transaction does an automated payment of $0.05$ EGLD.
 
 Let's check our NFT collection on blockchain:
 ![BPDA_NFT](../media/bpda_nft.png)
 
-Observe that the **Collection Name** (which is also known as **token ID**) is `BPDA-2d3d3c`. This is formed using the ticker provided,"-" and 6 random hex numbers.
+Observe that the **Collection Name** (which is also known as **token ID**) is `BPDA-ee1eda`. This is formed using the ticker provided,"-" and 6 random hex numbers.
+
 Also, observe the name **BPDAExampleToken** which is the one we provided.
-Lastly, observe that we have an empty collection, with no NFTs. 
+
+Lastly, observe that we have an empty collection, with no NFTs.
 
 ### Practice - your turn
 
@@ -80,46 +80,43 @@ Lastly, observe that we have an empty collection, with no NFTs.
 Roles can be assigned by sending a transaction to the Metachain from the ESDT manager.
 Within a transaction of this kind, any number of roles can be assigned (minimum 1).
 
-```
-RolesAssigningTransaction {
-    Sender: <address of the ESDT manager>
-    Receiver: erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u
-    Value: 0
-    GasLimit: 60000000
-    Data: "setSpecialRole" +
-          "@" + <token identifier in hexadecimal encoding> +
-          "@" + <address to assign the role(s) in a hexadecimal encoding> +
-          "@" + <role in hexadecimal encoding> +
-          "@" + <role in hexadecimal encoding> +
-          ...
-}
+```sh
+mxpy token set-special-role-nft \
+--<Role Assigned> \
+--token-identifier <Collection Identifier> \
+--user <Address to Assign the Role(s)> \
+--pem <Path to Wallet> \
+--proxy <Devnet or Testnet Proxy> \
+--pem <Path to Wallet>
 ```
 
-Don't forget to convert the values to hex.
-For example, `ESDTRoleNFTCreate = 0x45534454526f6c654e4654437265617465`.
+You can determine which **roles** to assign based on your requirements by consulting the command `mxpy token set-special-role-nft --help`.
 
-
+To assign the NFT creation role to an address for a specific collection, use `nft-create` role.
 
 ## NFT fields
 
 Below you can find the fields involved when creating an NFT:
-* **NFT Name**
-    * The name of the NFT or SFT;
-* **Quantity** 
-    * The quantity of the token. If NFT, it **must be 1**;
-    * There are Semi-Fungible Tokens (SFT). You can read more [here](https://docs.multiversx.com/tokens/nft-tokens#nft-and-sft);
-* **Royalties** - Allows the creator to receive royalties for any transaction involving their NFT
-    * Allows the creator to receive royalties for any transaction involving their NFT;
-    * Base format is a numeric value between 0 an 10000 (0 meaning 0% and 10000 meaning 100%)
-* **Hash**
-    * Arbitrary field that should contain the hash of the NFT metadata;
-    * Optional filed, should be left null when building the transaction to create the NFT;
-* **Attributes**
-    * Represents additional information about the NFT or SFT, like picture traits or tags for your NFT/collection;
-    * The field should follow a `metadata:ipfsCID/fileName.json;tags:tag1,tag2,tag3` format;
-    * Below you can find a sample for the extra metadata format that should be stored on IPFS:
 
-```
+* **NFT Name**
+  * The name of the Non-Fungible Token;
+* **Quantity**
+  * The quantity of the token. It **must be 1**;
+* **Royalties**
+  * Allows the creator to receive royalties for any transaction involving their NFT;
+  * Base format is a numeric value between 0 an 10000 (0 meaning 0% and 10000 meaning 100%)
+* **Hash**
+  * Arbitrary field that should contain the hash of the NFT metadata;
+  * Can be left an empty string when building the transaction to create the NFT;
+* **URI(s)**
+  * **Mandatory** field that represents the URL to a [supported](https://docs.multiversx.com/tokens/nft-tokens#supported-media-types) media file ending with the file extension as described in the [example](https://docs.multiversx.com/tokens/nft-tokens#example) below;
+  * Field should contain the Uniform Resource Identifier;
+* **Attributes**
+  * Represents additional information about the NFT, like picture traits or tags for your NFT/collection;
+  * The data you provide must be formatted in hexadecimal and follow this exact structure: `metadata:ipfsCID/fileName.json;tags:tag1,tag2,tag3`;
+  * Below you can find a sample for the extra metadata format that should be stored on IPFS:
+
+```json
 {
   "description": "This is a sample description",
   "attributes": [
@@ -141,19 +138,16 @@ Below you can find the fields involved when creating an NFT:
   ],
   "collection": "ipfsCID/fileName.json"
 }
-
 ```
-* **URI(s)**
-    * **Mandatory** field that represents the URL to a [supported](https://docs.multiversx.com/tokens/nft-tokens#supported-media-types) media file ending with the file extension as described in the [example](https://docs.multiversx.com/tokens/nft-tokens#example) below;
-    * Field should contain the Uniform Resource Identifier;
-
 
 ---
 **NOTE**
 
-Please note that each argument must be encoded in hexadecimal format with an even number of characters.
+Please note that every argument encoded in hexadecimal format must contain an even number of characters
 
 ---
+
+You can also create Semi-Fungible Tokens (SFTs). For more details on the differences between NFTs and SFTs, please read the [official documentation](https://docs.multiversx.com/tokens/nft-tokens#nft-and-sft).
 
 ## Creation of an NFT
 
@@ -161,52 +155,36 @@ A single address can own the role of creating an NFT for an ESDT token. This rol
 
 An NFT can be created on top of an existing ESDT by sending a transaction to self that contains the function call that triggers the creation. Any number of URIs can be assigned (minimum 1).
 
+```sh
+mxpy token create-nft \
+--token-identifier <Token Identifier> \
+--initial-quantity 1 \
+--name <NFT Name> \
+--royalties <Royalties> \
+--hash <Hash in Hexadecimal Encoding> \  
+--attributes <Attributes in Hexadecimal Encoding> \
+--uris <URI> \ 
+--pem <Path to Wallet> \
+--proxy <Devnet or Testnet Proxy> \
+--send
 ```
-NFTCreationTransaction {
-    Sender: <address with ESDTRoleNFTCreate role>
-    Receiver: <same as sender>
-    Value: 0
-    GasLimit: 3000000 + Additional gas (see below)
-    Data: "ESDTNFTCreate" +
-          "@" + <token identifier in hexadecimal encoding> +
-          "@" + <initial quantity in hexadecimal encoding> +
-          "@" + <NFT name in hexadecimal encoding> +
-          "@" + <Royalties in hexadecimal encoding> +
-          "@" + <Hash in hexadecimal encoding> +
-          "@" + <Attributes in hexadecimal encoding> +
-          "@" + <URI in hexadecimal encoding> +
-          "@" + <URI in hexadecimal encoding> +
-          ...
-}
-
-```
-
-Additional gas refers to:
-* Transaction payload cost: `Data field length * 1500` (GasPerDataByte = 1500);
-* Storage cost: `Size of NFT data * 50000` (StorePerByte = 50000).
-
-
 
 ## Transfer NFT Creation Role
 
-The role of creating an NFT can be transferred by a Transaction like this:
-```
-TransferCreationRoleTransaction {
-    Sender: <address of the current creation role owner>
-    Receiver: erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u
-    Value: 0
-    GasLimit: 60000000 + length of Data field in bytes * 1500
-    Data: "transferNFTCreateRole" +
-          "@" + <token identifier in hexadecimal encoding> +
-          "@" + <the address to transfer the role from in hexadecimal encoding> +
-          "@" + <the address to transfer the role to in hexadecimal encoding>
-}
+The role of creating an NFT can be transferred by a transaction like this:
 
+```sh
+mxpy token transfer-nft-create-role \
+--token-identifier <Token Identifier> \
+--user <Address to Assign the Role> \
+--proxy <Devnet or Testnet Proxy> \
+--pem <Path to Wallet> \
+--send
 ```
 
 ## Change NFT Attributes
 
-An user that has the `ESDTRoleNFTUpdateAttributes`` role set for a given ESDT, can change the attributes of a given NFT/SFT.
+An user that has the `ESDTRoleNFTUpdateAttributes` role set for a given ESDT, can change the attributes of a given NFT/SFT.
 
 ---
 **NOTE**
@@ -217,18 +195,14 @@ An user that has the `ESDTRoleNFTUpdateAttributes`` role set for a given ESDT, c
 
 This is done by performing a transaction like this:
 
-```
-ESDTNFTUpdateAttributesTransaction {
-    Sender: <address of an address that has ESDTRoleNFTUpdateAttributes role>
-    Receiver: <same as sender>
-    Value: 0
-    GasLimit: 10000000
-    Data: "ESDTNFTUpdateAttributes" +
-          "@" + <token identifier in hexadecimal encoding> +
-          "@" + <NFT or SFT nonce in hexadecimal encoding> +
-          "@" + <Attributes in hexadecimal encoding>
-}
-
+```sh
+mxpy token update-attributes \
+--token-identifier <Token Identifier> \ 
+--token-nonce <NFT nonce> \
+--attributes <Attributes in Hexadecimal Encoding> \
+--proxy <Devnet or Testnet Proxy> \
+--pem <Path to Wallet> \
+--send
 ```
 
 ## Transfers
@@ -236,19 +210,13 @@ ESDTNFTUpdateAttributesTransaction {
 Performing an ESDT NFT transfer is done by specifying the receiver's address inside the Data field, alongside other details.
 An ESDT NFT transfer transaction has the following form:
 
-```
-TransferTransaction {
-    Sender: <account address of the sender>
-    Receiver: <same as sender>
-    Value: 0
-    GasLimit: 1000000 + length of Data field in bytes * 1500
-    Data: "ESDTNFTTransfer" +
-          "@" + <collection identifier in hexadecimal encoding> +
-          "@" + <the NFT nonce in hexadecimal encoding> +
-          "@" + <quantity to transfer in hexadecimal encoding> +
-          "@" + <destination address in hexadecimal encoding>
-}
-
+```sh
+mxpy tx new \
+--token-transfer <Extended Token identifier Format> <Quantity> \
+--proxy <Devnet or Testnet Proxy> \ 
+--receiver <Address to the Receiver> \
+--pem <Path to Wallet> \
+--send
 ```
 
 ## Branding
