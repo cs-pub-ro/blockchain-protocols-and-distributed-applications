@@ -20,7 +20,7 @@ Inspect the contract sources (`src/lib.rs`) and the black-box tests under `tests
 
 ## 2. Build with `sc-meta`
 
-From `util/subscription-sc`, compile the contract:
+From the root of the crate, compile the contract:
 
 ```bash
 sc-meta all build
