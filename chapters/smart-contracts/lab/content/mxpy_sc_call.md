@@ -15,31 +15,34 @@ fn init(&self, initial_value: BigUint) {
 Therefore in the SC there is a `sum` storage initialized with **0**.
 
 Let's call the `add` endpoint to add a value to our storage:
-```
-/mvx/mx-contracts-rs/contracts/adder/interaction$ add 
+
+```sh
+adder/interaction$ add 
 Enter number: 2
-INFO     utils: View this transaction in the MultiversX Testnet Explorer: https://testnet-explorer.multiversx.com/transactions/2a906bc468008706f928cc5b7a669570c71556c604ae8d1ef2dfdfb100636f74                         
+INFO     utils: View this transaction in the MultiversX Testnet Explorer: https://testnet-explorer.multiversx.com/transactions/fdea45d4fd03368d5dc56f763626ca12ebfc85eb859d8b92748dbcf209b010ae                        
 {
     "emittedTransaction": {
-        "nonce": 313,
+        "nonce": 30202,
         "value": "0",
-        "receiver": "erd1qqqqqqqqqqqqqpgq9ss82g55h3k96898kmdtp8am3a4qaefcuvaqutqjjd",
-        "sender": "erd1mqa9wttlzwwdvwgk9dzsfdn79lv5raw0tfe9ynvn0dg92hpruvaqhhd2gx",
+        "receiver": "erd1qqqqqqqqqqqqqpgq2yezuywz09j300reqsj3yvqn7lthv270d8sszpql8z",
+        "sender": "erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th",
         "senderUsername": "",
         "receiverUsername": "",
         "gasPrice": 1000000000,
-        "gasLimit": 5000000,
+        "gasLimit": 1240948,
         "data": "YWRkQDAy",
         "chainID": "T",
         "version": 2,
         "options": 0,
         "guardian": "",
-        "signature": "187f19d7daad9b75f3f6469b56698ab84442786f4a592f4cb86efb858d40d63e75307964a4dd838bf114303427e3e4d2c9322936de3ee520c0ee9878bd2a8c0b",
-        "guardianSignature": ""
+        "signature": "befbf6f1611517519d4e71ab8b9339be3f03dc840bbacfa4b223ab3289ee7a7b2ed9880aabeee2605f1e9028e65b86b31a13a44b8dacf5fa26ee674c84ae4a03",
+        "guardianSignature": "",
+        "relayer": "",
+        "relayerSignature": ""
     },
     "emittedTransactionData": "add@02",
-    "emittedTransactionHash": "2a906bc468008706f928cc5b7a669570c71556c604ae8d1ef2dfdfb100636f74",
-    "contractAddress": "erd1qqqqqqqqqqqqqpgq9ss82g55h3k96898kmdtp8am3a4qaefcuvaqutqjjd"
+    "emittedTransactionHash": "fdea45d4fd03368d5dc56f763626ca12ebfc85eb859d8b92748dbcf209b010ae",
+    "contractAddress": "erd1qqqqqqqqqqqqqpgq2yezuywz09j300reqsj3yvqn7lthv270d8sszpql8z"
 }
 ```
 
@@ -48,7 +51,7 @@ Inspect the MultiversX Testnet Explorer to see the transaction.
 Let's call the `getSum` view function to read from the storage:
 
 ```bash
-costin@Byblos:~/mvx/mx-contracts-rs/contracts/adder/interaction$ getSum 
+adder/interaction$ getSum 
 [
     "02"
 ]

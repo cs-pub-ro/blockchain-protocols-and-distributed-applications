@@ -7,34 +7,38 @@ All of these prerequisites were done at the first lab. You can skip this section
 We use `mxpy` to interact with the blockchain.
 
 To install `mxpy` run:
+
 ```bash
 pipx install multiversx-sdk-cli --force
 ```
 
 To check the successful installation:
+
 ```bash
 $ mxpy --version
-MultiversX Python CLI (mxpy) 9.8.1
+MultiversX Python CLI (mxpy) 11.2.3
 ```
 
-If you encounter any errors, follow the guide [here](https://docs.multiversx.com/sdk-and-tools/sdk-py/installing-mxpy/).
+If you encounter any errors, follow [the guide](https://docs.multiversx.com/sdk-and-tools/mxpy/installing-mxpy).
 
 ## Install sc-meta - contract interaction
 
 We use `sc-meta` to compile the contracts and to upgrade the dependencies.
 
 To install `sc-meta`, simply call:
+
 ```bash
-$ cargo install multiversx-sc-meta
+cargo install multiversx-sc-meta
 ```
 
 To check for successful installation:
+
 ```bash
 $ sc-meta --version
-multiversx-sc-meta 0.54.0
+multiversx-sc-meta 0.62.1
 ```
 
-If you encounter any errors, follow the guide [here](https://docs.multiversx.com/developers/meta/sc-meta#introduction).
+If you encounter any errors, follow the guide [here](https://docs.multiversx.com/developers/toolchain-setup).
 
 ## Contracts examples
 
