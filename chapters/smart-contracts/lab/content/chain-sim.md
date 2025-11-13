@@ -45,7 +45,7 @@ The interactor has a straight forward structure:
 - `src` - contains the main interactor code.
 - `tests` - contains the integration tests that will be run against the chain-simulator.
 
-> The interactor uses *vanilla async rust*, so make sure to familiarize yourself with it if you haven't already. Remember to use error from the compiler as your friend! For further information regarding rust or async rust feel free to use any other source of your preference.
+> The interactor uses *vanilla async rust*, so make sure to familiarize yourself with it if you haven't already. Remember to use errors from the compiler as your friend! For further information regarding rust or async rust feel free to use any other source of your preference.
 
 ## Deep dive into the interactor tests
 
