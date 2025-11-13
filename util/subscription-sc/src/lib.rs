@@ -7,7 +7,7 @@ pub mod subscription_proxy;
 pub const SECONDS_PER_DAY: u64 = 24 * 60 * 60;
 
 #[type_abi]
-#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone)]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, Debug)]
 pub struct SubscriptionPlan<M: ManagedTypeApi> {
     pub title: ManagedBuffer<M>,
     pub price: BigUint<M>,
@@ -15,7 +15,7 @@ pub struct SubscriptionPlan<M: ManagedTypeApi> {
 }
 
 #[type_abi]
-#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone)]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, Debug)]
 pub struct Subscription<M: ManagedTypeApi> {
     pub plan_id: u32,
     pub started_at: u64,
@@ -26,12 +26,14 @@ pub struct Subscription<M: ManagedTypeApi> {
 #[multiversx_sc::contract]
 pub trait SubscriptionContract {
     #[init]
-    fn init(&self) {}
+    fn init(&self) {
+        let caller = self.blockchain().get_caller();
+        self.owner().set(&caller);
+    }
 
     #[upgrade]
     fn upgrade(&self) {}
 
-    #[only_owner]
     #[endpoint(addSubscriptionPlan)]
     fn add_subscription_plan(
         &self,
@@ -39,6 +41,7 @@ pub trait SubscriptionContract {
         duration_days: u64,
         price: BigUint,
     ) -> u32 {
+        self.require_caller_is_owner();
         require!(!title.is_empty(), "subscription title required");
         require!(duration_days > 0, "duration must be greater than zero");
         require!(price > 0, "price must be greater than zero");
@@ -56,6 +59,41 @@ pub trait SubscriptionContract {
     }
 
     #[payable("EGLD")]
+    #[endpoint(upgradeSubscription)]
+    fn upgrade_subscription(&self, new_plan_id: u32) {
+        let caller = self.blockchain().get_caller();
+
+        require!(
+            !self.subscription_plans(new_plan_id).is_empty(),
+            "subscription plan not found"
+        );
+
+        let current_sub = self.subscriptions(&caller);
+        require!(
+            !current_sub.is_empty(),
+            "caller is not subscribed currently to any plan"
+        );
+
+        let paid_amount = self.call_value().egld().clone_value();
+
+        let new_plan = self.subscription_plans(new_plan_id).get();
+        require!(
+            paid_amount == (new_plan.price.clone() - current_sub.get().paid_amount),
+            "difference payment required for subscription"
+        );
+
+        let subscription = Subscription {
+            plan_id: new_plan_id,
+            started_at: current_sub.get().started_at,
+            expires_at: current_sub.get().expires_at,
+            paid_amount: new_plan.price,
+        };
+
+        self.subscriptions(&caller).set(&subscription);
+        self.subscription_created(&caller, new_plan_id, &paid_amount);
+    }
+
+    #[payable("EGLD")]
     #[endpoint(addNewSubscription)]
     fn add_new_subscription(&self, plan_id: u32) {
         let caller = self.blockchain().get_caller();
@@ -69,12 +107,17 @@ pub trait SubscriptionContract {
             "caller already subscribed"
         );
 
+        let paid_amount = self.call_value().egld().clone_value();
+
         let plan = self.subscription_plans(plan_id).get();
+        require!(
+            paid_amount == plan.price,
+            "payment required for subscription"
+        );
 
         let start_timestamp = self.blockchain().get_block_timestamp();
         let duration_in_seconds = plan.duration_days.saturating_mul(SECONDS_PER_DAY);
         let expires_at = start_timestamp.saturating_add(duration_in_seconds);
-        let paid_amount = self.call_value().egld().clone_value();
 
         let subscription = Subscription {
             plan_id,
@@ -133,6 +176,15 @@ pub trait SubscriptionContract {
         self.plan_counter().set(next);
         next
     }
+
+    fn require_caller_is_owner(&self) {
+        let caller = self.blockchain().get_caller();
+        let owner = self.owner().get();
+        require!(caller == owner, "only owner can manage plans");
+    }
+
+    #[storage_mapper("owner")]
+    fn owner(&self) -> SingleValueMapper<ManagedAddress<Self::Api>>;
 
     #[storage_mapper("planCounter")]
     fn plan_counter(&self) -> SingleValueMapper<u32>;

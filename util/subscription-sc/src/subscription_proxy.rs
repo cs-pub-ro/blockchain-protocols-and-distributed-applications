@@ -100,6 +100,18 @@ where
             .original_result()
     }
 
+    pub fn upgrade_subscription<
+        Arg0: ProxyArg<u32>,
+    >(
+        self,
+        new_plan_id: Arg0,
+    ) -> TxTypedCall<Env, From, To, (), Gas, ()> {
+        self.wrapped_tx
+            .raw_call("upgradeSubscription")
+            .argument(&new_plan_id)
+            .original_result()
+    }
+
     pub fn add_new_subscription<
         Arg0: ProxyArg<u32>,
     >(
@@ -149,7 +161,7 @@ where
 }
 
 #[type_abi]
-#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone)]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, Debug)]
 pub struct SubscriptionPlan<Api>
 where
     Api: ManagedTypeApi,
@@ -160,7 +172,7 @@ where
 }
 
 #[type_abi]
-#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone)]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, Debug)]
 pub struct Subscription<Api>
 where
     Api: ManagedTypeApi,

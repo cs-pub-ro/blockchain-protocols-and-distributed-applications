@@ -1,4 +1,7 @@
-use multiversx_sc::imports::OptionalValue;
+use multiversx_sc::{
+    imports::OptionalValue,
+    types::{BigUint, Egld, EgldPayment},
+};
 
 use crate::subscription_blackbox_setup::{SubscriptionContractTestState, STUDENT_ADDRESS};
 
@@ -32,5 +35,79 @@ fn add_new_subscription_should_require_payment() {
     assert!(
         matches!(subscription, OptionalValue::None),
         "Subscription should not be recorded when payment is missing"
+    );
+
+    let b = BigUint::from(MONTHLY_PLAN_PRICE + 1);
+    let egld = EgldPayment::from(Egld(b));
+    let response = state.subscribe(plan_id, egld);
+
+    assert!(
+        response.is_err(),
+        "expected the subscription to fail: too much money"
+    );
+
+    let subscription = state.get_subscription(STUDENT_ADDRESS);
+
+    assert!(
+        subscription.is_none(),
+        "Subscription should NOT be recorded when too much payment was sent"
+    );
+
+    let b = BigUint::from(MONTHLY_PLAN_PRICE);
+    let egld = EgldPayment::from(Egld(b));
+    let response = state.subscribe(plan_id, egld);
+
+    assert!(response.is_ok(), "expected the subscription to succeed");
+
+    let subscription = state.get_subscription(STUDENT_ADDRESS);
+
+    assert!(
+        subscription.is_some(),
+        "Subscription should be recorded when payment was sent"
+    );
+}
+
+#[test]
+fn subscription_upgradable() {
+    let mut state = SubscriptionContractTestState::new();
+
+    state.deploy();
+
+    let plan_id = state.create_plan(
+        "Monthly Plan",
+        MONTHLY_PLAN_DURATION_DAYS,
+        MONTHLY_PLAN_PRICE,
+    );
+
+    let premium_plan_id = state.create_plan(
+        "PREMIUM Monthly Plan Plus Pro Super Extra Mega Double Deluxe",
+        MONTHLY_PLAN_DURATION_DAYS,
+        MONTHLY_PLAN_PRICE + 1,
+    );
+
+    let b = BigUint::from(MONTHLY_PLAN_PRICE);
+    let egld = EgldPayment::from(Egld(b));
+    let response = state.subscribe(plan_id, egld);
+
+    assert!(response.is_ok(), "expected the subscription to succeed");
+
+    let subscription = state.get_subscription(STUDENT_ADDRESS);
+
+    assert!(
+        subscription.is_some(),
+        "Subscription should be recorded when payment was sent"
+    );
+
+    let b = BigUint::from(1_u64);
+    let egld = EgldPayment::from(Egld(b));
+    let response = state.upgrade_subscription(premium_plan_id, egld);
+
+    assert!(response.is_ok(), "expected the subscription to succeed");
+
+    let subscription = state.get_subscription(STUDENT_ADDRESS);
+
+    assert!(
+        subscription.is_some(),
+        "Subscription should be recorded when payment was sent"
     );
 }

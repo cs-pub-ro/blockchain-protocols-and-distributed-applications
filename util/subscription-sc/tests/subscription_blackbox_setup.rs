@@ -13,7 +13,7 @@ pub const SUBSCRIPTION_ADDRESS: TestSCAddress = TestSCAddress::new("subscription
 pub const OWNER_ADDRESS: TestAddress = TestAddress::new("owner");
 pub const STUDENT_ADDRESS: TestAddress = TestAddress::new("student");
 
-const INITIAL_BALANCE: u64 = 5_000_000_000_000_000_000; // 5 EGLD
+const INITIAL_BALANCE: u64 = 5_000_000_000_000_000_000;
 
 pub struct SubscriptionContractTestState {
     pub world: ScenarioWorld,
@@ -72,6 +72,38 @@ impl SubscriptionContractTestState {
             .to(SUBSCRIPTION_ADDRESS)
             .typed(SubscriptionContractProxy)
             .add_new_subscription(plan_id)
+            .returns(ReturnsHandledOrError::new())
+            .run()
+    }
+
+    pub fn subscribe(
+        &mut self,
+        plan_id: u32,
+        payment: EgldPayment<StaticApi>,
+    ) -> Result<(), TxResponseStatus> {
+        self.world
+            .tx()
+            .from(STUDENT_ADDRESS)
+            .to(SUBSCRIPTION_ADDRESS)
+            .typed(SubscriptionContractProxy)
+            .add_new_subscription(plan_id)
+            .payment(payment)
+            .returns(ReturnsHandledOrError::new())
+            .run()
+    }
+
+    pub fn upgrade_subscription(
+        &mut self,
+        new_plan_id: u32,
+        payment: EgldPayment<StaticApi>,
+    ) -> Result<(), TxResponseStatus> {
+        self.world
+            .tx()
+            .from(STUDENT_ADDRESS)
+            .to(SUBSCRIPTION_ADDRESS)
+            .typed(SubscriptionContractProxy)
+            .upgrade_subscription(new_plan_id)
+            .payment(payment)
             .returns(ReturnsHandledOrError::new())
             .run()
     }

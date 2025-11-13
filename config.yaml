@@ -146,7 +146,8 @@ docusaurus:
                 - Mxpy Deploy SC: mxpy_deploy.md
                 - Mxpy Call SC: mxpy_sc_call.md
                 - Neversea SC: neversea.md
-                - Subscription SC: subscription.md
+                - Blackbox Testing: subscription.md
+                - Interactor Testing: chain-sim.md
               extra:
                 - ../media/
           - Learning Rust:

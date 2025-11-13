@@ -9,7 +9,7 @@ Key takeaways:
 
 ## 1. Clone the submodule
 
-The `util/subscription-sc` folder is a submodule. Clone and pull it in before you start:
+Clone and pull it in before you start:
 
 ```bash
 git clone https://github.com/andreiblt1304/subscription-sc.git # HTTPS
