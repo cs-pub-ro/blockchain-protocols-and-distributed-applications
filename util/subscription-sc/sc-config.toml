@@ -1,0 +1,2 @@
+[[proxy]]
+path = "src/subscription_proxy.rs"
