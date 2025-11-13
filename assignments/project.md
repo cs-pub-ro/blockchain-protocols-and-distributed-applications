@@ -16,7 +16,7 @@ Each student should submit the PDF file (ex. for a team of 2 students, there wil
 Keep it brief. 1 page is enough; hard cap is 2 pages.
 
 [Submission link](https://curs.upb.ro/2025/mod/assign/view.php?id=29907)
-**Deadline**: Monday, 14 November 2025, 11:59 PM
+**Deadline**: ~~Friday, 14 November 2025, 11:59 PM~~ Sunday, 16 November 2025, 11:59 PM
 
 ## Phase 2 - Project documentation
 
