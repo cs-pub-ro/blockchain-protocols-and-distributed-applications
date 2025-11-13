@@ -84,4 +84,4 @@ The task for this lab is to add more tests to the interactor. Here are some idea
 - Create a test that checks if the unsubscribe functionality works as expected.
 
 Feel free to come up with your own ideas as well! The goal is to get comfortable with writing integration tests using the interactor and chain-simulator.
-For easier attendance please also create a test that run directly on the MultiversX devnet environment. After that send the transaction hash.
+For easier attendance please also create a test that runs directly on the MultiversX devnet environment. After that send the transaction hash.
