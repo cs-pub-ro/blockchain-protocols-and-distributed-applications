@@ -36,7 +36,7 @@ sc-meta all install
 To start the chain-simulator run the following command:
 
 ```bash
-sc-meta cs-start
+sc-meta cs start
 ```
 
 ## Understanding the interactor
