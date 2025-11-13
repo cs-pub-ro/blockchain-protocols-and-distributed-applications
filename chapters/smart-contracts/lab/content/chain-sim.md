@@ -66,7 +66,9 @@ The interactor has a straight forward structure:
 To run the tests you have to run this command:
 
 ```bash
-    cargo test --features chain-simulator-tests
+    sc-meta test -c
+    # OR
+    sc-meta test --chain-simulator-tests
 ```
 
 > Remember to have the chain-simulator running in the background before running the tests.
