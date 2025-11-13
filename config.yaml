@@ -140,11 +140,11 @@ docusaurus:
               subsections:
                 - Prerequisites: prerequisites.md
                 - Empty SC: empty.md
-                - Empty Interactor: rust_interactors.md
+                - Empty Interaction: empty_interaction.md
                 - Adder SC: adder.md
-                - Rust Deploy SC: cargo_deploy.md
-                - Mxpy Deploy SC: mxpy_deploy.md
-                - Mxpy Call SC: mxpy_sc_call.md
+                - Adder Rust Interaction: adder_rust_interaction.md
+                - Mxpy Adder Deploy: mxpy_deploy.md
+                - Mxpy Adder Call: mxpy_sc_call.md
                 - Neversea SC: neversea.md
                 - Blackbox Testing: subscription.md
                 - Interactor Testing: chain-sim.md
