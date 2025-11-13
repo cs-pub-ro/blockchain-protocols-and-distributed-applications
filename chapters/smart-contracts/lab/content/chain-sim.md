@@ -30,7 +30,7 @@ If you are using the provided VM, the chain-simulator is already installed. If y
 
 ```bash
 # This will also install other dependencies but if you already have them installed it will skip them
-sc-meta all install
+sc-meta install all
 ```
 
 To start the chain-simulator run the following command:
