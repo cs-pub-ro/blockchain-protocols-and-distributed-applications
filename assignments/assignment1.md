@@ -96,13 +96,15 @@ All actions must emit events and store relevant data on-chain.
 
 ### 7.2. Storage (10p)
 
-The contract must define:
+The contract must define the following data structures (according to the chosen framework):
 
-- `football_field_manager: ManagedAddress`
-- `football_court_cost: BigUint`
-- `participants: MultiValueMapper<ManagedAddress>`
+- `football_field_manager_address`
+- `football_court_cost`
+- `participants`
 - `reserved_slot: Slot` or optional  
   Structure: `{ start, end, payer, amount, confirmed }`
+
+Note: these are just some general guidelines, you can also define your own fields and data structures if that helps you.
 
 ---
 
@@ -110,102 +112,50 @@ The contract must define:
 
 #### Behavior
 
-- Receives exactly **0.1 EGLD** (or equivalent).
-- Creates a new slot.
-- Adds caller to participants.
-- Stores slot data.
-- Emits: `slot_created(caller)`.
-
-#### Valid flow
-
-- Slot does not exist → can be created.
-- Exact payment → success.
-
-#### Invalid cases
-
-- Slot already exists.
-- Amount ≠ 0.1 EGLD  
-  *(Bonus: refund difference if amount > expected)*.
-- Invalid data (e.g., wrong time interval).
+This function lets a user start a new football game session.
+The caller sends a small fixed deposit; if no session already exists, the contract records the new slot, registers the caller as the initiator/first participant, and logs that a new session was created.
 
 ---
 
 ### 7.4. Endpoint: participateToFootballSlot (10p)
 
-#### Behavior
-
-- Receives exactly **0.1 EGLD**.
-- Adds caller to participants.
-- Emits event: `participant_added(caller)`.
-
-#### Invalid cases
-
-- Slot does not exist.
-- Incorrect payment amount.
-- Caller already participating.
+This allows another user to join an already created session.
+They pay the same fixed deposit, and if everything is valid (session exists, user not already joined), they are added to the participant list and the action is logged.
 
 ---
 
 ### 7.5. Endpoint: cancelFootballSlot (10p)
 
-#### Behavior
-
-- Refunds all participants.
-- Clears storage (slot + participants).
-- Emits: `slot_canceled()`.
-- Callable only by the slot creator.
-
-#### Invalid cases
-
-- Slot does not exist.
-- Insufficient contract balance.
+The session creator can cancel the session before it is confirmed.
+When this happens, everyone who joined gets their deposit back, and the session data is completely cleared. A cancellation event is recorded.
 
 ---
 
 ### 7.6. Endpoint: setFootballFieldManager (10p)
 
-#### Behavior
-
-- Sets the manager address.
-- Only owner can call.
-- Emits corresponding event.
-
-#### Invalid cases
-
-- Caller is not owner.
-- Invalid address.
+The contract owner can assign the field manager — the entity who ultimately receives the payment.
+Once set, the contract records this assignment and emits an event confirming the change.
 
 ---
 
 ### 7.7. Endpoint: payCourt (20p)
 
-#### Behavior
-
-- Sends to manager the amount stored in `football_court_cost`.
-- Emits event: `court_paid(manager, amount)`.
-
-#### Invalid cases
-
-- Manager not defined.
-- Cost not defined.
-- Insufficient contract balance.
-- Slot does not exist.
+This function transfers the accumulated funds to the previously assigned field manager.
+It performs basic checks (manager and price must be set, enough funds collected, slot must exist) and then executes the payment, logging the transfer.
 
 ---
 
 ### 7.8. Endpoint: setFootballCourtCost (5p)
 
-- Only owner.
-- Sets total field cost.
-- Fail if zero cost or unauthorized caller.
+The owner defines the overall field rental cost.
+This value is stored and later used when making the final payment to the manager.
 
 ---
 
 ### 7.9. Endpoint: confirmSlot (10p)
 
-- Confirms reservation.
-- Only owner/manager.
-- Slot must exist and must not be confirmed.
+The manager (or owner) confirms that the session is valid and approved.
+Once confirmed, the slot is marked accordingly so that no further changes (like cancelation or re-confirmation) can occur.
 
 ---
 
