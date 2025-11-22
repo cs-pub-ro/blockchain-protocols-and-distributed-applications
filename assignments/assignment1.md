@@ -48,6 +48,8 @@ The student must follow a complete development flow: writing, testing, deploymen
   Tests will be run on a contract deployed before the deadline.  
   If the contract is not deployed, deployment will be done using the repository code.  
   Violation → **max 80p**.
+- There is no restriction on using AI/LLMs. However, we expect the final solution to deliver a higher than average quality if such tools are used, and we will grade those homeworks accordingly.
+
 - **Total score:** 100p  
 - **Bonus:** up to 20p (max total: 120p)
 
@@ -160,7 +162,7 @@ The contract must define:
 
 ---
 
-### 7.6. Endpoint: set_football_field_manager (10p)
+### 7.6. Endpoint: setFootballFieldManager (10p)
 
 #### Behavior
 
