@@ -152,7 +152,7 @@ This value is stored and later used when making the final payment to the manager
 
 ---
 
-### 7.9. Endpoint: confirmSlot (10p)
+### 7.9. Endpoint: confirmSlot (5p)
 
 The manager (or owner) confirms that the session is valid and approved.
 Once confirmed, the slot is marked accordingly so that no further changes (like cancelation or re-confirmation) can occur.
