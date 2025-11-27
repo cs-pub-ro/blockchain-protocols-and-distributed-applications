@@ -9,11 +9,15 @@ Key takeaways:
 
 ## 1. Clone the submodule
 
-Clone and pull it in before you start:
+Clone and checkout the correct branch:
 
 ```bash
-git clone https://github.com/andreiblt1304/subscription-sc.git # HTTPS
-git clone git@github.com:andreiblt1304/subscription-sc.git # SSH
+# Either HTTPS or SSH
+git clone https://github.com/andreiblt1304/subscription-sc.git 
+git clone git@github.com:andreiblt1304/subscription-sc.git 
+
+# Checkout blackbox branch
+git checkout blackbox-lab
 ```
 
 Inspect the contract sources (`src/lib.rs`) and the black-box tests under `tests/`.
