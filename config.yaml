@@ -146,7 +146,7 @@ docusaurus:
                 - Mxpy Adder Deploy: mxpy_deploy.md
                 - Mxpy Adder Call: mxpy_sc_call.md
                 - Neversea SC: neversea.md
-                - Blackbox Testing: subscription.md
+                - Blackbox Testing: blackbox.md
                 - Interactor Testing: chain-sim.md
               extra:
                 - ../media/
