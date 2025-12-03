@@ -26,7 +26,7 @@ The student must follow a complete development flow: writing, testing, deploymen
 
 ## 3. Deadline and Working Period
 
-- **Working period:** November 22 – December 7, 2025  
+- **Working period:** November 22 – December 10, 2025  
 - **Estimated duration:** ~2 weeks  
 - **Presentation and demo:** during the laboratory session
 
