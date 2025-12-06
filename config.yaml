@@ -149,6 +149,8 @@ docusaurus:
                 - Neversea SC: neversea.md
                 - Blackbox Testing: blackbox.md
                 - Interactor Testing: chain-sim.md
+                - Solana Program Prerequisites: solana_prerequisites.md
+                - Solana Program Hello World: solana_hello_world.md
               extra:
                 - ../media/
           - Learning Rust:
