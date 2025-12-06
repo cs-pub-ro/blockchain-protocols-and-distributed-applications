@@ -126,6 +126,7 @@ docusaurus:
                 - Blockchain Validators/: validators.md
                 - Blockchain Observers/: observers.md
                 - Devnet Blockchains/: devnet_testnet.md
+                - Solana Explorer/: solana_explorer.md
           - Tokens:
               path: chapters/tokens/lab/content
               subsections:
