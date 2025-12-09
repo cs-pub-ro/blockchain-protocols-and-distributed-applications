@@ -69,7 +69,7 @@ There are two distinct layers for accessing network data:
     * This layer sits **on top** of the Gateway and ElasticSearch.
     * It **aggregates** data from multiple sources.
     * It adds **caching** for performance.
-    * It provides "human-friendly" data (e.g., decoding Smart Contract results, joining tables).
+    * It provides "human-friendly" data (e.g., decoding Smart Contract results).
 
 ### Practical Use Cases
 
