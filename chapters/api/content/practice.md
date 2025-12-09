@@ -97,7 +97,7 @@ Demonstrating that Redis keeps data even if the API crashes.
     return await this.cacheService.getOrSet(
         cacheKey,
         async () => await this.fetchTransactionsFromApi(),
-        ttlSeconds * 1000, 
+        ttlSeconds, 
     );
     ```
 3.  **Start Server & Populate Cache:**
