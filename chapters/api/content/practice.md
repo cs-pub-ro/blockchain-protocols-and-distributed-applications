@@ -93,12 +93,6 @@ Demonstrating that Redis keeps data even if the API crashes.
 2.  **Increase TTL (src/app.service.ts):**
     ```typescript
     const ttlSeconds = 60; // Increase to 60s
-    // Update the getOrSet call:
-    return await this.cacheService.getOrSet(
-        cacheKey,
-        async () => await this.fetchTransactionsFromApi(),
-        ttlSeconds, 
-    );
     ```
 3.  **Start Server & Populate Cache:**
     * `npm run start`
