@@ -193,7 +193,7 @@ docusaurus:
               path: chapters/api/content
               subsections:
                 - Exposing blockchain data: api.md
-                - Scaling your APIs: scaling.md 
+                - Scaling your APIs: scaling.md
                 - Practice: practice.md
               extra:
                 - ../media/
