@@ -1,6 +1,8 @@
-# Exposing and Querying Smart Contract Data on MultiversX
+# Exposing and Querying Blockchain Data
 
-This lab outlines the architecture and methods for fetching real-time and historical data related to the MultiversX network.
+While this lab utilizes the MultiversX network to demonstrate practical implementations, the fundamental principles of data exposure and querying—such as the distinction between direct VM interaction and off-chain indexing—are applicable across most blockchain architectures.
+
+This section outlines the specific architecture and methods used within the MultiversX ecosystem to fetch both real-time and historical data..
 
 ## 🎯 Objectives
 
@@ -38,6 +40,14 @@ When you perform a VM Query (via SDK or dApp), you are asking an Observer to sim
 While VM Queries are perfect for *current* data, they cannot easily search through history. For this, MultiversX uses an off-chain indexing solution based on **ElasticSearch**.
 
 Nodes send data (blocks, transactions, logs) to an ElasticSearch cluster, where it is indexed for fast retrieval.
+
+### Example: Retrieving Balance History
+
+For example, if you want to search for the historical balance of an address, you have two options:
+
+1.  **Use the ElasticSearch Index:** You can query the [`accountshistory`](https://docs.multiversx.com/sdk-and-tools/indices/es-index-accountshistory) index directly.
+2.  **Use the Public API:** Alternatively, you can use the API endpoint directly:
+    `https://api.multiversx.com/accounts/:address/history`
 
 ### Investigating Indices
 
