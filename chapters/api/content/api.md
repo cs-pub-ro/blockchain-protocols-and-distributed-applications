@@ -23,7 +23,11 @@ To read the **current state** of a contract (e.g., a counter value, a storage va
 
 ### How it works: The Role of Observers
 
-The MultiversX network consists of **Validators** (who participate in consensus and produce blocks) and **Observers**.
+The MultiversX network consists of **Validators** and **Observers**.
+
+* **Validators** are nodes that **actively participate in consensus** (they produce and validate blocks).
+* They are required to **stake** tokens (collateral) to ensure they secure the network and act honestly.
+* They are responsible for processing transactions and appending new blocks to the blockchain (handling **"Write"** operations).
 
 * **Observers** are nodes that **do not participate in consensus** (they don't produce blocks).
 * However, they execute every transaction to stay **in sync** with the network state.
@@ -54,14 +58,6 @@ For example, if you want to search for the historical balance of an address, you
 To master data retrieval, you must **go through the available indices** in the documentation. This is crucial for obtaining detailed explanations about the data offered, understanding what each specific field represents, and learning how to formulate precise queries based on those fields.
 
 > **Reference:** [MultiversX Docs: ElasticSearch](https://docs.multiversx.com/sdk-and-tools/elastic-search)
-
-<!-- <div align="center">
-  <img src="../media/elastic_screenshot.png" alt="Elastic Search Structure" />
-  <br />
-  <em>(Make sure to check the fields available in the <code>transactions</code> and <code>sc-results</code> indices)</em>
-</div> -->
-
-<!-- --- -->
 
 ## 3. The MultiversX API System
 
