@@ -14,7 +14,7 @@ In this session, we will demonstrate how a single caching layer can protect your
 ### Step 1: Clone the Repository
 Clone the demo repository containing the NestJS application and the load testing script:
 ```bash
-git clone [https://github.com/stefangutica/mx-caching-demo.git](https://github.com/stefangutica/mx-caching-demo.git)
+git clone https://github.com/stefangutica/mx-caching-demo.git
 cd mx-caching-demo
 ```
 
