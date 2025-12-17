@@ -4,7 +4,7 @@ While this lab utilizes the MultiversX network to demonstrate practical implemen
 
 This section outlines the specific architecture and methods used within the MultiversX ecosystem to fetch both real-time and historical data..
 
-## 🎯 Objectives
+## Objectives
 
 By the end of this session, you will be able to:
 
