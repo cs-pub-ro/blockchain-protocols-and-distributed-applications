@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin & Proof of Work Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #f7931a, #ff6b35);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .university-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-inner {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3a8a, #fbbf24, #dc2626, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: logoRotate 20s linear infinite;
+        }
+
+        @keyframes logoRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo-building {
+            width: 30px;
+            height: 30px;
+            background: #1f2937;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .logo-building::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 8px;
+            background: #1f2937;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .logo-building::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 4px;
+            background: #1f2937;
+        }
+
+        .logo-text {
+            position: absolute;
+            font-size: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-text.top {
+            top: 5px;
+            font-size: 6px;
+        }
+
+        .logo-text.bottom {
+            bottom: 5px;
+            font-size: 7px;
+            font-weight: 900;
+        }
+
+        .logo-text.left {
+            left: 5px;
+            transform: rotate(-90deg);
+            font-size: 5px;
+        }
+
+        .logo-text.right {
+            right: 5px;
+            transform: rotate(90deg);
+            font-size: 5px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .curriculum-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .curriculum-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .curriculum-info p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin: 5px 0;
+        }
+
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn.danger {
+            background: #dc3545;
+        }
+
+        .btn.danger:hover {
+            background: #c82333;
+        }
+
+        .btn.success {
+            background: #28a745;
+        }
+
+        .btn.success:hover {
+            background: #218838;
+        }
+
+        .demo-area {
+            padding: 30px;
+            min-height: 600px;
+        }
+
+        .transaction-pool {
+            background: #e3f2fd;
+            border: 2px dashed #2196f3;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            min-height: 120px;
+        }
+
+        .transaction-pool h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .transaction {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.5s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .transaction:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .transaction.selected {
+            background: #fff3cd;
+            border-color: #ffc107;
+        }
+
+        .mining-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .miner {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .miner.active {
+            border-color: #28a745;
+            background: #d4edda;
+            animation: pulse 1s infinite;
+        }
+
+        .miner.winner {
+            border-color: #ffc107;
+            background: #fff3cd;
+            animation: celebration 0.6s ease-out;
+        }
+
+        .miner h4 {
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .hash-display {
+            background: #212529;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 12px;
+            word-break: break-all;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nonce {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            margin: 10px 0;
+        }
+
+        .difficulty {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .blockchain {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .blockchain h3 {
+            color: #495057;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .blocks-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .block {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .block.genesis {
+            border-color: #6f42c1;
+            background: #f8f5ff;
+        }
+
+        .block.new {
+            border-color: #28a745;
+            background: #d4edda;
+            animation: blockAdded 0.8s ease-out;
+        }
+
+        .block h4 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .block-hash {
+            background: #212529;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 10px;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+
+        .block-transactions {
+            font-size: 12px;
+            color: #6c757d;
+            margin: 10px 0;
+        }
+
+        .chain-connector {
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #6c757d;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes celebration {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes blockAdded {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+
+            50% {
+                transform: scale(1.05) translateY(-10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .explanation {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .explanation h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .explanation p {
+            color: #155724;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .footer-left p {
+            margin: 5px 0;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-logo-inner {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3a8a, #fbbf24, #dc2626, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .footer-logo-building {
+            width: 20px;
+            height: 20px;
+            background: #1f2937;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .footer-logo-building::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 5px;
+            background: #1f2937;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .footer-logo-text {
+            position: absolute;
+            bottom: 2px;
+            font-size: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .mining-area {
+                grid-template-columns: 1fr;
+            }
+
+            .blocks-container {
+                flex-direction: column;
+            }
+
+            .chain-connector {
+                display: none;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="university-logo">
+                <div class="logo-inner">
+                    <div class="logo-building"></div>
+                    <div class="logo-text top">POLITEHNICA</div>
+                    <div class="logo-text bottom">BPDA</div>
+                    <div class="logo-text left">UNSTPB</div>
+                    <div class="logo-text right">UNSTPB</div>
+                </div>
+            </div>
+            <h1>₿ Bitcoin & Proof of Work Demo</h1>
+            <p>Interactive demonstration of how Bitcoin transactions and mining work</p>
+            <div class="curriculum-info">
+                <h3>Blockchain Protocols and Distributed Applications</h3>
+                <p><strong>Universitatea Națională de Știință și Tehnologie Politehnica București</strong></p>
+                <p>Course: BPDA | Faculty of Automatic Control and Computer Science</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="addTransaction()">Add Transaction</button>
+            <button class="btn" onclick="startMining()" id="mineBtn">Start Mining</button>
+            <button class="btn danger" onclick="stopMining()" id="stopBtn" disabled>Stop Mining</button>
+            <button class="btn success" onclick="resetDemo()">Reset Demo</button>
+            <div style="margin-left: auto; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <button class="btn" onclick="adjustDifficulty(-1)" style="padding: 8px 12px;">-</button>
+                    <div style="font-weight: bold; color: #495057;">
+                        Difficulty: <span id="difficulty">4</span> zeros
+                    </div>
+                    <button class="btn" onclick="adjustDifficulty(1)" style="padding: 8px 12px;">+</button>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <label for="strategy" style="font-weight: bold; color: #495057;">Strategy:</label>
+                    <select id="strategy" onchange="changeStrategy()"
+                        style="padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+                        <option value="sequential">Sequential (0,1,2...)</option>
+                        <option value="random">Random</option>
+                        <option value="parallel">Parallel Ranges</option>
+                        <option value="optimized">Optimized</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-area">
+            <div class="explanation" id="explanation">
+                <h4>How it works:</h4>
+                <p>1. <strong>Transactions:</strong> Users create transactions that move Bitcoin from one address to
+                    another<br>
+                    2. <strong>Mining:</strong> Miners compete to solve a cryptographic puzzle (Proof of Work)<br>
+                    3. <strong>Block Creation:</strong> The first miner to solve the puzzle creates a new block<br>
+                    4. <strong>Blockchain:</strong> Blocks are chained together, creating an immutable ledger</p>
+            </div>
+
+            <div class="transaction-pool">
+                <h3>Transaction Pool (Mempool)</h3>
+                <div id="transactions"></div>
+            </div>
+
+            <div class="mining-area">
+                <div class="miner" id="miner1">
+                    <h4>Miner 1</h4>
+                    <div class="nonce">Nonce: <span id="nonce1">0</span></div>
+                    <div class="hash-display" id="hash1">Click "Start Mining" to begin...</div>
+                    <div class="difficulty">Target: 0000...</div>
+                </div>
+                <div class="miner" id="miner2">
+                    <h4>Miner 2</h4>
+                    <div class="nonce">Nonce: <span id="nonce2">0</span></div>
+                    <div class="hash-display" id="hash2">Click "Start Mining" to begin...</div>
+                    <div class="difficulty">Target: 0000...</div>
+                </div>
+            </div>
+
+            <div class="blockchain">
+                <h3>Blockchain</h3>
+                <div class="blocks-container" id="blockchain">
+                    <div class="block genesis">
+                        <h4>Genesis Block</h4>
+                        <div class="block-hash">0000000000000000000000000000000000000000000000000000000000000000</div>
+                        <div class="block-transactions">No transactions</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTransactions">0</div>
+                    <div class="stat-label">Total Transactions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalBlocks">1</div>
+                    <div class="stat-label">Total Blocks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="miningTime">0</div>
+                    <div class="stat-label">Mining Time (s)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="hashRate">0</div>
+                    <div class="stat-label">Hash Rate (H/s)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h4>Blockchain Protocols and Distributed Applications</h4>
+                    <p>Universitatea Națională de Știință și Tehnologie Politehnica București</p>
+                    <p>Faculty of Automatic Control and Computer Science</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-logo">
+                        <div class="footer-logo-inner">
+                            <div class="footer-logo-building"></div>
+                            <div class="footer-logo-text">BPDA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let transactionCounter = 0;
+        let blockCounter = 1;
+        let isMining = false;
+        let miningInterval;
+        let startTime;
+        let hashCount = 0;
+        let difficulty = 4;
+        let miningStrategy = 'sequential';
+
+        const transactions = [];
+        const blockchain = [];
+
+        function generateRandomHash() {
+            const chars = '0123456789abcdef';
+            let result = '';
+            for (let i = 0; i < 64; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        function addTransaction() {
+            transactionCounter++;
+            const transaction = {
+                id: transactionCounter,
+                from: `Address${Math.floor(Math.random() * 1000)}`,
+                to: `Address${Math.floor(Math.random() * 1000)}`,
+                amount: (Math.random() * 10).toFixed(2),
+                fee: (Math.random() * 0.1).toFixed(3)
+            };
+
+            transactions.push(transaction);
+            updateTransactionDisplay();
+            updateStats();
+        }
+
+        function updateTransactionDisplay() {
+            const container = document.getElementById('transactions');
+            container.innerHTML = '';
+
+            transactions.forEach(tx => {
+                const txDiv = document.createElement('div');
+                txDiv.className = 'transaction';
+                txDiv.innerHTML = `
+                    <div>
+                        <strong>${tx.from}</strong> → <strong>${tx.to}</strong><br>
+                        <small>Amount: ${tx.amount} BTC | Fee: ${tx.fee} BTC</small>
+                    </div>
+                    <div>
+                        <small>#${tx.id}</small>
+                    </div>
+                `;
+                container.appendChild(txDiv);
+            });
+        }
+
+        function startMining() {
+            if (isMining) return;
+
+            isMining = true;
+            startTime = Date.now();
+            hashCount = 0;
+
+            document.getElementById('mineBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+
+            // Activate miners
+            document.getElementById('miner1').classList.add('active');
+            document.getElementById('miner2').classList.add('active');
+
+            // Start mining simulation
+            miningInterval = setInterval(() => {
+                mineBlock();
+            }, 100);
+        }
+
+        function stopMining() {
+            isMining = false;
+            clearInterval(miningInterval);
+
+            document.getElementById('mineBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+
+            // Deactivate miners
+            document.getElementById('miner1').classList.remove('active', 'winner');
+            document.getElementById('miner2').classList.remove('active', 'winner');
+        }
+
+        function mineBlock() {
+            if (!isMining) return;
+
+            hashCount += 2; // Two miners working
+
+            // Get nonces based on strategy
+            const nonce1 = getNextNonce(1);
+            const nonce2 = getNextNonce(2);
+
+            // Generate hashes
+            const hash1 = generateHashWithNonce(nonce1);
+            const hash2 = generateHashWithNonce(nonce2);
+
+            // Update displays
+            document.getElementById('nonce1').textContent = nonce1;
+            document.getElementById('hash1').textContent = hash1;
+            document.getElementById('nonce2').textContent = nonce2;
+            document.getElementById('hash2').textContent = hash2;
+
+            // Check if either miner found a valid hash (starts with required zeros)
+            const target = '0'.repeat(difficulty);
+
+            if (hash1.startsWith(target) || hash2.startsWith(target)) {
+                const winner = hash1.startsWith(target) ? 1 : 2;
+                createBlock(winner, hash1.startsWith(target) ? hash1 : hash2);
+            }
+
+            updateStats();
+        }
+
+        function getNextNonce(minerId) {
+            const key = `miner${minerId}Nonce`;
+            const currentNonce = window[key] || 0;
+
+            switch (miningStrategy) {
+                case 'sequential':
+                    window[key] = currentNonce + 1;
+                    return window[key];
+
+                case 'random':
+                    window[key] = Math.floor(Math.random() * 1000000);
+                    return window[key];
+
+                case 'parallel':
+                    // Each miner works on different ranges
+                    const rangeSize = 100000;
+                    const baseRange = (minerId - 1) * rangeSize;
+                    window[key] = baseRange + (currentNonce % rangeSize) + 1;
+                    return window[key];
+
+                case 'optimized':
+                    // Skip some nonces for faster demo (every 10th nonce)
+                    window[key] = currentNonce + 10;
+                    return window[key];
+
+                default:
+                    window[key] = currentNonce + 1;
+                    return window[key];
+            }
+        }
+
+        function changeStrategy() {
+            if (isMining) return; // Don't allow changes while mining
+
+            miningStrategy = document.getElementById('strategy').value;
+
+            // Reset nonce counters when strategy changes
+            window.miner1Nonce = 0;
+            window.miner2Nonce = 0;
+
+            // Update explanation based on strategy
+            updateStrategyExplanation();
+        }
+
+        function updateStrategyExplanation() {
+            const explanations = {
+                'sequential': 'Miners try nonces in order: 0, 1, 2, 3... This is the most common approach.',
+                'random': 'Miners try random nonces. Less efficient but shows the probabilistic nature of mining.',
+                'parallel': 'Each miner works on different nonce ranges to avoid conflicts. Simulates distributed mining.',
+                'optimized': 'Miners skip nonces (every 10th) for faster demo. Shows optimization strategies.'
+            };
+
+            const explanation = document.getElementById('explanation');
+            const currentContent = explanation.innerHTML;
+            const strategyExplanation = `<div style="background: #e3f2fd; padding: 10px; margin: 10px 0; border-radius: 5px; border-left: 3px solid #2196f3;"><strong>Strategy:</strong> ${explanations[miningStrategy]}</div>`;
+
+            if (currentContent.includes('Strategy:')) {
+                explanation.innerHTML = currentContent.replace(/<div style="background: #e3f2fd[^>]*>.*?<\/div>/s, strategyExplanation);
+            } else {
+                explanation.innerHTML = strategyExplanation + currentContent;
+            }
+        }
+
+        function generateHashWithNonce(nonce) {
+            // Create a more realistic hash simulation
+            // In reality, this would be SHA-256 of block data + nonce
+            const baseString = `block${blockCounter}transactions${transactions.length}nonce${nonce}`;
+            let hash = '';
+
+            // Simple hash simulation - in reality this would be SHA-256
+            for (let i = 0; i < 64; i++) {
+                const charCode = baseString.charCodeAt(i % baseString.length) + nonce + i;
+                hash += (charCode % 16).toString(16);
+            }
+
+            // Add some randomness but make it more likely to find valid hashes
+            // Increase probability of finding valid hashes for demo purposes
+            if (Math.random() < 0.001) { // 0.1% chance per attempt
+                return '0'.repeat(difficulty) + hash.substring(difficulty);
+            }
+
+            return hash;
+        }
+
+        function createBlock(winnerMiner, winningHash) {
+            // Stop mining
+            stopMining();
+
+            // Highlight winner
+            const winnerElement = document.getElementById(`miner${winnerMiner}`);
+            winnerElement.classList.add('winner');
+
+            // Create new block
+            blockCounter++;
+            const newBlock = {
+                height: blockCounter,
+                hash: winningHash,
+                transactions: [...transactions],
+                timestamp: new Date().toLocaleTimeString(),
+                miner: winnerMiner
+            };
+
+            blockchain.push(newBlock);
+
+            // Add block to display
+            addBlockToDisplay(newBlock);
+
+            // Clear transactions from pool
+            transactions.length = 0;
+            updateTransactionDisplay();
+
+            // Reset nonce counters for next block
+            window.miner1Nonce = 0;
+            window.miner2Nonce = 0;
+
+            // Update stats
+            updateStats();
+
+            // Show explanation
+            showBlockExplanation(newBlock);
+
+            // Reset miners for next round
+            setTimeout(() => {
+                document.getElementById('miner1').classList.remove('winner');
+                document.getElementById('miner2').classList.remove('winner');
+            }, 2000);
+        }
+
+        function addBlockToDisplay(block) {
+            const container = document.getElementById('blockchain');
+            const blockDiv = document.createElement('div');
+            blockDiv.className = 'block new';
+            blockDiv.innerHTML = `
+                <h4>Block #${block.height}</h4>
+                <div class="block-hash">${block.hash}</div>
+                <div class="block-transactions">${block.transactions.length} transactions</div>
+                <div class="block-transactions">Mined by: Miner ${block.miner}</div>
+                <div class="block-transactions">Time: ${block.timestamp}</div>
+            `;
+
+            // Add chain connector to previous block
+            const lastBlock = container.lastElementChild;
+            if (lastBlock) {
+                lastBlock.innerHTML += '<div class="chain-connector">→</div>';
+            }
+
+            container.appendChild(blockDiv);
+
+            // Remove "new" class after animation
+            setTimeout(() => {
+                blockDiv.classList.remove('new');
+            }, 800);
+        }
+
+        function showBlockExplanation(block) {
+            const explanation = document.getElementById('explanation');
+            explanation.innerHTML = `
+                <h4>🎉 Block Mined Successfully!</h4>
+                <p><strong>Miner ${block.miner}</strong> found a valid hash that starts with ${difficulty} zeros!<br>
+                The block contains <strong>${block.transactions.length} transactions</strong> and has been added to the blockchain.<br>
+                This process took about <strong>${Math.round((Date.now() - startTime) / 1000)} seconds</strong> to complete.</p>
+            `;
+        }
+
+        function updateStats() {
+            document.getElementById('totalTransactions').textContent = transactionCounter;
+            document.getElementById('totalBlocks').textContent = blockCounter;
+
+            if (startTime) {
+                const elapsed = (Date.now() - startTime) / 1000;
+                document.getElementById('miningTime').textContent = elapsed.toFixed(1);
+            }
+
+            if (hashCount > 0 && startTime) {
+                const elapsed = (Date.now() - startTime) / 1000;
+                const hashRate = Math.round(hashCount / elapsed);
+                document.getElementById('hashRate').textContent = hashRate.toLocaleString();
+            }
+        }
+
+        function adjustDifficulty(change) {
+            if (isMining) return; // Don't allow changes while mining
+
+            difficulty = Math.max(1, Math.min(8, difficulty + change));
+            document.getElementById('difficulty').textContent = difficulty;
+
+            // Update difficulty display in miner areas
+            const targetDisplay = '0'.repeat(difficulty) + '...';
+            document.querySelectorAll('.difficulty').forEach(el => {
+                el.textContent = `Target: ${targetDisplay}`;
+            });
+        }
+
+        function resetDemo() {
+            stopMining();
+
+            // Reset counters
+            transactionCounter = 0;
+            blockCounter = 1;
+            hashCount = 0;
+
+            // Reset nonce counters
+            window.miner1Nonce = 0;
+            window.miner2Nonce = 0;
+
+            // Clear arrays
+            transactions.length = 0;
+            blockchain.length = 0;
+
+            // Reset displays
+            document.getElementById('transactions').innerHTML = '';
+            document.getElementById('blockchain').innerHTML = `
+                <div class="block genesis">
+                    <h4>Genesis Block</h4>
+                    <div class="block-hash">0000000000000000000000000000000000000000000000000000000000000000</div>
+                    <div class="block-transactions">No transactions</div>
+                </div>
+            `;
+
+            // Reset miners
+            document.getElementById('nonce1').textContent = '0';
+            document.getElementById('nonce2').textContent = '0';
+            document.getElementById('hash1').textContent = 'Click "Start Mining" to begin...';
+            document.getElementById('hash2').textContent = 'Click "Start Mining" to begin...';
+
+            // Reset explanation
+            document.getElementById('explanation').innerHTML = `
+                <h4>How it works:</h4>
+                <p>1. <strong>Transactions:</strong> Users create transactions that move Bitcoin from one address to another<br>
+                2. <strong>Mining:</strong> Miners compete to solve a cryptographic puzzle (Proof of Work)<br>
+                3. <strong>Block Creation:</strong> The first miner to solve the puzzle creates a new block<br>
+                4. <strong>Blockchain:</strong> Blocks are chained together, creating an immutable ledger</p>
+            `;
+
+            // Update strategy explanation
+            updateStrategyExplanation();
+
+            updateStats();
+        }
+
+        // Initialize with some sample transactions
+        for (let i = 0; i < 3; i++) {
+            addTransaction();
+        }
+    </script>
+</body>
+
+</html>

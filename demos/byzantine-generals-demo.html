@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Byzantine Generals Problem - Interactive Demo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #111;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(45deg, #0ea5e9, #6366f1);
+      color: #fff;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    .header p {
+      margin: 0;
+      opacity: .95;
+    }
+
+    .controls {
+      padding: 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .ctrl {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .ctrl label {
+      display: block;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    .ctrl input,
+    .ctrl select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      background: #0ea5e9;
+      color: #fff;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(14, 165, 233, .25);
+    }
+
+    .btn:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn.secondary {
+      background: #6b7280;
+      box-shadow: 0 10px 24px rgba(107, 114, 128, .25);
+    }
+
+    .btn.danger {
+      background: #ef4444;
+      box-shadow: 0 10px 24px rgba(239, 68, 68, .25);
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+      padding: 20px;
+    }
+
+    .network {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      position: relative;
+      min-height: 520px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .lg {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .dot.loyal {
+      background: #10b981;
+    }
+
+    .dot.traitor {
+      background: #ef4444;
+    }
+
+    .dot.commander {
+      background: #f59e0b;
+    }
+
+    .dot.msg {
+      background: #3b82f6;
+    }
+
+    .canvasWrap {
+      position: relative;
+      height: 440px;
+      background: #fff;
+      border: 1px dashed #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #nodes {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .node .bubble {
+      width: 78px;
+      height: 78px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+      border: 3px solid rgba(255, 255, 255, .8);
+    }
+
+    .node.loyal .bubble {
+      background: #10b981;
+    }
+
+    .node.traitor .bubble {
+      background: #ef4444;
+    }
+
+    .node.commander .bubble {
+      background: #f59e0b;
+    }
+
+    .node .label {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    .voteTag {
+      margin-top: 4px;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      display: inline-block;
+      background: #e5e7eb;
+      color: #111827;
+      font-weight: 700;
+    }
+
+    .right {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      grid-auto-rows: min-content;
+    }
+
+    .summary,
+    .steps,
+    .messages {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .summary h3,
+    .steps h3,
+    .messages h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: #111827;
+    }
+
+    .kv {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .pill.ok {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .pill.bad {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .msgItem {
+      font-size: 12px;
+      color: #374151;
+      padding: 6px 0;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+
+    .msgItem:last-child {
+      border-bottom: 0;
+    }
+
+    .explain {
+      background: #eff6ff;
+      border-top: 1px solid #e2e8f0;
+      padding: 16px;
+      color: #1f2937;
+    }
+
+    .explain h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .explain ul {
+      margin: 8px 0 0 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <h1>Byzantine Generals Problem - Interactive Demo</h1>
+        <p>Toggle loyal/traitor generals, send commands, and observe if the army reaches agreement.</p>
+      </div>
+
+      <div class="controls">
+        <div class="ctrl">
+          <label for="numGenerals">Number of Generals (≥ 3)</label>
+          <input id="numGenerals" type="number" min="3" max="12" value="6" />
+        </div>
+        <div class="ctrl">
+          <label for="numTraitors">Number of Traitors (f)</label>
+          <input id="numTraitors" type="number" min="0" max="4" value="1" />
+        </div>
+        <div class="ctrl">
+          <label for="rounds">Rounds (≥ f+1)</label>
+          <input id="rounds" type="number" min="1" max="10" value="2" />
+        </div>
+        <div class="ctrl">
+          <label for="networkMode">Network</label>
+          <select id="networkMode">
+            <option value="reliable" selected>Reliable links</option>
+            <option value="omissions">Omissions (drops)</option>
+            <option value="byzantine">Byzantine (lies + drops)</option>
+          </select>
+        </div>
+        <div class="btns">
+          <button id="buildBtn" class="btn">Build Scenario</button>
+          <button id="runBtn" class="btn">Run Protocol</button>
+          <button id="stepBtn" class="btn secondary">Step</button>
+          <button id="resetBtn" class="btn secondary">Reset</button>
+          <button id="toggleCommanderBtn" class="btn danger">Toggle Commander Traitory</button>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="network">
+          <div class="legend">
+            <span class="lg"><span class="dot loyal"></span>Loyal</span>
+            <span class="lg"><span class="dot traitor"></span>Traitor</span>
+            <span class="lg"><span class="dot commander"></span>Commander</span>
+            <span class="lg"><span class="dot msg"></span>Messages</span>
+          </div>
+          <div class="canvasWrap">
+            <svg id="edges"></svg>
+            <div id="nodes"></div>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="summary">
+            <h3>Summary</h3>
+            <div class="kv">
+              <div>n (generals): <strong id="nVal">-</strong></div>
+              <div>f (traitors): <strong id="fVal">-</strong></div>
+              <div>Rounds: <strong id="rVal">-</strong></div>
+              <div>Condition n ≥ 3f + 1: <span id="cond" class="pill">-</span></div>
+            </div>
+          </div>
+          <div class="steps">
+            <h3>Protocol Steps</h3>
+            <div id="stepInfo" style="font-size:14px;color:#374151;">Build a scenario, then Run or Step.</div>
+          </div>
+          <div class="messages">
+            <h3>Messages</h3>
+            <div id="msgList"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explain">
+        <h3>What this shows</h3>
+        <ul>
+          <li>With at most f traitors, we need at least n ≥ 3f + 1 generals to reach agreement in f+1 rounds.</li>
+          <li>The commander sends an initial order (ATTACK/RETREAT). Traitors can lie or drop messages.</li>
+          <li>Loyal lieutenants recursively relay what they heard, then take the majority decision.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple, visual OM(f)-style simulation
+    const nodesEl = document.getElementById('nodes');
+    const edgesSvg = document.getElementById('edges');
+
+    const nInput = document.getElementById('numGenerals');
+    const fInput = document.getElementById('numTraitors');
+    const roundsInput = document.getElementById('rounds');
+    const modeSelect = document.getElementById('networkMode');
+
+    const nVal = document.getElementById('nVal');
+    const fVal = document.getElementById('fVal');
+    const rVal = document.getElementById('rVal');
+    const cond = document.getElementById('cond');
+
+    const stepInfo = document.getElementById('stepInfo');
+    const msgList = document.getElementById('msgList');
+
+    const buildBtn = document.getElementById('buildBtn');
+    const runBtn = document.getElementById('runBtn');
+    const stepBtn = document.getElementById('stepBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const toggleCommanderBtn = document.getElementById('toggleCommanderBtn');
+
+    const ORDER = { ATTACK: 'ATTACK', RETREAT: 'RETREAT' };
+
+    let state = {
+      n: 6,
+      f: 1,
+      r: 2,
+      mode: 'reliable',
+      commander: 0, // index of commander
+      generals: [], // {id, role:'loyal'|'traitor'|'commander', x,y, vote:null}
+      round: 0,
+      order: 'ATTACK',
+      history: [], // {from,to,round,value,dropped,lie}
+      built: false,
+      running: false,
+      inboxes: {}, // round -> toId -> [values]
+    };
+
+    function reset() {
+      state.round = 0;
+      state.history = [];
+      state.running = false;
+      state.inboxes = {};
+      stepInfo.textContent = 'Build a scenario, then Run or Step.';
+      msgList.innerHTML = '';
+      edgesSvg.innerHTML = '';
+      [...nodesEl.querySelectorAll('.node .voteTag')].forEach(el => el.textContent = '—');
+    }
+
+    function updateSummary() {
+      state.n = clamp(parseInt(nInput.value || '6', 10), 3, 12);
+      state.f = clamp(parseInt(fInput.value || '1', 10), 0, Math.max(0, Math.floor((state.n - 1) / 3)) + 2);
+      state.r = clamp(parseInt(roundsInput.value || '2', 10), 1, 10);
+      state.mode = modeSelect.value;
+      nVal.textContent = String(state.n);
+      fVal.textContent = String(state.f);
+      rVal.textContent = String(state.r);
+      const ok = state.n >= 3 * state.f + 1;
+      cond.textContent = ok ? 'Satisfied' : 'Not satisfied';
+      cond.className = 'pill ' + (ok ? 'ok' : 'bad');
+    }
+
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+    function buildScenario() {
+      updateSummary();
+      // Layout: circle
+      const width = nodesEl.parentElement.clientWidth;
+      const height = nodesEl.parentElement.clientHeight;
+      const cx = width / 2, cy = height / 2;
+      const radius = Math.min(width, height) / 2 - 70;
+
+      // Build generals
+      state.generals = Array.from({ length: state.n }, (_, i) => ({
+        id: i,
+        role: 'loyal',
+        x: cx + radius * Math.cos((2 * Math.PI * i) / state.n),
+        y: cy + radius * Math.sin((2 * Math.PI * i) / state.n),
+        vote: null
+      }));
+      // Set commander
+      state.generals[state.commander].role = 'commander';
+      // Mark some traitors (excluding commander unless toggled later)
+      let toMark = state.f;
+      for (let i = 0; i < state.n && toMark > 0; i++) {
+        if (i === state.commander) continue;
+        state.generals[i].role = 'traitor';
+        toMark--;
+      }
+
+      // Render
+      renderNodes();
+      reset();
+      state.built = true;
+      logMsg('Scenario built. Commander sends initial order in round 0.');
+    }
+
+    function renderNodes() {
+      nodesEl.innerHTML = '';
+      edgesSvg.innerHTML = '';
+      for (const g of state.generals) {
+        const node = document.createElement('div');
+        node.className = 'node ' + (g.role === 'commander' ? 'commander' : g.role);
+        node.style.left = g.x + 'px';
+        node.style.top = g.y + 'px';
+        node.innerHTML = `
+          <div class="bubble">${g.role === 'commander' ? 'C' : 'G'}${g.id}</div>
+          <div class="label">${g.role.charAt(0).toUpperCase() + g.role.slice(1)}</div>
+          <div class="voteTag">—</div>
+        `;
+        nodesEl.appendChild(node);
+      }
+    }
+
+    function drawEdge(from, to, color) {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', String(from.x));
+      line.setAttribute('y1', String(from.y));
+      line.setAttribute('x2', String(to.x));
+      line.setAttribute('y2', String(to.y));
+      line.setAttribute('stroke', color || '#3b82f6');
+      line.setAttribute('stroke-width', '2');
+      line.setAttribute('opacity', '0.85');
+      edgesSvg.appendChild(line);
+    }
+
+    function logMsg(text) {
+      const div = document.createElement('div');
+      div.className = 'msgItem';
+      div.textContent = text;
+      msgList.appendChild(div);
+      msgList.scrollTop = msgList.scrollHeight;
+    }
+
+    function toggleCommanderTraitor() {
+      if (!state.built) return;
+      const c = state.generals[state.commander];
+      c.role = c.role === 'commander' ? 'traitor' : 'commander';
+      renderNodes();
+      logMsg(`Commander is now ${c.role.toUpperCase()}.`);
+    }
+
+    // Simplified OM(f):
+    // Round 0: Commander sends order to all.
+    // Next rounds (1..r-1): everyone relays what they heard (loyal send honestly; traitors may lie or drop based on mode).
+    // After r rounds: each lieutenant takes majority of received messages; loyal aim to agree if n ≥ 3f+1.
+    function stepRound() {
+      if (!state.built) return;
+      if (state.round === 0) {
+        // initial send
+        const commander = state.generals[state.commander];
+        const initial = commander.role === 'traitor' ? adversarialOrder(state.order) : state.order;
+        for (const g of state.generals) {
+          if (g.id === commander.id) continue;
+          sendMessage(commander, g, 0, initial);
+        }
+        state.round = 1;
+        stepInfo.textContent = `Round 1: Relaying received orders.`;
+        return;
+      }
+
+      if (state.round < state.r) {
+        // gather last round inbox
+        const prev = state.round - 1;
+        const inboxPrev = state.inboxes[prev] || {};
+        const relayFromIds = Object.keys(inboxPrev);
+        // Each general relays what they have (as a set) to others
+        for (const fromIdStr of relayFromIds) {
+          const fromId = parseInt(fromIdStr, 10);
+          const from = state.generals[fromId];
+          const values = inboxPrev[fromId] || [];
+          const summary = majority(values) || state.order;
+          for (const to of state.generals) {
+            if (to.id === from.id) continue;
+            // loyal sends what they believe, traitor may flip or drop
+            let val = summary;
+            let dropped = false;
+            let lie = false;
+            if (from.role === 'traitor' || (from.role !== 'commander' && from.role === 'traitor')) {
+              if (state.mode === 'byzantine') {
+                // randomly lie or drop to different recipients
+                const r = Math.random();
+                if (r < 0.4) { val = adversarialOrder(summary); lie = true; }
+                else if (r < 0.7) { dropped = true; }
+              } else if (state.mode === 'omissions') {
+                dropped = Math.random() < 0.5;
+              }
+            } else {
+              if (state.mode === 'omissions') {
+                dropped = Math.random() < 0.1;
+              }
+            }
+            sendMessage(from, to, state.round, val, dropped, lie);
+          }
+        }
+        state.round += 1;
+        stepInfo.textContent = state.round < state.r ? `Round ${state.round}: Continuing relays.` : 'Final decision phase';
+        return;
+      }
+
+      // Decision phase
+      decide();
+    }
+
+    function sendMessage(from, to, round, value, dropped = false, lie = false) {
+      if (!dropped) {
+        if (!state.inboxes[round]) state.inboxes[round] = {};
+        if (!state.inboxes[round][to.id]) state.inboxes[round][to.id] = [];
+        state.inboxes[round][to.id].push(value);
+      }
+      state.history.push({ from: from.id, to: to.id, round, value, dropped, lie });
+      drawEdge(from, to, dropped ? '#9ca3af' : (lie ? '#ef4444' : '#3b82f6'));
+      logMsg(`r${round}: ${fromLabel(from)} → ${toLabel(to)} ${dropped ? '[dropped]' : `[${value}]${lie ? ' [lie]' : ''}`}`);
+    }
+
+    function decide() {
+      // Compute for each lieutenant (non-commander) the majority over all rounds received
+      for (const g of state.generals) {
+        if (g.id === state.commander) continue;
+        const allValues = [];
+        for (let r = 0; r < state.r; r++) {
+          const inboxR = state.inboxes[r] && state.inboxes[r][g.id];
+          if (inboxR) allValues.push(...inboxR);
+        }
+        const m = majority(allValues) || ORDER.RETREAT; // default RETREAT when tie/empty
+        g.vote = g.role === 'traitor' ? (state.mode === 'byzantine' ? adversarialOrder(m) : m) : m;
+        const node = nodesEl.children[g.id];
+        if (node) node.querySelector('.voteTag').textContent = g.vote;
+      }
+      const loyalVotes = state.generals.filter(g => g.role !== 'traitor' && g.id !== state.commander).map(g => g.vote);
+      const agreed = loyalVotes.every(v => v === loyalVotes[0]);
+      stepInfo.textContent = agreed ? 'Loyal generals reached agreement.' : 'Agreement failed among loyal generals.';
+      logMsg(agreed ? 'Result: AGREEMENT among loyal generals.' : 'Result: NO AGREEMENT among loyal generals.');
+    }
+
+    function fromLabel(g) { return (g.role === 'commander' ? 'C' : 'G') + g.id; }
+    function toLabel(g) { return (g.role === 'commander' ? 'C' : 'G') + g.id; }
+    function majority(arr) {
+      const cnt = {};
+      for (const v of arr) cnt[v] = (cnt[v] || 0) + 1;
+      let best = null, bestN = 0;
+      for (const [k, v] of Object.entries(cnt)) if (v > bestN) { best = k; bestN = v; }
+      if (bestN === 0) return null;
+      const values = Object.values(cnt).sort((a, b) => b - a);
+      if (values.length > 1 && values[0] === values[1]) return null;
+      return best;
+    }
+    function adversarialOrder(v) { return v === ORDER.ATTACK ? ORDER.RETREAT : ORDER.ATTACK; }
+
+    function runAuto() {
+      if (!state.built || state.running) return;
+      state.running = true;
+      const doStep = () => {
+        stepRound();
+        if (state.round <= state.r) {
+          setTimeout(doStep, 650);
+        } else {
+          state.running = false;
+        }
+      };
+      doStep();
+    }
+
+    // Events
+    buildBtn.addEventListener('click', buildScenario);
+    runBtn.addEventListener('click', runAuto);
+    stepBtn.addEventListener('click', stepRound);
+    resetBtn.addEventListener('click', reset);
+    toggleCommanderBtn.addEventListener('click', toggleCommanderTraitor);
+    nInput.addEventListener('input', updateSummary);
+    fInput.addEventListener('input', updateSummary);
+    roundsInput.addEventListener('input', updateSummary);
+    modeSelect.addEventListener('change', updateSummary);
+
+    // Initialize UI
+    updateSummary();
+    buildScenario();
+  </script>
+</body>
+
+</html>

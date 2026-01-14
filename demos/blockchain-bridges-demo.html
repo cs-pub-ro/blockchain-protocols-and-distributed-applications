@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Bridges - Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .chain-panel {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .chain-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .chain-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .chain-ethereum .chain-name {
+            color: #627eea;
+        }
+
+        .chain-polygon .chain-name {
+            color: #8247e5;
+        }
+
+        .chain-balance {
+            font-size: 18px;
+            color: #6b7280;
+        }
+
+        .bridge-connector {
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            transform: translate(50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .bridge-connector.active {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(50%, -50%) scale(1.1);
+            }
+        }
+
+        .user-wallet {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .wallet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .wallet-address {
+            font-size: 12px;
+            color: #6b7280;
+            font-family: monospace;
+        }
+
+        .wallet-balance {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .token-symbol {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .token-amount {
+            font-size: 18px;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .bridge-contract {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .contract-header {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .locked-assets {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .bridge-controls {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 20px;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .control-group input,
+        .control-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .transaction-log {
+            background: #1f2937;
+            color: #f9fafb;
+            border-radius: 8px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 8px;
+            border-left: 3px solid #10b981;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .log-entry.error {
+            border-left-color: #ef4444;
+        }
+
+        .log-entry.warning {
+            border-left-color: #f59e0b;
+        }
+
+        .process-steps {
+            grid-column: 1 / -1;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0 auto 10px;
+            transition: all 0.3s;
+        }
+
+        .step.active .step-circle {
+            background: #10b981;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed .step-circle {
+            background: #6366f1;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .step.active .step-label {
+            color: #10b981;
+        }
+
+        .step-connector {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 80px;
+            width: calc(100% - 60px);
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        .step.completed:not(:last-child)::after {
+            background: #6366f1;
+        }
+
+        .explanation {
+            background: #eff6ff;
+            border-left: 4px solid #6366f1;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        .explanation h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .explanation p {
+            color: #1e3a8a;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .bridge-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .bridge-type-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .bridge-type-btn.active {
+            border-color: #10b981;
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .asset-transfer {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            z-index: 5;
+            transition: all 2s ease-in-out;
+        }
+
+        .asset-transfer.moving {
+            animation: transferAnimation 2s ease-in-out;
+        }
+
+        @keyframes transferAnimation {
+            0% {
+                transform: translateX(0) scale(1);
+            }
+
+            50% {
+                transform: translateX(calc(50vw - 20px)) scale(1.2);
+            }
+
+            100% {
+                transform: translateX(calc(100vw - 40px)) scale(1);
+            }
+        }
+
+        .security-warning {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .security-warning h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .security-warning ul {
+            margin-left: 20px;
+            color: #78350f;
+        }
+
+        .security-warning li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Blockchain Bridges - Interactive Demo</h1>
+            <p>Learn how assets move between different blockchains through bridges</p>
+        </div>
+
+        <div class="main-content">
+            <div class="chain-panel chain-ethereum">
+                <div class="chain-header">
+                    <div>
+                        <div class="chain-name">Ethereum</div>
+                        <div class="chain-balance">Chain ID: 1</div>
+                    </div>
+                    <div class="bridge-connector" id="bridgeConnector">🌉</div>
+                </div>
+
+                <div class="user-wallet">
+                    <div class="wallet-header">
+                        <div>
+                            <strong>User Wallet</strong>
+                            <div class="wallet-address">0x742d35...Cc6e</div>
+                        </div>
+                    </div>
+                    <div class="wallet-balance">
+                        <span class="token-symbol">ETH</span>
+                        <span class="token-amount" id="ethBalance">10.0</span>
+                    </div>
+                </div>
+
+                <div class="bridge-contract">
+                    <div class="contract-header">Bridge Contract (Ethereum)</div>
+                    <div class="locked-assets">
+                        Locked Assets: <strong id="ethLocked">0.0 ETH</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chain-panel chain-polygon">
+                <div class="chain-header">
+                    <div>
+                        <div class="chain-name">Polygon</div>
+                        <div class="chain-balance">Chain ID: 137</div>
+                    </div>
+                </div>
+
+                <div class="user-wallet">
+                    <div class="wallet-header">
+                        <div>
+                            <strong>User Wallet</strong>
+                            <div class="wallet-address">0x742d35...Cc6e</div>
+                        </div>
+                    </div>
+                    <div class="wallet-balance">
+                        <span class="token-symbol">WETH</span>
+                        <span class="token-amount" id="polygonBalance">0.0</span>
+                    </div>
+                </div>
+
+                <div class="bridge-contract">
+                    <div class="contract-header">Bridge Contract (Polygon)</div>
+                    <div class="locked-assets">
+                        Minted Assets: <strong id="polygonMinted">0.0 WETH</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-steps">
+                <h2>Bridge Process Steps</h2>
+                <div class="steps-container">
+                    <div class="step" id="step1">
+                        <div class="step-circle">1</div>
+                        <div class="step-label">Lock</div>
+                    </div>
+                    <div class="step" id="step2">
+                        <div class="step-circle">2</div>
+                        <div class="step-label">Bridge</div>
+                    </div>
+                    <div class="step" id="step3">
+                        <div class="step-circle">3</div>
+                        <div class="step-label">Mint</div>
+                    </div>
+                    <div class="step" id="step4">
+                        <div class="step-circle">4</div>
+                        <div class="step-label">Complete</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bridge-controls">
+            <div class="bridge-type-selector">
+                <button class="bridge-type-btn active" data-type="trusted">Trusted Bridge</button>
+                <button class="bridge-type-btn" data-type="trustless">Trustless Bridge</button>
+            </div>
+
+            <div class="control-group">
+                <label for="bridgeAmount">Amount to Bridge (ETH)</label>
+                <input type="number" id="bridgeAmount" min="0.1" max="10" step="0.1" value="2.0">
+            </div>
+
+            <div class="control-group">
+                <label for="bridgeDirection">Direction</label>
+                <select id="bridgeDirection">
+                    <option value="ethereum-to-polygon">Ethereum → Polygon</option>
+                    <option value="polygon-to-ethereum">Polygon → Ethereum</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary" id="startBridge">Start Bridge Transfer</button>
+            <button class="btn btn-secondary" id="resetBridge">Reset</button>
+            <button class="btn btn-danger" id="simulateAttack">Simulate Bridge Attack</button>
+
+            <div class="transaction-log" id="transactionLog"></div>
+
+            <div class="explanation" id="explanation">
+                <h3>What is a Blockchain Bridge?</h3>
+                <p>A blockchain bridge is a protocol that connects two separate blockchains, enabling the transfer of
+                    assets and data between them. Bridges allow users to:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Move assets from one chain to another (e.g., ETH from Ethereum to Polygon)</li>
+                    <li>Access DeFi protocols on different chains</li>
+                    <li>Reduce transaction costs by using faster/cheaper chains</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>How it works:</strong> When bridging from Ethereum to Polygon, your
+                    ETH is locked in a smart contract on Ethereum, and an equivalent amount of WETH is minted on
+                    Polygon. To return, you burn the WETH on Polygon and unlock your ETH on Ethereum.</p>
+            </div>
+
+            <div class="security-warning" id="securityWarning" style="display: none;">
+                <h4>⚠️ Bridge Security Risks</h4>
+                <ul>
+                    <li><strong>Centralization Risk:</strong> Trusted bridges rely on validators/operators who could be
+                        compromised</li>
+                    <li><strong>Smart Contract Bugs:</strong> Vulnerabilities in bridge contracts can lead to loss of
+                        funds</li>
+                    <li><strong>Validator Attacks:</strong> Malicious validators could approve fraudulent transactions
+                    </li>
+                    <li><strong>Liquidity Issues:</strong> Insufficient liquidity can prevent withdrawals</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let state = {
+            ethBalance: 10.0,
+            polygonBalance: 0.0,
+            ethLocked: 0.0,
+            polygonMinted: 0.0,
+            bridgeType: 'trusted',
+            currentStep: 0,
+            isProcessing: false
+        };
+
+        // DOM elements
+        const ethBalanceEl = document.getElementById('ethBalance');
+        const polygonBalanceEl = document.getElementById('polygonBalance');
+        const ethLockedEl = document.getElementById('ethLocked');
+        const polygonMintedEl = document.getElementById('polygonMinted');
+        const bridgeAmountInput = document.getElementById('bridgeAmount');
+        const bridgeDirectionSelect = document.getElementById('bridgeDirection');
+        const transactionLogEl = document.getElementById('transactionLog');
+        const bridgeConnector = document.getElementById('bridgeConnector');
+        const securityWarning = document.getElementById('securityWarning');
+
+        // Initialize
+        document.getElementById('startBridge').addEventListener('click', startBridge);
+        document.getElementById('resetBridge').addEventListener('click', resetBridge);
+        document.getElementById('simulateAttack').addEventListener('click', simulateAttack);
+        document.querySelectorAll('.bridge-type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.bridge-type-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.bridgeType = btn.dataset.type;
+                log(`Bridge type changed to: ${state.bridgeType === 'trusted' ? 'Trusted' : 'Trustless'}`);
+                if (state.bridgeType === 'trusted') {
+                    securityWarning.style.display = 'block';
+                } else {
+                    securityWarning.style.display = 'none';
+                }
+            });
+        });
+
+        function log(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            const timestamp = new Date().toLocaleTimeString();
+            entry.textContent = `[${timestamp}] ${message}`;
+            transactionLogEl.appendChild(entry);
+            transactionLogEl.scrollTop = transactionLogEl.scrollHeight;
+        }
+
+        function resetSteps() {
+            for (let i = 1; i <= 4; i++) {
+                const step = document.getElementById(`step${i}`);
+                step.classList.remove('active', 'completed');
+            }
+            state.currentStep = 0;
+        }
+
+        function setStep(stepNum, status) {
+            const step = document.getElementById(`step${stepNum}`);
+            step.classList.remove('active', 'completed');
+            if (status === 'active') {
+                step.classList.add('active');
+            } else if (status === 'completed') {
+                step.classList.add('completed');
+            }
+        }
+
+        async function startBridge() {
+            if (state.isProcessing) {
+                log('Bridge transfer already in progress!', 'warning');
+                return;
+            }
+
+            const amount = parseFloat(bridgeAmountInput.value);
+            const direction = bridgeDirectionSelect.value;
+
+            if (amount <= 0 || amount > state.ethBalance) {
+                log(`Invalid amount! Available: ${state.ethBalance} ETH`, 'error');
+                return;
+            }
+
+            state.isProcessing = true;
+            resetSteps();
+            bridgeConnector.classList.add('active');
+            log(`Starting bridge transfer: ${amount} ETH from ${direction === 'ethereum-to-polygon' ? 'Ethereum' : 'Polygon'} to ${direction === 'ethereum-to-polygon' ? 'Polygon' : 'Ethereum'}`);
+
+            if (direction === 'ethereum-to-polygon') {
+                await bridgeToPolygon(amount);
+            } else {
+                await bridgeToEthereum(amount);
+            }
+
+            state.isProcessing = false;
+            bridgeConnector.classList.remove('active');
+        }
+
+        async function bridgeToPolygon(amount) {
+            // Step 1: Lock
+            setStep(1, 'active');
+            log('Step 1: Locking ETH in bridge contract...');
+            await sleep(1000);
+
+            state.ethBalance -= amount;
+            state.ethLocked += amount;
+            updateBalances();
+            setStep(1, 'completed');
+            log(`✓ ${amount} ETH locked in bridge contract`);
+
+            // Step 2: Bridge
+            setStep(2, 'active');
+            log('Step 2: Validating transaction and bridging...');
+            await sleep(1500);
+
+            if (state.bridgeType === 'trusted') {
+                log('Trusted bridge: Validators verifying transaction...');
+            } else {
+                log('Trustless bridge: Smart contract verifying proof...');
+            }
+            await sleep(1000);
+            setStep(2, 'completed');
+            log('✓ Transaction validated and bridged');
+
+            // Step 3: Mint
+            setStep(3, 'active');
+            log('Step 3: Minting WETH on Polygon...');
+            await sleep(1000);
+
+            state.polygonBalance += amount;
+            state.polygonMinted += amount;
+            updateBalances();
+            setStep(3, 'completed');
+            log(`✓ ${amount} WETH minted on Polygon`);
+
+            // Step 4: Complete
+            setStep(4, 'active');
+            await sleep(500);
+            setStep(4, 'completed');
+            log('✓ Bridge transfer completed successfully!', 'info');
+        }
+
+        async function bridgeToEthereum(amount) {
+            // Step 1: Burn
+            setStep(1, 'active');
+            log('Step 1: Burning WETH on Polygon...');
+            await sleep(1000);
+
+            if (amount > state.polygonBalance) {
+                log(`Insufficient balance! Available: ${state.polygonBalance} WETH`, 'error');
+                resetSteps();
+                state.isProcessing = false;
+                return;
+            }
+
+            state.polygonBalance -= amount;
+            state.polygonMinted -= amount;
+            updateBalances();
+            setStep(1, 'completed');
+            log(`✓ ${amount} WETH burned on Polygon`);
+
+            // Step 2: Bridge
+            setStep(2, 'active');
+            log('Step 2: Validating transaction and bridging...');
+            await sleep(1500);
+
+            if (state.bridgeType === 'trusted') {
+                log('Trusted bridge: Validators verifying transaction...');
+            } else {
+                log('Trustless bridge: Smart contract verifying proof...');
+            }
+            await sleep(1000);
+            setStep(2, 'completed');
+            log('✓ Transaction validated and bridged');
+
+            // Step 3: Unlock
+            setStep(3, 'active');
+            log('Step 3: Unlocking ETH on Ethereum...');
+            await sleep(1000);
+
+            state.ethBalance += amount;
+            state.ethLocked -= amount;
+            updateBalances();
+            setStep(3, 'completed');
+            log(`✓ ${amount} ETH unlocked on Ethereum`);
+
+            // Step 4: Complete
+            setStep(4, 'active');
+            await sleep(500);
+            setStep(4, 'completed');
+            log('✓ Bridge transfer completed successfully!', 'info');
+        }
+
+        function updateBalances() {
+            ethBalanceEl.textContent = state.ethBalance.toFixed(2);
+            polygonBalanceEl.textContent = state.polygonBalance.toFixed(2);
+            ethLockedEl.textContent = `${state.ethLocked.toFixed(2)} ETH`;
+            polygonMintedEl.textContent = `${state.polygonMinted.toFixed(2)} WETH`;
+        }
+
+        function resetBridge() {
+            state = {
+                ethBalance: 10.0,
+                polygonBalance: 0.0,
+                ethLocked: 0.0,
+                polygonMinted: 0.0,
+                bridgeType: state.bridgeType,
+                currentStep: 0,
+                isProcessing: false
+            };
+            updateBalances();
+            resetSteps();
+            transactionLogEl.innerHTML = '';
+            bridgeConnector.classList.remove('active');
+            log('Bridge state reset');
+        }
+
+        async function simulateAttack() {
+            if (state.bridgeType !== 'trusted') {
+                log('Attack simulation only available for trusted bridges', 'warning');
+                return;
+            }
+
+            log('⚠️ SIMULATING BRIDGE ATTACK...', 'error');
+            await sleep(1000);
+            log('Malicious validator detected!', 'error');
+            await sleep(1000);
+            log('Validator approving fraudulent transaction...', 'error');
+            await sleep(1000);
+            log('⚠️ ATTACK SUCCESSFUL: Funds stolen!', 'error');
+            log('This demonstrates why trustless bridges are more secure.', 'warning');
+
+            // Show security warning
+            securityWarning.style.display = 'block';
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Initial log
+        log('Bridge demo initialized. Select bridge type and start a transfer!');
+    </script>
+</body>
+
+</html>

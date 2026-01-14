@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Transaction Execution Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #f7931a, #ff6b35);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .university-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-inner {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3a8a, #fbbf24, #dc2626, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: logoRotate 20s linear infinite;
+        }
+
+        @keyframes logoRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo-building {
+            width: 30px;
+            height: 30px;
+            background: #1f2937;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .logo-building::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 8px;
+            background: #1f2937;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .logo-building::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 4px;
+            background: #1f2937;
+        }
+
+        .logo-text {
+            position: absolute;
+            font-size: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-text.top {
+            top: 5px;
+            font-size: 6px;
+        }
+
+        .logo-text.bottom {
+            bottom: 5px;
+            font-size: 7px;
+            font-weight: 900;
+        }
+
+        .logo-text.left {
+            left: 5px;
+            transform: rotate(-90deg);
+            font-size: 5px;
+        }
+
+        .logo-text.right {
+            right: 5px;
+            transform: rotate(90deg);
+            font-size: 5px;
+        }
+
+        .curriculum-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .curriculum-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .curriculum-info p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin: 5px 0;
+        }
+
+        .controls {
+            padding: 30px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .control-group select,
+        .control-group input {
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+        }
+
+        .control-group select:focus,
+        .control-group input:focus {
+            outline: none;
+            border-color: #f7931a;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #f7931a, #ff6b35);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(247, 147, 26, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 147, 26, 0.4);
+        }
+
+        .btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn.secondary {
+            background: linear-gradient(45deg, #6b7280, #9ca3af);
+            box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 0 6px 20px rgba(107, 114, 128, 0.4);
+        }
+
+        .btn.success {
+            background: linear-gradient(45deg, #10b981, #059669);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn.success:hover {
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .transaction-panel {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .transaction-panel h3 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .transaction-form {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #f7931a;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .transaction-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .transaction {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .transaction.pending {
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+        }
+
+        .transaction.confirmed {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+        }
+
+        .transaction.failed {
+            border-color: #ef4444;
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+        }
+
+        .transaction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .transaction-id {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .transaction-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .transaction-status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .transaction-status.confirmed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .transaction-status.failed {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .transaction-details {
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .transaction-amount {
+            font-weight: 600;
+            color: #059669;
+        }
+
+        .transaction-fee {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .blockchain-panel {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .blockchain-panel h3 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .blocks-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .block {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .block.new {
+            border-color: #f7931a;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .block-number {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .block-transactions {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .block-hash {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #6b7280;
+            background: #f1f5f9;
+            padding: 5px 8px;
+            border-radius: 4px;
+            word-break: break-all;
+            margin-bottom: 8px;
+        }
+
+        .block-timestamp {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .transaction-flow {
+            grid-column: 1 / -1;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            margin-top: 20px;
+        }
+
+        .transaction-flow h3 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            min-width: 120px;
+            position: relative;
+        }
+
+        .flow-step.active {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-color: #f59e0b;
+            animation: pulse 1s infinite;
+        }
+
+        .flow-step.completed {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border-color: #10b981;
+        }
+
+        .flow-step h4 {
+            color: #0369a1;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .flow-step p {
+            color: #0c4a6e;
+            font-size: 12px;
+        }
+
+        .flow-arrow {
+            font-size: 24px;
+            color: #6b7280;
+        }
+
+        .stats-panel {
+            grid-column: 1 / -1;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            margin-top: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #f7931a;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .explanation {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .explanation h4 {
+            color: #0369a1;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .explanation p {
+            color: #0c4a6e;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .explanation ul {
+            color: #0c4a6e;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .explanation li {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .footer-left p {
+            margin: 5px 0;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-logo-inner {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3a8a, #fbbf24, #dc2626, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .footer-logo-building {
+            width: 20px;
+            height: 20px;
+            background: #1f2937;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .footer-logo-building::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 5px;
+            background: #1f2937;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .footer-logo-text {
+            position: absolute;
+            bottom: 2px;
+            font-size: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .control-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="demo-container">
+            <div class="header">
+                <div class="university-logo">
+                    <div class="logo-inner">
+                        <div class="logo-building"></div>
+                        <div class="logo-text top">POLITEHNICA</div>
+                        <div class="logo-text bottom">BPDA</div>
+                        <div class="logo-text left">UNSTPB</div>
+                        <div class="logo-text right">UNSTPB</div>
+                    </div>
+                </div>
+                <h1>💸 Bitcoin Transaction Execution Demo</h1>
+                <p>Interactive demonstration of how Bitcoin transactions are created, validated, and executed</p>
+                <div class="curriculum-info">
+                    <h3>Blockchain Protocols and Distributed Applications</h3>
+                    <p><strong>Universitatea Națională de Știință și Tehnologie Politehnica București</strong></p>
+                    <p>Course: BPDA | Faculty of Automatic Control and Computer Science</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="transactionSpeed">Transaction Speed:</label>
+                    <select id="transactionSpeed">
+                        <option value="1000">Slow (1s)</option>
+                        <option value="500" selected>Normal (0.5s)</option>
+                        <option value="200">Fast (0.2s)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="blockTime">Block Time (seconds):</label>
+                    <input type="number" id="blockTime" value="10" min="1" max="60">
+                </div>
+                <div class="control-group">
+                    <label for="maxTransactionsPerBlock">Max Transactions per Block:</label>
+                    <input type="number" id="maxTransactionsPerBlock" value="5" min="1" max="10">
+                </div>
+                <div class="control-group">
+                    <button id="startBtn" class="btn">Start Simulation</button>
+                    <button id="pauseBtn" class="btn secondary" disabled>Pause</button>
+                    <button id="resetBtn" class="btn secondary">Reset</button>
+                    <button id="createTransactionBtn" class="btn success">Create Transaction</button>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="transaction-panel">
+                    <h3>💸 Transactions</h3>
+                    <div class="transaction-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fromAddress">From Address:</label>
+                                <input type="text" id="fromAddress" placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+                                    value="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
+                            </div>
+                            <div class="form-group">
+                                <label for="toAddress">To Address:</label>
+                                <input type="text" id="toAddress" placeholder="1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
+                                    value="1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="amount">Amount (BTC):</label>
+                                <input type="number" id="amount" placeholder="0.001" value="0.001" step="0.001"
+                                    min="0.001">
+                            </div>
+                            <div class="form-group">
+                                <label for="fee">Fee (BTC):</label>
+                                <input type="number" id="fee" placeholder="0.0001" value="0.0001" step="0.0001"
+                                    min="0.0001">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="transactionList" class="transaction-list"></div>
+                </div>
+
+                <div class="blockchain-panel">
+                    <h3>⛓️ Blockchain</h3>
+                    <div id="blocksContainer" class="blocks-container"></div>
+                </div>
+            </div>
+
+            <div class="transaction-flow">
+                <h3>🔄 Transaction Flow</h3>
+                <div class="flow-diagram">
+                    <div class="flow-step" id="step1">
+                        <h4>1. Create</h4>
+                        <p>User creates transaction</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step" id="step2">
+                        <h4>2. Broadcast</h4>
+                        <p>Send to network</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step" id="step3">
+                        <h4>3. Validate</h4>
+                        <p>Nodes verify transaction</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step" id="step4">
+                        <h4>4. Mempool</h4>
+                        <p>Wait for mining</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step" id="step5">
+                        <h4>5. Mine</h4>
+                        <p>Include in block</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step" id="step6">
+                        <h4>6. Confirm</h4>
+                        <p>Block added to chain</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-panel">
+                <h3>📊 Transaction Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalTransactions">0</div>
+                        <div class="stat-label">Total Transactions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pendingTransactions">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="confirmedTransactions">0</div>
+                        <div class="stat-label">Confirmed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalBlocks">0</div>
+                        <div class="stat-label">Total Blocks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avgConfirmationTime">0s</div>
+                        <div class="stat-label">Avg Confirmation Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalFees">0</div>
+                        <div class="stat-label">Total Fees (BTC)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <h4>📚 How Bitcoin Transactions Work</h4>
+                <p><strong>Bitcoin transactions</strong> are the fundamental units of value transfer in the Bitcoin
+                    network. Each transaction represents a transfer of Bitcoin from one address to another, secured by
+                    cryptographic signatures.</p>
+                <ul>
+                    <li><strong>Transaction Creation:</strong> Users create transactions with input addresses (senders),
+                        output addresses (receivers), amounts, and fees</li>
+                    <li><strong>Digital Signatures:</strong> Each transaction is cryptographically signed to prove
+                        ownership of the input addresses</li>
+                    <li><strong>Broadcasting:</strong> Transactions are broadcast to the peer-to-peer network for
+                        validation</li>
+                    <li><strong>Validation:</strong> Network nodes verify the transaction's validity (signatures,
+                        sufficient funds, etc.)</li>
+                    <li><strong>Mempool:</strong> Valid transactions wait in the mempool (memory pool) for miners to
+                        include them in blocks</li>
+                    <li><strong>Mining:</strong> Miners select transactions from the mempool and include them in new
+                        blocks</li>
+                    <li><strong>Confirmation:</strong> Once a block containing the transaction is mined and added to the
+                        blockchain, the transaction is confirmed</li>
+                </ul>
+                <p><strong>Key Concepts:</strong> UTXOs (Unspent Transaction Outputs), transaction fees, confirmation
+                    times, and the role of miners in transaction processing.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h4>Blockchain Protocols and Distributed Applications</h4>
+                    <p><strong>Universitatea Națională de Știință și Tehnologie Politehnica București</strong></p>
+                    <p>Faculty of Automatic Control and Computer Science</p>
+                    <p>Course: BPDA</p>
+                </div>
+                <div class="footer-logo">
+                    <div class="footer-logo-inner">
+                        <div class="footer-logo-building"></div>
+                        <div class="footer-logo-text">BPDA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class BitcoinTransactionDemo {
+            constructor() {
+                this.transactions = [];
+                this.blocks = [];
+                this.isRunning = false;
+                this.transactionCounter = 0;
+                this.blockCounter = 0;
+                this.startTime = null;
+                this.intervalId = null;
+                this.blockIntervalId = null;
+                this.currentStep = 0;
+                this.totalFees = 0;
+                this.confirmationTimes = [];
+
+                this.initializeElements();
+                this.setupEventListeners();
+                this.updateDisplay();
+            }
+
+            initializeElements() {
+                this.transactionList = document.getElementById('transactionList');
+                this.blocksContainer = document.getElementById('blocksContainer');
+                this.startBtn = document.getElementById('startBtn');
+                this.pauseBtn = document.getElementById('pauseBtn');
+                this.resetBtn = document.getElementById('resetBtn');
+                this.createTransactionBtn = document.getElementById('createTransactionBtn');
+
+                this.transactionSpeedSelect = document.getElementById('transactionSpeed');
+                this.blockTimeInput = document.getElementById('blockTime');
+                this.maxTransactionsPerBlockInput = document.getElementById('maxTransactionsPerBlock');
+
+                this.fromAddressInput = document.getElementById('fromAddress');
+                this.toAddressInput = document.getElementById('toAddress');
+                this.amountInput = document.getElementById('amount');
+                this.feeInput = document.getElementById('fee');
+
+                this.totalTransactionsEl = document.getElementById('totalTransactions');
+                this.pendingTransactionsEl = document.getElementById('pendingTransactions');
+                this.confirmedTransactionsEl = document.getElementById('confirmedTransactions');
+                this.totalBlocksEl = document.getElementById('totalBlocks');
+                this.avgConfirmationTimeEl = document.getElementById('avgConfirmationTime');
+                this.totalFeesEl = document.getElementById('totalFees');
+
+                this.stepElements = [
+                    document.getElementById('step1'),
+                    document.getElementById('step2'),
+                    document.getElementById('step3'),
+                    document.getElementById('step4'),
+                    document.getElementById('step5'),
+                    document.getElementById('step6')
+                ];
+            }
+
+            setupEventListeners() {
+                this.startBtn.addEventListener('click', () => this.startSimulation());
+                this.pauseBtn.addEventListener('click', () => this.pauseSimulation());
+                this.resetBtn.addEventListener('click', () => this.resetSimulation());
+                this.createTransactionBtn.addEventListener('click', () => this.createTransaction());
+            }
+
+            startSimulation() {
+                if (this.isRunning) return;
+
+                this.isRunning = true;
+                this.startTime = Date.now();
+                this.startBtn.disabled = true;
+                this.pauseBtn.disabled = false;
+
+                // Auto-create transactions
+                const transactionSpeed = parseInt(this.transactionSpeedSelect.value);
+                this.intervalId = setInterval(() => this.autoCreateTransaction(), transactionSpeed);
+
+                // Create blocks
+                const blockTime = parseInt(this.blockTimeInput.value) * 1000;
+                this.blockIntervalId = setInterval(() => this.createBlock(), blockTime);
+            }
+
+            pauseSimulation() {
+                this.isRunning = false;
+                this.startBtn.disabled = false;
+                this.pauseBtn.disabled = true;
+
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                    this.intervalId = null;
+                }
+                if (this.blockIntervalId) {
+                    clearInterval(this.blockIntervalId);
+                    this.blockIntervalId = null;
+                }
+            }
+
+            resetSimulation() {
+                this.pauseSimulation();
+                this.transactions = [];
+                this.blocks = [];
+                this.transactionCounter = 0;
+                this.blockCounter = 0;
+                this.startTime = null;
+                this.currentStep = 0;
+                this.totalFees = 0;
+                this.confirmationTimes = [];
+
+                this.stepElements.forEach(step => {
+                    step.className = 'flow-step';
+                });
+
+                this.updateDisplay();
+            }
+
+            createTransaction() {
+                const fromAddress = this.fromAddressInput.value || this.generateAddress();
+                const toAddress = this.toAddressInput.value || this.generateAddress();
+                const amount = parseFloat(this.amountInput.value) || 0.001;
+                const fee = parseFloat(this.feeInput.value) || 0.0001;
+
+                const transaction = {
+                    id: this.generateTransactionId(),
+                    from: fromAddress,
+                    to: toAddress,
+                    amount: amount,
+                    fee: fee,
+                    status: 'pending',
+                    timestamp: new Date().toLocaleTimeString(),
+                    createdTime: Date.now()
+                };
+
+                this.transactions.unshift(transaction);
+                this.transactionCounter++;
+                this.totalFees += fee;
+
+                // Keep only last 50 transactions for display
+                if (this.transactions.length > 50) {
+                    this.transactions = this.transactions.slice(0, 50);
+                }
+
+                this.simulateTransactionFlow(transaction);
+                this.updateDisplay();
+            }
+
+            autoCreateTransaction() {
+                if (!this.isRunning) return;
+
+                const fromAddress = this.generateAddress();
+                const toAddress = this.generateAddress();
+                const amount = (Math.random() * 0.01 + 0.001).toFixed(3);
+                const fee = (Math.random() * 0.0005 + 0.0001).toFixed(4);
+
+                const transaction = {
+                    id: this.generateTransactionId(),
+                    from: fromAddress,
+                    to: toAddress,
+                    amount: parseFloat(amount),
+                    fee: parseFloat(fee),
+                    status: 'pending',
+                    timestamp: new Date().toLocaleTimeString(),
+                    createdTime: Date.now()
+                };
+
+                this.transactions.unshift(transaction);
+                this.transactionCounter++;
+                this.totalFees += parseFloat(fee);
+
+                // Keep only last 50 transactions for display
+                if (this.transactions.length > 50) {
+                    this.transactions = this.transactions.slice(0, 50);
+                }
+
+                this.simulateTransactionFlow(transaction);
+                this.updateDisplay();
+            }
+
+            simulateTransactionFlow(transaction) {
+                // Step 1: Create (already done)
+                this.animateStep(0);
+
+                setTimeout(() => {
+                    // Step 2: Broadcast
+                    this.animateStep(1);
+                }, 500);
+
+                setTimeout(() => {
+                    // Step 3: Validate
+                    this.animateStep(2);
+                }, 1000);
+
+                setTimeout(() => {
+                    // Step 4: Mempool
+                    this.animateStep(3);
+                }, 1500);
+            }
+
+            animateStep(stepIndex) {
+                this.stepElements.forEach((step, index) => {
+                    if (index < stepIndex) {
+                        step.className = 'flow-step completed';
+                    } else if (index === stepIndex) {
+                        step.className = 'flow-step active';
+                    } else {
+                        step.className = 'flow-step';
+                    }
+                });
+
+                // Reset after animation
+                setTimeout(() => {
+                    this.stepElements.forEach(step => {
+                        step.className = 'flow-step';
+                    });
+                }, 2000);
+            }
+
+            createBlock() {
+                if (!this.isRunning) return;
+
+                const pendingTransactions = this.transactions.filter(t => t.status === 'pending');
+                const maxTransactions = parseInt(this.maxTransactionsPerBlockInput.value);
+                const transactionsToInclude = pendingTransactions.slice(0, maxTransactions);
+
+                if (transactionsToInclude.length === 0) return;
+
+                const block = {
+                    number: this.blockCounter++,
+                    hash: this.generateBlockHash(),
+                    transactions: transactionsToInclude,
+                    transactionCount: transactionsToInclude.length,
+                    timestamp: new Date().toLocaleTimeString(),
+                    createdTime: Date.now()
+                };
+
+                this.blocks.unshift(block);
+
+                // Update transaction statuses
+                transactionsToInclude.forEach(transaction => {
+                    transaction.status = 'confirmed';
+                    transaction.confirmedTime = Date.now();
+                    const confirmationTime = (transaction.confirmedTime - transaction.createdTime) / 1000;
+                    this.confirmationTimes.push(confirmationTime);
+                });
+
+                // Keep only last 20 blocks for display
+                if (this.blocks.length > 20) {
+                    this.blocks = this.blocks.slice(0, 20);
+                }
+
+                // Animate mining step
+                this.animateStep(4);
+                setTimeout(() => {
+                    this.animateStep(5);
+                }, 1000);
+
+                this.updateDisplay();
+            }
+
+            generateTransactionId() {
+                const chars = '0123456789abcdef';
+                let id = '';
+                for (let i = 0; i < 64; i++) {
+                    id += chars[Math.floor(Math.random() * chars.length)];
+                }
+                return id;
+            }
+
+            generateAddress() {
+                const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+                let address = '1';
+                for (let i = 0; i < 33; i++) {
+                    address += chars[Math.floor(Math.random() * chars.length)];
+                }
+                return address;
+            }
+
+            generateBlockHash() {
+                const chars = '0123456789abcdef';
+                let hash = '';
+                for (let i = 0; i < 64; i++) {
+                    hash += chars[Math.floor(Math.random() * chars.length)];
+                }
+                return hash;
+            }
+
+            updateDisplay() {
+                this.updateTransactionsDisplay();
+                this.updateBlocksDisplay();
+                this.updateStats();
+            }
+
+            updateTransactionsDisplay() {
+                this.transactionList.innerHTML = '';
+
+                if (this.transactions.length === 0) {
+                    this.transactionList.innerHTML = '<div style="text-align: center; color: #9ca3af; padding: 20px;">No transactions yet. Create a transaction to get started!</div>';
+                    return;
+                }
+
+                this.transactions.forEach(transaction => {
+                    const transactionEl = document.createElement('div');
+                    transactionEl.className = `transaction ${transaction.status}`;
+
+                    transactionEl.innerHTML = `
+                        <div class="transaction-header">
+                            <div class="transaction-id">${transaction.id.substring(0, 16)}...</div>
+                            <div class="transaction-status ${transaction.status}">${transaction.status.toUpperCase()}</div>
+                        </div>
+                        <div class="transaction-details">
+                            <div>From: ${transaction.from.substring(0, 20)}...</div>
+                            <div>To: ${transaction.to.substring(0, 20)}...</div>
+                            <div>Amount: <span class="transaction-amount">${transaction.amount} BTC</span></div>
+                            <div class="transaction-fee">Fee: ${transaction.fee} BTC | ${transaction.timestamp}</div>
+                        </div>
+                    `;
+
+                    this.transactionList.appendChild(transactionEl);
+                });
+            }
+
+            updateBlocksDisplay() {
+                this.blocksContainer.innerHTML = '';
+
+                if (this.blocks.length === 0) {
+                    this.blocksContainer.innerHTML = '<div style="text-align: center; color: #9ca3af; padding: 20px;">No blocks yet. Transactions will be mined into blocks!</div>';
+                    return;
+                }
+
+                this.blocks.forEach((block, index) => {
+                    const blockEl = document.createElement('div');
+                    blockEl.className = `block ${index === 0 ? 'new' : ''}`;
+
+                    blockEl.innerHTML = `
+                        <div class="block-header">
+                            <div class="block-number">Block #${block.number}</div>
+                            <div class="block-transactions">${block.transactionCount} transactions</div>
+                        </div>
+                        <div class="block-hash">${block.hash}</div>
+                        <div class="block-timestamp">${block.timestamp}</div>
+                    `;
+
+                    this.blocksContainer.appendChild(blockEl);
+                });
+            }
+
+            updateStats() {
+                const pendingCount = this.transactions.filter(t => t.status === 'pending').length;
+                const confirmedCount = this.transactions.filter(t => t.status === 'confirmed').length;
+
+                this.totalTransactionsEl.textContent = this.transactionCounter;
+                this.pendingTransactionsEl.textContent = pendingCount;
+                this.confirmedTransactionsEl.textContent = confirmedCount;
+                this.totalBlocksEl.textContent = this.blockCounter;
+                this.totalFeesEl.textContent = this.totalFees.toFixed(4);
+
+                if (this.confirmationTimes.length > 0) {
+                    const avgTime = (this.confirmationTimes.reduce((sum, time) => sum + time, 0) / this.confirmationTimes.length).toFixed(1);
+                    this.avgConfirmationTimeEl.textContent = `${avgTime}s`;
+                } else {
+                    this.avgConfirmationTimeEl.textContent = '0s';
+                }
+            }
+        }
+
+        // Initialize the demo when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new BitcoinTransactionDemo();
+        });
+    </script>
+</body>
+
+</html>

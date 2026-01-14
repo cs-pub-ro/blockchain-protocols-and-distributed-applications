@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEV (Maximal Extractable Value) - Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .panel {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .panel h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .mempool {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .transaction {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: move;
+            transition: all 0.2s;
+        }
+
+        .transaction:hover {
+            border-color: #6366f1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .transaction.selected {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .transaction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .tx-type {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tx-type.swap {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tx-type.arbitrage {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .tx-type.frontrun {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tx-details {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .tx-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .block-builder {
+            min-height: 400px;
+        }
+
+        .block-slot {
+            background: white;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            min-height: 80px;
+            transition: all 0.2s;
+        }
+
+        .block-slot.filled {
+            border-color: #10b981;
+            border-style: solid;
+            background: #f0fdf4;
+        }
+
+        .block-slot.drag-over {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .slot-number {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 5px;
+        }
+
+        .dex-panel {
+            grid-column: 1 / -1;
+        }
+
+        .dex-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .pool-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .pool-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+
+        .pool-balance {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .pool-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .controls {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .validator-profit {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .profit-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #92400e;
+            margin: 10px 0;
+        }
+
+        .scenario-selector {
+            margin-bottom: 20px;
+        }
+
+        .scenario-selector select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .explanation {
+            background: #eff6ff;
+            border-left: 4px solid #6366f1;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        .explanation h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .explanation p {
+            color: #1e3a8a;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .mev-strategy {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .strategy-frontrun {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .strategy-sandwich {
+            background: #fce7f3;
+            color: #9f1239;
+        }
+
+        .strategy-arbitrage {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .empty-slot {
+            color: #9ca3af;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profit-breakdown {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .profit-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+
+        .profit-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MEV (Maximal Extractable Value) - Interactive Demo</h1>
+            <p>Learn how validators extract value by reordering transactions in blocks</p>
+        </div>
+
+        <div class="main-content">
+            <div class="panel">
+                <h2>Mempool (Pending Transactions)</h2>
+                <div class="scenario-selector">
+                    <select id="scenarioSelect">
+                        <option value="basic">Basic Swap Scenario</option>
+                        <option value="frontrun">Front-Running Attack</option>
+                        <option value="sandwich">Sandwich Attack</option>
+                        <option value="arbitrage">Arbitrage Opportunity</option>
+                    </select>
+                </div>
+                <div class="mempool" id="mempool"></div>
+            </div>
+
+            <div class="panel">
+                <h2>Block Builder (Drag & Drop to Reorder)</h2>
+                <div class="block-builder" id="blockBuilder"></div>
+                <div class="validator-profit" id="profitDisplay" style="display: none;">
+                    <div style="font-weight: 600; color: #92400e;">Validator Profit</div>
+                    <div class="profit-amount" id="profitAmount">0 ETH</div>
+                    <div class="profit-breakdown" id="profitBreakdown"></div>
+                </div>
+            </div>
+
+            <div class="panel dex-panel">
+                <h2>DEX Liquidity Pools</h2>
+                <div class="dex-info" id="dexInfo"></div>
+                <div class="explanation" id="explanation">
+                    <h3>What is MEV?</h3>
+                    <p><strong>Maximal Extractable Value (MEV)</strong> is the maximum value that can be extracted from
+                        block production in excess of the standard block reward and gas fees by including, excluding, or
+                        reordering transactions in a block.</p>
+                    <p>Validators/miners can see pending transactions in the mempool and strategically reorder them to
+                        profit from:</p>
+                    <span class="mev-strategy strategy-frontrun">Front-Running</span>
+                    <span class="mev-strategy strategy-sandwich">Sandwich Attacks</span>
+                    <span class="mev-strategy strategy-arbitrage">Arbitrage</span>
+                    <p style="margin-top: 10px;">Drag transactions from the mempool to the block builder to see how
+                        reordering affects outcomes!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" id="loadScenario">Load Scenario</button>
+            <button class="btn btn-success" id="executeBlock">Execute Block</button>
+            <button class="btn btn-secondary" id="resetBlock">Clear Block</button>
+            <button class="btn btn-secondary" id="autoOptimize">Auto-Optimize MEV</button>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let mempool = [];
+        let block = [];
+        let pools = {
+            'ETH/USDC': { eth: 1000, usdc: 3000000, k: 3000000000 },
+            'ETH/DAI': { eth: 500, dai: 1500000, k: 750000000 }
+        };
+        let validatorProfit = 0;
+        let profitBreakdown = [];
+
+        // Initialize
+        document.getElementById('loadScenario').addEventListener('click', loadScenario);
+        document.getElementById('executeBlock').addEventListener('click', executeBlock);
+        document.getElementById('resetBlock').addEventListener('click', resetBlock);
+        document.getElementById('autoOptimize').addEventListener('click', autoOptimize);
+        document.getElementById('scenarioSelect').addEventListener('change', () => {
+            resetBlock();
+            loadScenario();
+        });
+
+        // Scenarios
+        const scenarios = {
+            basic: [
+                { id: 1, type: 'swap', from: 'Alice', amount: 10, tokenIn: 'ETH', tokenOut: 'USDC', pool: 'ETH/USDC', gasPrice: 20 }
+            ],
+            frontrun: [
+                { id: 1, type: 'swap', from: 'Alice', amount: 50, tokenIn: 'ETH', tokenOut: 'USDC', pool: 'ETH/USDC', gasPrice: 20 },
+                { id: 2, type: 'frontrun', from: 'Validator', amount: 30, tokenIn: 'ETH', tokenOut: 'USDC', pool: 'ETH/USDC', gasPrice: 100 }
+            ],
+            sandwich: [
+                { id: 1, type: 'swap', from: 'Alice', amount: 50, tokenIn: 'ETH', tokenOut: 'USDC', pool: 'ETH/USDC', gasPrice: 20 },
+                { id: 2, type: 'frontrun', from: 'Validator', amount: 30, tokenIn: 'ETH', tokenOut: 'USDC', pool: 'ETH/USDC', gasPrice: 100 },
+                { id: 3, type: 'frontrun', from: 'Validator', amount: 0, tokenIn: 'USDC', tokenOut: 'ETH', pool: 'ETH/USDC', gasPrice: 100, isBackrun: true }
+            ],
+            arbitrage: [
+                { id: 1, type: 'swap', from: 'Alice', amount: 20, tokenIn: 'ETH', tokenOut: 'USDC', pool: 'ETH/USDC', gasPrice: 20 },
+                { id: 2, type: 'arbitrage', from: 'Validator', amount: 10, tokenIn: 'ETH', tokenOut: 'USDC', pool: 'ETH/USDC', gasPrice: 100, targetPool: 'ETH/DAI' }
+            ]
+        };
+
+        function loadScenario() {
+            const scenario = document.getElementById('scenarioSelect').value;
+            mempool = JSON.parse(JSON.stringify(scenarios[scenario]));
+            renderMempool();
+            updateDEXDisplay();
+            updateExplanation(scenario);
+        }
+
+        function renderMempool() {
+            const container = document.getElementById('mempool');
+            container.innerHTML = '';
+
+            mempool.forEach(tx => {
+                const div = document.createElement('div');
+                div.className = 'transaction';
+                div.draggable = true;
+                div.dataset.txId = tx.id;
+
+                let typeLabel = tx.type === 'swap' ? 'Swap' :
+                    tx.type === 'frontrun' ? (tx.isBackrun ? 'Back-Run' : 'Front-Run') :
+                        'Arbitrage';
+
+                div.innerHTML = `
+                    <div class="transaction-header">
+                        <span class="tx-type ${tx.type}">${typeLabel}</span>
+                        <span class="tx-value">${tx.amount} ${tx.tokenIn}</span>
+                    </div>
+                    <div class="tx-details">
+                        From: ${tx.from}<br>
+                        ${tx.tokenIn} → ${tx.tokenOut}<br>
+                        Pool: ${tx.pool}<br>
+                        Gas: ${tx.gasPrice} gwei
+                    </div>
+                `;
+
+                div.addEventListener('dragstart', handleDragStart);
+                container.appendChild(div);
+            });
+        }
+
+        function renderBlockBuilder() {
+            const container = document.getElementById('blockBuilder');
+            container.innerHTML = '';
+
+            for (let i = 0; i < 10; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'block-slot';
+                slot.dataset.slot = i;
+
+                if (block[i]) {
+                    slot.classList.add('filled');
+                    const tx = block[i];
+                    let typeLabel = tx.type === 'swap' ? 'Swap' :
+                        tx.type === 'frontrun' ? (tx.isBackrun ? 'Back-Run' : 'Front-Run') :
+                            'Arbitrage';
+
+                    slot.innerHTML = `
+                        <div class="slot-number">Slot ${i + 1}</div>
+                        <div class="tx-type ${tx.type}">${typeLabel}</div>
+                        <div class="tx-details" style="font-size: 12px; margin-top: 5px;">
+                            ${tx.from}: ${tx.amount} ${tx.tokenIn} → ${tx.tokenOut}
+                        </div>
+                    `;
+                } else {
+                    slot.innerHTML = `<div class="empty-slot">Drop transaction here</div>`;
+                }
+
+                slot.addEventListener('dragover', handleDragOver);
+                slot.addEventListener('drop', handleDrop);
+                slot.addEventListener('dragleave', handleDragLeave);
+                container.appendChild(slot);
+            }
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.txId);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+
+            const txId = parseInt(e.dataTransfer.getData('text/plain'));
+            const slot = parseInt(e.currentTarget.dataset.slot);
+
+            const tx = mempool.find(t => t.id === txId);
+            if (tx) {
+                block[slot] = JSON.parse(JSON.stringify(tx));
+                renderBlockBuilder();
+            }
+        }
+
+        function resetBlock() {
+            block = [];
+            validatorProfit = 0;
+            profitBreakdown = [];
+            document.getElementById('profitDisplay').style.display = 'none';
+            renderBlockBuilder();
+            updateDEXDisplay();
+        }
+
+        function executeBlock() {
+            if (block.length === 0) {
+                alert('Block is empty! Add transactions first.');
+                return;
+            }
+
+            // Reset pools to initial state
+            pools = {
+                'ETH/USDC': { eth: 1000, usdc: 3000000, k: 3000000000 },
+                'ETH/DAI': { eth: 500, dai: 1500000, k: 750000000 }
+            };
+
+            validatorProfit = 0;
+            profitBreakdown = [];
+            const executedTxs = [];
+
+            // Execute transactions in block order
+            block.forEach((tx, index) => {
+                if (!tx) return;
+
+                const result = executeTransaction(tx, index);
+                executedTxs.push(result);
+            });
+
+            // Calculate validator profit
+            const validatorTxs = executedTxs.filter(tx => tx.from === 'Validator');
+            validatorTxs.forEach(tx => {
+                if (tx.profit > 0) {
+                    validatorProfit += tx.profit;
+                    profitBreakdown.push({
+                        type: tx.type === 'frontrun' ? (tx.isBackrun ? 'Back-Run' : 'Front-Run') : 'Arbitrage',
+                        profit: tx.profit
+                    });
+                }
+            });
+
+            // Display results
+            updateDEXDisplay();
+            displayProfit();
+
+            // Show execution animation
+            alert(`Block executed! ${executedTxs.length} transactions processed.`);
+        }
+
+        function executeTransaction(tx, position) {
+            const pool = pools[tx.pool];
+            if (!pool) return { ...tx, profit: 0 };
+
+            let profit = 0;
+            let outputAmount = 0;
+
+            if (tx.type === 'swap' || tx.type === 'frontrun') {
+                // AMM formula: x * y = k
+                const inputAmount = tx.amount;
+                const newX = pool[tx.tokenIn.toLowerCase()] + inputAmount;
+                const newY = pool.k / newX;
+                outputAmount = pool[tx.tokenOut.toLowerCase()] - newY;
+
+                // Update pool
+                pool[tx.tokenIn.toLowerCase()] = newX;
+                pool[tx.tokenOut.toLowerCase()] = newY;
+
+                // Validator profit calculation (simplified)
+                if (tx.from === 'Validator') {
+                    // Front-run: buy before price moves up
+                    // Back-run: sell after price moves up
+                    if (tx.isBackrun) {
+                        // Back-run profit: sell at higher price
+                        const priceBefore = pool[tx.tokenOut.toLowerCase()] / pool[tx.tokenIn.toLowerCase()];
+                        profit = outputAmount * 0.02; // 2% profit estimate
+                    } else {
+                        // Front-run profit: buy low, sell high later
+                        profit = outputAmount * 0.015; // 1.5% profit estimate
+                    }
+                }
+            } else if (tx.type === 'arbitrage') {
+                // Execute on first pool
+                const inputAmount = tx.amount;
+                let pool1 = pools[tx.pool];
+                const newX1 = pool1[tx.tokenIn.toLowerCase()] + inputAmount;
+                const newY1 = pool1.k / newX1;
+                const intermediate = pool1[tx.tokenOut.toLowerCase()] - newY1;
+
+                pool1[tx.tokenIn.toLowerCase()] = newX1;
+                pool1[tx.tokenOut.toLowerCase()] = newY1;
+
+                // Execute on second pool
+                let pool2 = pools[tx.targetPool];
+                const newX2 = pool2[tx.tokenOut.toLowerCase()] + intermediate;
+                const newY2 = pool2.k / newX2;
+                outputAmount = pool2[tx.tokenIn.toLowerCase()] - newY2;
+
+                pool2[tx.tokenOut.toLowerCase()] = newX2;
+                pool2[tx.tokenIn.toLowerCase()] = newY2;
+
+                // Arbitrage profit
+                if (tx.from === 'Validator') {
+                    profit = outputAmount - inputAmount - (inputAmount * 0.003); // minus gas
+                }
+            }
+
+            return { ...tx, outputAmount, profit };
+        }
+
+        function updateDEXDisplay() {
+            const container = document.getElementById('dexInfo');
+            container.innerHTML = '';
+
+            Object.entries(pools).forEach(([name, pool]) => {
+                const card = document.createElement('div');
+                card.className = 'pool-card';
+
+                const tokens = name.split('/');
+                const price = pool[tokens[1].toLowerCase()] / pool[tokens[0].toLowerCase()];
+
+                card.innerHTML = `
+                    <h3>${name}</h3>
+                    <div class="pool-balance">
+                        <span>${tokens[0]}:</span>
+                        <span>${pool[tokens[0].toLowerCase()].toFixed(2)}</span>
+                    </div>
+                    <div class="pool-balance">
+                        <span>${tokens[1]}:</span>
+                        <span>${pool[tokens[1].toLowerCase()].toLocaleString()}</span>
+                    </div>
+                    <div class="pool-price">1 ${tokens[0]} = ${price.toFixed(2)} ${tokens[1]}</div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function displayProfit() {
+            const display = document.getElementById('profitDisplay');
+            const amount = document.getElementById('profitAmount');
+            const breakdown = document.getElementById('profitBreakdown');
+
+            if (validatorProfit > 0) {
+                display.style.display = 'block';
+                amount.textContent = `${validatorProfit.toFixed(4)} ETH`;
+
+                breakdown.innerHTML = '<strong>Breakdown:</strong>';
+                profitBreakdown.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'profit-item';
+                    div.innerHTML = `
+                        <span>${item.type}</span>
+                        <span>+${item.profit.toFixed(4)} ETH</span>
+                    `;
+                    breakdown.appendChild(div);
+                });
+            } else {
+                display.style.display = 'none';
+            }
+        }
+
+        function autoOptimize() {
+            resetBlock();
+
+            // Sort transactions to maximize MEV
+            const sorted = [...mempool].sort((a, b) => {
+                // Validator transactions first (higher gas price)
+                if (a.from === 'Validator' && b.from !== 'Validator') return -1;
+                if (b.from === 'Validator' && a.from !== 'Validator') return 1;
+
+                // Higher gas price first
+                return b.gasPrice - a.gasPrice;
+            });
+
+            // Place in optimal order for MEV
+            let slot = 0;
+            sorted.forEach(tx => {
+                if (tx.type === 'frontrun' && !tx.isBackrun) {
+                    // Front-run goes first
+                    block[slot++] = JSON.parse(JSON.stringify(tx));
+                }
+            });
+
+            sorted.forEach(tx => {
+                if (tx.type === 'swap' && tx.from !== 'Validator') {
+                    // User swap in middle
+                    if (slot < 10) block[slot++] = JSON.parse(JSON.stringify(tx));
+                }
+            });
+
+            sorted.forEach(tx => {
+                if (tx.type === 'frontrun' && tx.isBackrun) {
+                    // Back-run goes after user swap
+                    if (slot < 10) block[slot++] = JSON.parse(JSON.stringify(tx));
+                }
+            });
+
+            sorted.forEach(tx => {
+                if (tx.type === 'arbitrage') {
+                    // Arbitrage can go anywhere
+                    if (slot < 10) block[slot++] = JSON.parse(JSON.stringify(tx));
+                }
+            });
+
+            renderBlockBuilder();
+            alert('Block optimized for MEV extraction! Execute to see profits.');
+        }
+
+        function updateExplanation(scenario) {
+            const exp = document.getElementById('explanation');
+            const explanations = {
+                basic: {
+                    title: 'Basic Swap',
+                    text: 'A simple token swap. No MEV opportunity here - just a normal transaction.'
+                },
+                frontrun: {
+                    title: 'Front-Running',
+                    text: 'The validator sees Alice\'s large swap and places their own transaction before it. By buying ETH before Alice pushes the price up, the validator can profit when they sell later.'
+                },
+                sandwich: {
+                    title: 'Sandwich Attack',
+                    text: 'A sandwich attack consists of two transactions: (1) Front-run: buy before the victim\'s trade, (2) Back-run: sell after the victim\'s trade. The victim\'s trade is "sandwiched" between the two, and the validator profits from the price movement.'
+                },
+                arbitrage: {
+                    title: 'Arbitrage',
+                    text: 'The validator spots a price difference between two pools. They buy from the cheaper pool and sell to the more expensive one, capturing the difference as profit.'
+                }
+            };
+
+            const info = explanations[scenario];
+            exp.innerHTML = `
+                <h3>${info.title}</h3>
+                <p>${info.text}</p>
+                <p style="margin-top: 10px;"><strong>Try this:</strong> Drag transactions to reorder them and see how it affects validator profits. Use "Auto-Optimize MEV" to see the optimal ordering!</p>
+            `;
+        }
+
+        // Initialize
+        loadScenario();
+        renderBlockBuilder();
+        updateDEXDisplay();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Longest Chain Rule Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #f7931a, #ff6b35);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .university-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-inner {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3a8a, #fbbf24, #dc2626, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: logoRotate 20s linear infinite;
+        }
+
+        @keyframes logoRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo-building {
+            width: 30px;
+            height: 30px;
+            background: #1f2937;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .logo-building::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 8px;
+            background: #1f2937;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .logo-building::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 4px;
+            background: #1f2937;
+        }
+
+        .logo-text {
+            position: absolute;
+            font-size: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-text.top {
+            top: 5px;
+            font-size: 6px;
+        }
+
+        .logo-text.bottom {
+            bottom: 5px;
+            font-size: 7px;
+            font-weight: 900;
+        }
+
+        .logo-text.left {
+            left: 5px;
+            transform: rotate(-90deg);
+            font-size: 5px;
+        }
+
+        .logo-text.right {
+            right: 5px;
+            transform: rotate(90deg);
+            font-size: 5px;
+        }
+
+        .curriculum-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .curriculum-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .curriculum-info p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin: 5px 0;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .footer-left p {
+            margin: 5px 0;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-logo-inner {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3a8a, #fbbf24, #dc2626, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .footer-logo-building {
+            width: 20px;
+            height: 20px;
+            background: #1f2937;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .footer-logo-building::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 5px;
+            background: #1f2937;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .footer-logo-text {
+            position: absolute;
+            bottom: 2px;
+            font-size: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .university-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-inner {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3a8a, #fbbf24, #dc2626, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: logoRotate 20s linear infinite;
+        }
+
+        @keyframes logoRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo-building {
+            width: 30px;
+            height: 30px;
+            background: #1f2937;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .logo-building::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 8px;
+            background: #1f2937;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .logo-building::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 4px;
+            background: #1f2937;
+        }
+
+        .logo-text {
+            position: absolute;
+            font-size: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-text.top {
+            top: 5px;
+            font-size: 6px;
+        }
+
+        .logo-text.bottom {
+            bottom: 5px;
+            font-size: 7px;
+            font-weight: 900;
+        }
+
+        .logo-text.left {
+            left: 5px;
+            transform: rotate(-90deg);
+            font-size: 5px;
+        }
+
+        .logo-text.right {
+            right: 5px;
+            transform: rotate(90deg);
+            font-size: 5px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .curriculum-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .curriculum-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .curriculum-info p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin: 5px 0;
+        }
+
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn.danger {
+            background: #dc3545;
+        }
+
+        .btn.danger:hover {
+            background: #c82333;
+        }
+
+        .btn.success {
+            background: #28a745;
+        }
+
+        .btn.success:hover {
+            background: #218838;
+        }
+
+        .btn.warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn.warning:hover {
+            background: #e0a800;
+        }
+
+        .demo-area {
+            padding: 30px;
+            min-height: 600px;
+        }
+
+        .explanation {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .explanation h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .explanation p {
+            color: #155724;
+            line-height: 1.6;
+        }
+
+        .scenario-selector {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .scenario-selector h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .scenario-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .scenario-btn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .scenario-btn:hover {
+            background: #1976d2;
+        }
+
+        .scenario-btn.active {
+            background: #0d47a1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .blockchain-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .shared-genesis {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .block.shared {
+            display: inline-block;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .shared-blocks {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .fork-indicator {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .fork-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent 0%, #6c757d 20%, #6c757d 80%, transparent 100%);
+            margin: 10px 0;
+        }
+
+        .fork-text {
+            color: #6c757d;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blockchain {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s ease;
+            width: 100%;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blockchain.winner {
+            border-color: #28a745;
+            background: #d4edda;
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .blockchain.orphaned {
+            border-color: #dc3545;
+            background: #f8d7da;
+            opacity: 0.7;
+        }
+
+        .blockchain h3 {
+            color: #495057;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chain-length {
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .blocks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+            padding: 20px 0;
+            flex: 1;
+            max-height: 400px;
+        }
+
+        .block {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .block.genesis {
+            border-color: #6f42c1;
+            background: #f8f5ff;
+        }
+
+        .block.new {
+            border-color: #28a745;
+            background: #d4edda;
+            animation: blockAdded 0.8s ease-out;
+        }
+
+        .block.orphaned {
+            border-color: #dc3545;
+            background: #f8d7da;
+            opacity: 0.6;
+            animation: orphaned 0.5s ease-out;
+        }
+
+        .block h4 {
+            color: #495057;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .block-hash {
+            background: #212529;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 10px;
+            word-break: break-all;
+            margin: 8px 0;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .block-transactions {
+            font-size: 11px;
+            color: #6c757d;
+            margin: 5px 0;
+        }
+
+        .chain-connector {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: #6c757d;
+        }
+
+        .conflict-area {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .conflict-area h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .conflict-timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #856404;
+            margin: 10px 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .legend {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .legend h4 {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            border: 2px solid;
+        }
+
+        .legend-color.genesis {
+            background: #f8f5ff;
+            border-color: #6f42c1;
+        }
+
+        .legend-color.new {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .legend-color.orphaned {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .legend-color.winner {
+            background: #d4edda;
+            border-color: #28a745;
+            box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+        }
+
+        @keyframes blockAdded {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+
+            50% {
+                transform: scale(1.05) translateY(-10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes orphaned {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(0.95);
+            }
+
+            100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blockchain-container {
+                grid-template-columns: 1fr;
+            }
+
+            .shared-genesis {
+                grid-column: 1;
+            }
+
+            .blocks-container {
+                max-height: 300px;
+            }
+
+            .chain-connector {
+                display: none;
+            }
+
+            .scenario-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="university-logo">
+                <div class="logo-inner">
+                    <div class="logo-building"></div>
+                    <div class="logo-text top">POLITEHNICA</div>
+                    <div class="logo-text bottom">BPDA</div>
+                    <div class="logo-text left">UNSTPB</div>
+                    <div class="logo-text right">UNSTPB</div>
+                </div>
+            </div>
+            <h1>₿ Bitcoin Longest Chain Rule Demo</h1>
+            <p>Interactive demonstration of how Bitcoin resolves conflicts and maintains consensus</p>
+            <div class="curriculum-info">
+                <h3>Blockchain Protocols and Distributed Applications</h3>
+                <p><strong>Universitatea Națională de Știință și Tehnologie Politehnica București</strong></p>
+                <p>Course: BPDA | Faculty of Automatic Control and Computer Science</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="startScenario()" id="startBtn">Start Scenario</button>
+            <button class="btn danger" onclick="stopScenario()" id="stopBtn" disabled>Stop Scenario</button>
+            <button class="btn success" onclick="resetDemo()">Reset Demo</button>
+            <button class="btn warning" onclick="resolveConflict()" id="resolveBtn" disabled>Resolve Conflict</button>
+            <button class="btn" onclick="toggleAutoResolve()" id="autoResolveBtn">Auto Resolve: OFF</button>
+        </div>
+
+        <div class="demo-area">
+            <div class="explanation" id="explanation">
+                <h4>How the Longest Chain Rule Works:</h4>
+                <p>This demo shows how blockchain forks occur and are resolved. The process works as follows:</p>
+                <p>1. <strong>Normal Mining:</strong> New blocks appear in the shared area above the fork point<br>
+                    2. <strong>Fork Creation:</strong> When a conflict occurs, the last block splits into both
+                    chains<br>
+                    3. <strong>Competing Chains:</strong> The chains below the fork point compete for validity<br>
+                    4. <strong>Longest Chain Rule:</strong> The chain with more blocks becomes the canonical
+                    blockchain<br>
+                    5. <strong>Resolution:</strong> Use "Resolve Conflict" to see how the longest chain wins</p>
+            </div>
+
+            <div class="scenario-selector">
+                <h3>Choose a Scenario:</h3>
+                <div class="scenario-buttons">
+                    <button class="scenario-btn active" onclick="selectScenario('simultaneous')">Simultaneous
+                        Mining</button>
+                    <button class="scenario-btn" onclick="selectScenario('network_delay')">Network Delay</button>
+                    <button class="scenario-btn" onclick="selectScenario('malicious')">Malicious Fork</button>
+                    <button class="scenario-btn" onclick="selectScenario('reorg')">Chain Reorganization</button>
+                </div>
+            </div>
+
+            <div class="conflict-area" id="conflictArea" style="display: none;">
+                <h3>⚠️ Blockchain Fork Detected!</h3>
+                <p>Two miners found blocks at the same time. The network is now split into competing chains.</p>
+                <div class="conflict-timer" id="conflictTimer">Waiting for resolution...</div>
+            </div>
+
+            <div class="blockchain-container">
+                <div class="shared-genesis">
+                    <div class="block genesis shared">
+                        <h4>Genesis Block</h4>
+                        <div class="block-hash">0000000000000000000000000000000000000000000000000000000000000000</div>
+                        <div class="block-transactions">No transactions</div>
+                    </div>
+                    <div class="shared-blocks" id="sharedBlocks">
+                        <!-- New blocks appear here above the fork point -->
+                    </div>
+                    <div class="fork-indicator">
+                        <div class="fork-line"></div>
+                        <div class="fork-text">Fork Point</div>
+                    </div>
+                </div>
+
+                <div class="blockchain" id="chain1">
+                    <h3>Chain A <span class="chain-length" id="chain1Length">0</span></h3>
+                    <div class="blocks-container" id="blocks1">
+                        <!-- Forked blocks appear here -->
+                    </div>
+                </div>
+
+                <div class="blockchain" id="chain2">
+                    <h3>Chain B <span class="chain-length" id="chain2Length">0</span></h3>
+                    <div class="blocks-container" id="blocks2">
+                        <!-- Forked blocks appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalBlocks">1</div>
+                    <div class="stat-label">Total Blocks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="orphanedBlocks">0</div>
+                    <div class="stat-label">Orphaned Blocks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="conflicts">0</div>
+                    <div class="stat-label">Conflicts Resolved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="chainSwitches">0</div>
+                    <div class="stat-label">Chain Switches</div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <h4>Legend:</h4>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color genesis"></div>
+                        <span>Genesis Block</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color new"></div>
+                        <span>New Block</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color orphaned"></div>
+                        <span>Orphaned Block</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color winner"></div>
+                        <span>Winning Chain</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h4>Blockchain Protocols and Distributed Applications</h4>
+                    <p><strong>Universitatea Națională de Știință și Tehnologie Politehnica București</strong></p>
+                    <p>Faculty of Automatic Control and Computer Science</p>
+                    <p>Course: BPDA</p>
+                </div>
+                <div class="footer-logo">
+                    <div class="footer-logo-inner">
+                        <div class="footer-logo-building"></div>
+                        <div class="footer-logo-text">BPDA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScenario = 'simultaneous';
+        let isRunning = false;
+        let blockCounter = 1;
+        let chain1Length = 0;
+        let chain2Length = 0;
+        let orphanedBlocks = 0;
+        let conflicts = 0;
+        let chainSwitches = 0;
+        let conflictTimer = 0;
+        let conflictInterval;
+        let miningInterval;
+        let lastBlockTime = 0;
+        let autoResolve = false;
+        let conflictDetected = false;
+
+        const scenarios = {
+            simultaneous: {
+                name: 'Simultaneous Mining',
+                description: 'Two miners find blocks at exactly the same time',
+                blockInterval: 3000,
+                conflictChance: 0.3
+            },
+            network_delay: {
+                name: 'Network Delay',
+                description: 'Network delays cause blocks to arrive out of order',
+                blockInterval: 2000,
+                conflictChance: 0.5
+            },
+            malicious: {
+                name: 'Malicious Fork',
+                description: 'A malicious miner tries to create a longer chain',
+                blockInterval: 2500,
+                conflictChance: 0.4
+            },
+            reorg: {
+                name: 'Chain Reorganization',
+                description: 'A longer chain replaces the current one',
+                blockInterval: 4000,
+                conflictChance: 0.2
+            }
+        };
+
+        function selectScenario(scenario) {
+            if (isRunning) return;
+
+            currentScenario = scenario;
+
+            // Update button states
+            document.querySelectorAll('.scenario-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update explanation
+            updateScenarioExplanation();
+        }
+
+        function updateScenarioExplanation() {
+            const scenario = scenarios[currentScenario];
+            const explanation = document.getElementById('explanation');
+            explanation.innerHTML = `
+                <h4>Scenario: ${scenario.name}</h4>
+                <p><strong>Description:</strong> ${scenario.description}</p>
+                <p>1. <strong>Fork Creation:</strong> When two miners find blocks simultaneously, the blockchain splits into two branches<br>
+                2. <strong>Competition:</strong> Miners continue building on different branches, creating competing chains<br>
+                3. <strong>Resolution:</strong> The longest chain (most work) becomes the canonical blockchain<br>
+                4. <strong>Orphaning:</strong> Blocks on shorter chains become orphaned and their transactions return to the mempool</p>
+            `;
+        }
+
+        function startScenario() {
+            if (isRunning) return;
+
+            isRunning = true;
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+
+            // Start mining simulation
+            miningInterval = setInterval(() => {
+                mineBlock();
+            }, scenarios[currentScenario].blockInterval);
+        }
+
+        function stopScenario() {
+            isRunning = false;
+            clearInterval(miningInterval);
+            clearInterval(conflictInterval);
+
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+            document.getElementById('resolveBtn').disabled = true;
+
+            // Hide conflict area
+            document.getElementById('conflictArea').style.display = 'none';
+        }
+
+        function mineBlock() {
+            if (!isRunning) return;
+
+            const scenario = scenarios[currentScenario];
+            const now = Date.now();
+
+            // Check if we should create a conflict
+            if (Math.random() < scenario.conflictChance && now - lastBlockTime > 1000) {
+                createConflict();
+            } else {
+                // After a fork, add blocks to individual chains
+                if (conflictDetected) {
+                    // Add blocks to competing chains
+                    addBlockToChain(getLeadingChain());
+                } else {
+                    // Normal mining - add to shared area
+                    addBlockToShared();
+                }
+            }
+
+            lastBlockTime = now;
+            updateStats();
+        }
+
+        function createConflict() {
+            // Move the last shared block to both chains (simulating a fork)
+            moveLastSharedBlockToChains();
+
+            conflictDetected = true;
+            conflicts++;
+
+            // Show conflict area
+            document.getElementById('conflictArea').style.display = 'block';
+            document.getElementById('resolveBtn').disabled = false;
+
+            // Start conflict timer
+            conflictTimer = 0;
+            conflictInterval = setInterval(() => {
+                conflictTimer++;
+                document.getElementById('conflictTimer').textContent = `Conflict ongoing: ${conflictTimer}s`;
+
+                // Auto-resolve after 5 seconds if enabled
+                if (autoResolve && conflictTimer >= 5) {
+                    resolveConflict();
+                }
+            }, 1000);
+        }
+
+        function addBlockToShared() {
+            blockCounter++;
+            const sharedContainer = document.getElementById('sharedBlocks');
+
+            // Create new block
+            const blockDiv = document.createElement('div');
+            blockDiv.className = 'block new shared';
+            blockDiv.innerHTML = `
+                <h4>Block #${blockCounter}</h4>
+                <div class="block-hash">${generateBlockHash()}</div>
+                <div class="block-transactions">${Math.floor(Math.random() * 5) + 1} transactions</div>
+                <div class="block-transactions">Miner: ${Math.floor(Math.random() * 1000)}</div>
+            `;
+
+            // Add chain connector to previous block
+            const lastBlock = sharedContainer.lastElementChild;
+            if (lastBlock) {
+                lastBlock.innerHTML += '<div class="chain-connector">↓</div>';
+            }
+
+            sharedContainer.appendChild(blockDiv);
+
+            // Remove "new" class after animation
+            setTimeout(() => {
+                blockDiv.classList.remove('new');
+            }, 800);
+        }
+
+        function moveLastSharedBlockToChains() {
+            const sharedContainer = document.getElementById('sharedBlocks');
+            const lastSharedBlock = sharedContainer.lastElementChild;
+
+            if (lastSharedBlock) {
+                // Clone the block for both chains
+                const blockForChain1 = lastSharedBlock.cloneNode(true);
+                const blockForChain2 = lastSharedBlock.cloneNode(true);
+
+                // Remove the shared class and add to chains
+                blockForChain1.classList.remove('shared');
+                blockForChain2.classList.remove('shared');
+
+                // Add to Chain A
+                const container1 = document.getElementById('blocks1');
+                const lastBlock1 = container1.lastElementChild;
+                if (lastBlock1) {
+                    lastBlock1.innerHTML += '<div class="chain-connector">↓</div>';
+                }
+                container1.appendChild(blockForChain1);
+
+                // Add to Chain B
+                const container2 = document.getElementById('blocks2');
+                const lastBlock2 = container2.lastElementChild;
+                if (lastBlock2) {
+                    lastBlock2.innerHTML += '<div class="chain-connector">↓</div>';
+                }
+                container2.appendChild(blockForChain2);
+
+                // Remove from shared area
+                sharedContainer.removeChild(lastSharedBlock);
+
+                // Update chain lengths
+                chain1Length++;
+                chain2Length++;
+                document.getElementById('chain1Length').textContent = chain1Length;
+                document.getElementById('chain2Length').textContent = chain2Length;
+            }
+        }
+
+        function toggleAutoResolve() {
+            autoResolve = !autoResolve;
+            const btn = document.getElementById('autoResolveBtn');
+            btn.textContent = `Auto Resolve: ${autoResolve ? 'ON' : 'OFF'}`;
+            btn.style.background = autoResolve ? '#28a745' : '#007bff';
+
+            if (autoResolve && conflictDetected) {
+                // If there's already a conflict, resolve it immediately
+                setTimeout(() => {
+                    if (conflictDetected) {
+                        resolveConflict();
+                    }
+                }, 1000);
+            }
+        }
+
+        function addBlockToChain(chainNumber) {
+            blockCounter++;
+            const chainId = `chain${chainNumber}`;
+            const blocksId = `blocks${chainNumber}`;
+            const lengthId = `chain${chainNumber}Length`;
+
+            // Create new block
+            const blockDiv = document.createElement('div');
+            blockDiv.className = 'block new';
+            blockDiv.innerHTML = `
+                <h4>Block #${blockCounter}</h4>
+                <div class="block-hash">${generateBlockHash()}</div>
+                <div class="block-transactions">${Math.floor(Math.random() * 5) + 1} transactions</div>
+                <div class="block-transactions">Miner: ${Math.floor(Math.random() * 1000)}</div>
+            `;
+
+            // Add chain connector to previous block
+            const container = document.getElementById(blocksId);
+            const lastBlock = container.lastElementChild;
+            if (lastBlock) {
+                lastBlock.innerHTML += '<div class="chain-connector">↓</div>';
+            }
+
+            container.appendChild(blockDiv);
+
+            // Update chain length
+            if (chainNumber === 1) {
+                chain1Length++;
+                document.getElementById(lengthId).textContent = chain1Length;
+            } else {
+                chain2Length++;
+                document.getElementById(lengthId).textContent = chain2Length;
+            }
+
+            // Remove "new" class after animation
+            setTimeout(() => {
+                blockDiv.classList.remove('new');
+            }, 800);
+        }
+
+        function getLeadingChain() {
+            // After a fork, miners choose which chain to mine on
+            // In reality, miners often choose the longest chain, but sometimes they choose shorter chains
+            // This simulates the competition between chains
+
+            if (chain1Length > chain2Length) {
+                // Chain 1 is longer, but sometimes miners still choose chain 2 (20% chance)
+                return Math.random() < 0.8 ? 1 : 2;
+            } else if (chain2Length > chain1Length) {
+                // Chain 2 is longer, but sometimes miners still choose chain 1 (20% chance)
+                return Math.random() < 0.8 ? 2 : 1;
+            } else {
+                // Chains are equal, random choice
+                return Math.random() < 0.5 ? 1 : 2;
+            }
+        }
+
+        function resolveConflict() {
+            if (!isRunning || !conflictDetected) return;
+
+            clearInterval(conflictInterval);
+            document.getElementById('conflictArea').style.display = 'none';
+            document.getElementById('resolveBtn').disabled = true;
+            conflictDetected = false;
+
+            // Determine winner based on chain length (longest chain rule)
+            const winner = chain1Length >= chain2Length ? 1 : 2;
+            const loser = winner === 1 ? 2 : 1;
+
+            // Show resolution process
+            showResolutionProcess(winner, loser);
+
+            // Mark winner and loser
+            document.getElementById(`chain${winner}`).classList.add('winner');
+            document.getElementById(`chain${loser}`).classList.add('orphaned');
+
+            // Count orphaned blocks
+            const losingBlocks = document.querySelectorAll(`#chain${loser} .block`);
+            orphanedBlocks += losingBlocks.length;
+
+            // Show what happens to orphaned blocks
+            setTimeout(() => {
+                showOrphanedBlocks(losingBlocks);
+            }, 1000);
+
+            // Clear the losing chain after showing orphaned blocks
+            setTimeout(() => {
+                const losingContainer = document.getElementById(`blocks${loser}`);
+                losingContainer.innerHTML = '';
+
+                // Reset chain lengths
+                if (winner === 1) {
+                    chain2Length = 0;
+                    document.getElementById('chain2Length').textContent = '0';
+                } else {
+                    chain1Length = 0;
+                    document.getElementById('chain1Length').textContent = '0';
+                }
+
+                // Reset chain states
+                document.getElementById(`chain${winner}`).classList.remove('winner');
+                document.getElementById(`chain${loser}`).classList.remove('orphaned');
+
+                // Reset conflict state so mining goes back to shared area
+                conflictDetected = false;
+
+                // Show final result
+                showFinalResult(winner, loser);
+
+            }, 3000);
+
+            chainSwitches++;
+            updateStats();
+        }
+
+        function showResolutionProcess(winner, loser) {
+            const explanation = document.getElementById('explanation');
+            explanation.innerHTML = `
+                <h4>🔍 Resolving Conflict...</h4>
+                <p><strong>Step 1:</strong> Comparing chain lengths...</p>
+                <p><strong>Chain A:</strong> ${chain1Length} blocks | <strong>Chain B:</strong> ${chain2Length} blocks</p>
+                <p><strong>Winner:</strong> Chain ${winner === 1 ? 'A' : 'B'} (longest chain)</p>
+                <p><strong>Rule:</strong> The chain with the most cumulative proof-of-work becomes canonical</p>
+            `;
+        }
+
+        function showOrphanedBlocks(losingBlocks) {
+            const explanation = document.getElementById('explanation');
+            explanation.innerHTML = `
+                <h4>⚠️ Orphaning Blocks...</h4>
+                <p><strong>Step 2:</strong> Blocks on the losing chain become orphaned</p>
+                <p><strong>Orphaned Blocks:</strong> ${losingBlocks.length} blocks</p>
+                <p><strong>What happens:</strong> Transactions in orphaned blocks return to the mempool</p>
+                <p><strong>Mining Rewards:</strong> Lost (no block reward for orphaned blocks)</p>
+            `;
+        }
+
+        function showFinalResult(winner, loser) {
+            const explanation = document.getElementById('explanation');
+            explanation.innerHTML = `
+                <h4>✅ Conflict Resolved!</h4>
+                <p><strong>Canonical Chain:</strong> Chain ${winner === 1 ? 'A' : 'B'}</p>
+                <p><strong>Orphaned Chain:</strong> Chain ${loser === 1 ? 'A' : 'B'} (${orphanedBlocks} blocks orphaned)</p>
+                <p><strong>Result:</strong> The network has reached consensus on the longest chain</p>
+                <p><strong>Next:</strong> Miners will continue building on the canonical chain</p>
+            `;
+        }
+
+        function generateBlockHash() {
+            const chars = '0123456789abcdef';
+            let result = '00'; // Start with "00" to simulate proof of work
+            for (let i = 2; i < 64; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        function updateStats() {
+            document.getElementById('totalBlocks').textContent = blockCounter;
+            document.getElementById('orphanedBlocks').textContent = orphanedBlocks;
+            document.getElementById('conflicts').textContent = conflicts;
+            document.getElementById('chainSwitches').textContent = chainSwitches;
+        }
+
+        function resetDemo() {
+            stopScenario();
+
+            // Reset counters
+            blockCounter = 1;
+            chain1Length = 0;
+            chain2Length = 0;
+            orphanedBlocks = 0;
+            conflicts = 0;
+            chainSwitches = 0;
+            conflictTimer = 0;
+            conflictDetected = false;
+
+            // Reset displays - clear shared blocks and both chains
+            document.getElementById('sharedBlocks').innerHTML = '';
+            document.getElementById('blocks1').innerHTML = '';
+            document.getElementById('blocks2').innerHTML = '';
+
+            document.getElementById('chain1Length').textContent = '0';
+            document.getElementById('chain2Length').textContent = '0';
+
+            // Reset chain states
+            document.getElementById('chain1').classList.remove('winner', 'orphaned');
+            document.getElementById('chain2').classList.remove('winner', 'orphaned');
+
+            // Hide conflict area
+            document.getElementById('conflictArea').style.display = 'none';
+
+            updateStats();
+            updateScenarioExplanation();
+        }
+
+        // Initialize
+        updateScenarioExplanation();
+    </script>
+</body>
+
+</html>
