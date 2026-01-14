@@ -23,6 +23,7 @@ In case you don't pass the exam you may choose to keep the lab and assignments g
 * Some of the tasks you will have to do: create a wallet, write a basic smart contract, build and deploy it, interact with it (make transactions on the blockchain with the SC you deployed), use events for SC, create fungible and non-fungible tokens;
 * You can prepare and use any scripts for interaction with the blockchain;
 * Can be solved on any blockchain you want;
+* An example of a practical exam can be found [here](../assignments/practical-exam-2024.md).
 
 ## Theoretical Exam
 * Closed Book - access to any online/offline resources is considered cheating;

@@ -210,6 +210,7 @@ docusaurus:
       #     - Wallet Quiz: chapters/introduction/lab/content/wallet/quiz.md
       - Assignments:
           - Assignment (2025-2026): assignments/assignment1.md
+          - Practical Exam (Example): assignments/practical-exam-2024.md
           - Project: assignments/project.md
           # - Blockchain Research Assignment: assignments/blockchain_research_assignment.md
           # - Scientific Research Assignment: assignments/scientific_research_assignment.md
