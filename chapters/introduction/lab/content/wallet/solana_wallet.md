@@ -6,7 +6,6 @@ This comprehensive guide covers the most popular and reliable Solana wallets, he
 
 - [Wallet Types Overview](#wallet-types-overview)
 - [Popular Solana Wallets](#popular-solana-wallets)
-- [Wallet Comparison](#wallet-comparison)
 - [Getting Started](#getting-started)
 - [Security Best Practices](#security-best-practices)
 - [Troubleshooting](#troubleshooting)
@@ -184,19 +183,6 @@ Magic Eden Wallet is integrated with the Magic Eden NFT marketplace.
 - **Best For**: Security-conscious users
 
 ---
-
-## Wallet Comparison
-
-| Feature | Phantom | Solflare | Backpack | Exodus | Glow | Magic Eden |
-|---------|---------|----------|----------|--------|------|------------|
-| **Ease of Use** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| **Security** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| **DeFi Features** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| **NFT Support** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| **Staking** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| **Multi-chain** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ |
-| **Mobile App** | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| **Hardware Support** | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 
 ---
 

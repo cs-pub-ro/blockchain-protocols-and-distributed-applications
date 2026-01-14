@@ -209,10 +209,10 @@ Open VS Code and go to Extensions (Ctrl+Shift+X / Cmd+Shift+X), then search for 
 
 Once you have all prerequisites installed:
 
-1. ✅ Verify all tools are working
-2. ✅ Configure for devnet
-3. ✅ Get test SOL
-4. ➡️ Proceed to [Your First Solana Program](./solana_hello_world.md)
+1. Verify all tools are working
+2. Configure for devnet
+3. Get test SOL
+4. Proceed to [Your First Solana Program](./solana_hello_world.md)
 
 ## Additional Resources
 

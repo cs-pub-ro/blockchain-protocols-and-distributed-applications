@@ -6,7 +6,6 @@ This comprehensive guide covers the most popular and reliable Ethereum wallets, 
 
 - [Wallet Types Overview](#wallet-types-overview)
 - [Popular Ethereum Wallets](#popular-ethereum-wallets)
-- [Wallet Comparison](#wallet-comparison)
 - [Getting Started](#getting-started)
 - [Security Best Practices](#security-best-practices)
 - [Troubleshooting](#troubleshooting)
@@ -199,21 +198,6 @@ MyEtherWallet is a web-based wallet that gives users full control over their pri
 - **Best For**: Security-conscious users, open source advocates
 
 ---
-
-## Wallet Comparison
-
-| Feature | MetaMask | Coinbase | Trust | Rainbow | Rabby | MEW |
-|---------|----------|----------|-------|---------|-------|-----|
-| **Ease of Use** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Security** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| **DeFi Features** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **NFT Support** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| **Multi-chain** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Mobile App** | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| **Browser Extension** | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
-| **Hardware Support** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Layer 2 Support** | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-
 
 > **Note:** For this course, we are going to use **MetaMask** as our primary Ethereum wallet. MetaMask is widely adopted, user-friendly, and supports both mainnet and testnet networks, making it ideal for hands-on exercises and assignments.
 

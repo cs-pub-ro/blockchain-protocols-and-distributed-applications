@@ -5,11 +5,11 @@ In this lab, we'll create the simplest possible Solana program - a "Hello World"
 ## Prerequisites
 
 Before starting, make sure you have completed the [Solana Prerequisites](./solana_prerequisites.md) guide:
-- ✅ Solana CLI installed
-- ✅ Anchor framework installed
-- ✅ Rust toolchain installed
-- ✅ Development keypair created
-- ✅ Test SOL on devnet
+- Solana CLI installed
+- Anchor framework installed
+- Rust toolchain installed
+- Development keypair created
+- Test SOL on devnet
 
 ## Creating a New Anchor Project
 
