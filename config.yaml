@@ -198,8 +198,6 @@ docusaurus:
                 - Exposing blockchain data: api.md
                 - Scaling your APIs: scaling.md
                 - Practice: practice.md
-              extra:
-                - ../media/
           - Basic Peer-to-Peer Blockchain (Extra):
               path: chapters/peer-to-peer/lab/content
               subsections:
