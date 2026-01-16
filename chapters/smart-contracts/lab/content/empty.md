@@ -30,10 +30,10 @@ We have the annotation:
 ***
 **NOTE**
 
- Only **one** constructor is allowed per smart contract.
+Only **one** constructor and **one** upgrade method are allowed per smart contract.
 ***
 
-Let's build the smart contract, running the next command in the contract root:
+Let's build the smart contract, running the next command in the **contract root**:
 
 ```sh
 sc-meta all build
