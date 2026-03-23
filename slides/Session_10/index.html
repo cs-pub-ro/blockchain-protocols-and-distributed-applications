@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BPDA - Session 10: Tokenomics</title>
+    <link rel="stylesheet" href="../Introduction/dist/reset.css" />
+    <link rel="stylesheet" href="../Introduction/dist/reveal.css" />
+    <link rel="stylesheet" href="../Introduction/dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="../Introduction/css/highlight/base16/zenburn.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="\r?\n---\r?\n" data-separator-vertical="\r?\n----\r?\n">
+          <textarea data-template>
+
+# Session 10: Tokenomics & NFTs
+
+---
+
+## 1. What is Tokenomics?
+
+---
+
+### Definition
+The study of the economic models, incentives, and distribution mechanisms of a cryptographic token.
+
+- Supply Dynamics (Inflation vs. Deflation)
+<!-- .element: class="fragment" -->
+- Utility (What does the token do?)
+<!-- .element: class="fragment" -->
+- Distribution (Vesting schedules, Airdrops)
+<!-- .element: class="fragment" -->
+
+----
+
+### Token Standards: ETH vs SOL
+
+| Chain | Fungible | Non-Fungible |
+| :--: | :--: | :--: |
+| Ethereum | ERC-20 | ERC-721 |
+| Solana | SPL Token | SPL + Metaplex |
+
+---
+
+## 2. NFTs in Practice
+
+---
+
+### Value Drivers
+- Provenance (Cryptographic proof of origin)
+- Digital Scarcity
+- Programmable Royalties (e.g. 5% back to creator on every trade)
+
+----
+
+### Solana Metaplex
+- The Metadata struct attaches a name, symbol, and off-chain URI to a mathematically standard SPL Token.
+- Massively reduces the cost of minting compared to deploying fresh ERC-721 contracts.
+
+---
+
+## Conclusion
+Next session: Decentralized Finance (DeFi)
+
+          </textarea>
+        </section>
+      </div>
+    </div>
+    <script src="../Introduction/dist/reveal.js"></script>
+    <script src="../Introduction/plugin/markdown/markdown.js"></script>
+    <script src="../Introduction/plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true, progress: true, history: true, center: true,
+        plugins: [ RevealMarkdown, RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>

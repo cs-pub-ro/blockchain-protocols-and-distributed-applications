@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>BPDA - Session 9: Virtual Machines</title>
+    <!-- Relative paths adjusted assuming they share the root dist folder if built or deployed. For standalone we point to ../Introduction/dist just to make it work locally if they are identical -->
+    <link rel="stylesheet" href="../Introduction/dist/reset.css" />
+    <link rel="stylesheet" href="../Introduction/dist/reveal.css" />
+    <link rel="stylesheet" href="../Introduction/dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="../Introduction/css/highlight/base16/zenburn.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="\r?\n---\r?\n" data-separator-vertical="\r?\n----\r?\n">
+          <textarea data-template>
+
+# Session 9: Virtual Machines
+
+---
+
+## 1. Execution Environments
+
+---
+
+### What is a Blockchain VM?
+- Sandboxed execution environment for smart contracts
+<!-- .element: class="fragment" -->
+- Deterministic behavior across all nodes
+<!-- .element: class="fragment" -->
+- Gas/Compute metering to prevent infinite loops
+<!-- .element: class="fragment" -->
+
+----
+
+### EVM vs. WebAssembly (WASM) vs. eBPF/Sealevel
+
+| VM Type | Primary Chain | Source Languages | Speed |
+| :--: | :--: | :--: | :--: |
+| EVM | Ethereum | Solidity, Vyper | Moderate |
+| WASM | MultiversX, Polkadot | Rust, C++, Go | High |
+| eBPF | Solana (Sealevel) | Rust, C, C++ | Very High, Parallel |
+
+---
+
+## 2. Solana's Sealevel Architecture
+
+---
+
+### Parallel Execution
+
+- Unlike EVM (single-threaded), Solana executes transactions concurrently.
+- Transactions specify **read** and **write** accounts upfront.
+- Non-overlapping account state = simultaneous execution.
+
+----
+
+### BPF (Berkeley Packet Filter)
+- Solana originally adapted BPF (used in Linux networking) to run smart contracts.
+- Highly optimized, low-overhead execution.
+
+---
+
+## Conclusion
+Next session: Tokenomics & Account Models!
+
+          </textarea>
+        </section>
+      </div>
+    </div>
+    
+    <script src="../Introduction/dist/reveal.js"></script>
+    <script src="../Introduction/plugin/markdown/markdown.js"></script>
+    <script src="../Introduction/plugin/highlight/highlight.js"></script>
+
+    <script>
+      Reveal.initialize({
+        controls: true, progress: true, history: true, center: true,
+        plugins: [ RevealMarkdown, RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>

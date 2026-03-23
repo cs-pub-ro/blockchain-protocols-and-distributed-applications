@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BPDA - Session 13: Privacy</title>
+    <link rel="stylesheet" href="../Introduction/dist/reset.css" />
+    <link rel="stylesheet" href="../Introduction/dist/reveal.css" />
+    <link rel="stylesheet" href="../Introduction/dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="../Introduction/css/highlight/base16/zenburn.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="\r?\n---\r?\n" data-separator-vertical="\r?\n----\r?\n">
+          <textarea data-template>
+
+# Session 13: Privacy on Public Blockchains
+
+---
+
+## 1. Pseudonymity vs Anonymity
+
+---
+
+### The Transparency Problem
+Public blockchains (Bitcoin, Ethereum, Solana) are radically transparent. Every transaction, balance, and interaction is visible to the entire world.
+- Wallets are **pseudonymous** (0xABC...), not anonymous. 
+- Once linked to an identity (via KYC exchanges), entire financial histories are compromised.
+
+----
+
+### Privacy Implications
+- Institutions cannot execute large payrolls or trades publicly without giving up their market edge.
+- User data protection is difficult.
+
+---
+
+## 2. Privacy Solutions
+
+---
+
+### Mixers & Tumblers
+- E.g., Tornado Cash. Pools funds to break the deterministic link between sender and receiver.
+- Heavily scrutinized by regulators.
+
+----
+
+### Zero-Knowledge Proofs (ZKPs)
+- Mathematical methods to prove a statement is true without revealing the underlying data.
+- **ZK-Rollups:** Scale transactions by bundling them and posting a cryptographic proof.
+- **Privacy Coins:** Zcash, Monero (using ring signatures and stealth addresses).
+
+---
+
+## Congratulations!
+You have completed the BPDA Course Curriculum!
+
+          </textarea>
+        </section>
+      </div>
+    </div>
+    <script src="../Introduction/dist/reveal.js"></script>
+    <script src="../Introduction/plugin/markdown/markdown.js"></script>
+    <script src="../Introduction/plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true, progress: true, history: true, center: true,
+        plugins: [ RevealMarkdown, RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>

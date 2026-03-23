@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BPDA - Session 11: DeFi</title>
+    <link rel="stylesheet" href="../Introduction/dist/reset.css" />
+    <link rel="stylesheet" href="../Introduction/dist/reveal.css" />
+    <link rel="stylesheet" href="../Introduction/dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="../Introduction/css/highlight/base16/zenburn.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="\r?\n---\r?\n" data-separator-vertical="\r?\n----\r?\n">
+          <textarea data-template>
+
+# Session 11: DeFi
+
+---
+
+## 1. The Core of Decentralized Finance
+
+---
+
+### TradFi vs DeFi
+- **TradFi:** Relies on trust in institutions (banks, brokers, clearinghouses). Slow settlement.
+- **DeFi:** Relies on trust in math and code. Instant settlement. Non-custodial.
+
+----
+
+### Key DeFi Primitives
+
+1. **Decentralized Exchanges (DEXs)**
+2. **Lending Protocols**
+3. **Yield Aggregators**
+4. **Stablecoins**
+
+---
+
+## 2. Market Structures
+
+---
+
+### Automated Market Makers (AMMs)
+- Liquidity Pools (e.g., SOL/USDC)
+- Constant Product Formula: $x * y = k$
+- Slippage & Impermanent Loss
+
+----
+
+### Central Limit Order Books (CLOBs)
+- Matching buyers and sellers at specific price points.
+- Extremely difficult on Ethereum due to gas costs.
+- Possible on Solana (e.g., OpenBook) due to sub-second finality.
+
+---
+
+## Conclusion
+Next session: MEV (Maximal Extractable Value)
+
+          </textarea>
+        </section>
+      </div>
+    </div>
+    <script src="../Introduction/dist/reveal.js"></script>
+    <script src="../Introduction/plugin/markdown/markdown.js"></script>
+    <script src="../Introduction/plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true, progress: true, history: true, center: true,
+        plugins: [ RevealMarkdown, RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>

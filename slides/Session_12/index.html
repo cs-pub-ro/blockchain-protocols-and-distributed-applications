@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BPDA - Session 12: MEV</title>
+    <link rel="stylesheet" href="../Introduction/dist/reset.css" />
+    <link rel="stylesheet" href="../Introduction/dist/reveal.css" />
+    <link rel="stylesheet" href="../Introduction/dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="../Introduction/css/highlight/base16/zenburn.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="\r?\n---\r?\n" data-separator-vertical="\r?\n----\r?\n">
+          <textarea data-template>
+
+# Session 12: MEV (Maximal Extractable Value)
+
+---
+
+## 1. What is MEV?
+
+---
+
+### Definition
+Profit validators or searchers extract from users by reordering, inserting, or censoring transactions within a block.
+
+- **The Mempool:** The "waiting room" where pending transactions sit before block inclusion.
+- Because the mempool is public, anyone can see your trade before it executes.
+
+----
+
+### Common MEV Strategies
+
+1. **Front-running:** Seeing a large buy order and buying before it to sell right after at a guaranteed profit.
+2. **Back-running:** Executing immediately after a large trade (e.g., liquidations or arbitrage).
+3. **Sandwich Attacks:** Combining front-running and back-running to fully exploit a user's slippage tolerance.
+
+---
+
+## 2. MEV Across Different Chains
+
+---
+
+### Ethereum vs Solana MEV
+- **Ethereum:** Global mempool. Highly competitive, structured block builders (Flashbots).
+- **Solana:** No global mempool. Transactions are forwarded directly to the current leader. Jito introduced out-of-protocol MEV auctions to Solana to prevent network spam.
+
+---
+
+## Conclusion
+Next session: Privacy
+
+          </textarea>
+        </section>
+      </div>
+    </div>
+    <script src="../Introduction/dist/reveal.js"></script>
+    <script src="../Introduction/plugin/markdown/markdown.js"></script>
+    <script src="../Introduction/plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true, progress: true, history: true, center: true,
+        plugins: [ RevealMarkdown, RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>
