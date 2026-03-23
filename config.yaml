@@ -32,6 +32,11 @@ embed_reveal:
     extension: mdx
     build:
       Introduction: slides/Introduction
+      Session9: slides/Session_9
+      Session10: slides/Session_10
+      Session11: slides/Session_11
+      Session12: slides/Session_12
+      Session13: slides/Session_13
       # Protocol: chapters/protocol/lecture/_site
       # Case-Study: chapters/case-study/lecture/_site
       # Wallet: chapters/wallet/lecture/_site
@@ -65,6 +70,11 @@ docusaurus:
       - Lectures:
           subsections:
             - Introduction: /build/embed_reveal/Introduction/Introduction.mdx
+            - Session 9 VM: /build/embed_reveal/Session9/Session9.mdx
+            - Session 10 Tokenomics: /build/embed_reveal/Session10/Session10.mdx
+            - Session 11 DeFi: /build/embed_reveal/Session11/Session11.mdx
+            - Session 12 MEV: /build/embed_reveal/Session12/Session12.mdx
+            - Session 13 Privacy: /build/embed_reveal/Session13/Session13.mdx
             # - Blockchain Protocols: /build/embed_reveal/Protocol/Protocol.mdx
             # - Case Study: /build/embed_reveal/Case-Study/Case-Study.mdx
             # - Wallet: /build/embed_reveal/Wallet/Wallet.mdx
@@ -134,6 +144,8 @@ docusaurus:
                 - Fungible & NonFungible Tokens: fungible-non-fungible.md
                 - Fungible: fungible.md
                 - NFT: nft.md
+                - Solana SPL Tokens: solana_spl_tokens.md
+                - Solana Metaplex NFTs: solana_metaplex_nfts.md
               extra:
                 - ../media/
           - Smart Contracts:
@@ -151,6 +163,8 @@ docusaurus:
                 - Interactor Testing: chain-sim.md
                 - Solana Program Prerequisites: solana_prerequisites.md
                 - Solana Program Hello World: solana_hello_world.md
+                - Solana Program Advanced State: solana_with_state.md
+                - Solana Program Access Controls: solana_accounts.md
               extra:
                 - ../media/
           - Learning Rust:
@@ -165,6 +179,7 @@ docusaurus:
                 - ../media/
               subsections:
                 - Building your first dApp: dApp.md
+                - Solana React dApp Integration: solana_dapp_frontend.md
           - Smart Contract Events:
               path: chapters/smart-contracts/lab/content/
               subsections:
