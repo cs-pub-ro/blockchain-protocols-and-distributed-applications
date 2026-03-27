@@ -12,4 +12,3 @@ If you click on the **63 validators (See all)** button you will see 63 public ke
 
 - Open 3 different blocks in 3 different tabs. Observe that every time there is another consensus group.
 Why do you think the system is designed this way?
-- Open 3 different blocks in 3 different tabs on Ethereum [Explorer](https://etherscan.io/). Observe that every time there is another leader.
