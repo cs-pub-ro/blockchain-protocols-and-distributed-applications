@@ -7,7 +7,7 @@ After building the contract, there are two main ways to interact with smart cont
 
 ## `mxpy` interaction
 
-In the contract's root directory, you will create a file with a descriptive name. For instance, for out contract, which will be uploaded to Devnet, the file might be named: `devnet.snippets.sh`.
+In the contract's **root directory**, you will create a file with a descriptive name. For instance, for out contract, which will be uploaded to Devnet, the file might be named: `devnet.snippets.sh`.
 
 Once the contract is built, the WASM bytecode is generated in the `output/` directory, which we will utilize. This will be used within the newly created file:
 
@@ -25,6 +25,7 @@ deploySC() {
     mxpy --verbose contract deploy \
         --bytecode=${WASM_PATH} \
         --pem=${WALLET_PEM} \
+        --gas-limit=2000000 \
         --proxy=${PROXY} \
         --send || return
 }
@@ -70,7 +71,7 @@ Observe the output logs printed in the terminal. In the response JSON body, you 
 
 Rust interactors are used to interact with the blockchain via Rust.
 
-Let's do this for the Empty smart contract. In the contract root run the next command:
+Let's do this for the Empty smart contract. In the **contract root** run the next command:
 
 ```bash
 sc-meta all snippets
@@ -94,24 +95,39 @@ A new folder `interactor` was created.
 
 This will generate code for all the endpoints and view functions you created.
 
-As this is a new and separate Rust binary, you must add it to the main `Cargo.toml`'s members:
+As this is a new and separate Rust binary, you must **add** the interactor to the main `Cargo.toml`'s members, which is in the contract root, at path `empty/Cargo.toml`:
+
+As this interactor is compiled as a new and separate Rust binary, you must add its path to the main `Cargo.toml`'s [workspace] members, located at the contract root, at path `empty/Cargo.toml`.
+
+Before:
 
 ```toml
 [workspace]
 members = [
     ".",
     "meta",
-    "/home/empty/interactor"
 ]
 ```
 
-Now, you can deploy your contract by running the following command in the `interactor directory.
+After:
+
+```toml
+[workspace]
+members = [
+    ".",
+    "meta",
+    "interactor"
+]
+
+```
+
+Now, you can deploy your contract by running the following command in the `interactor` directory.
 
 ```bash
 $ cargo run deploy
 [...]
-sender's recalled nonce: 10595
--- tx nonce: 10595
+sender's recalled nonce: 19922
+-- tx nonce: 19922
 sc deploy tx hash: a17a4f51305b6f6dd9c01ec4986d0f90266ef560599b15af613e9aadd816e705
 deploy address: erd1qqqqqqqqqqqqqpgqchszakc8fm44c2rndjh09xeuh829g4tgd8sskk0m5e
 ```
