@@ -1,6 +1,6 @@
 # The Adder SC
 
-The Adder smart contract is a simple smart contract with an `add` functionality and a global variable that can be incremented.
+The Adder smart contract is a simple smart contract with an `add` functionality and a **global variable** that can be incremented.
 
 ```rust
 /// One of the simplest smart contracts possible,
@@ -31,7 +31,7 @@ pub trait Adder {
 
 We notice 4 functions:
 
-* **sum** - this is a global variable, a `SingleValueMapper` (a single value) of type BigUint (unsigned integer);
+* **sum** - this is a global variable, a `SingleValueMapper` (a single value) of type **BigUint** (unsigned integer);
 * **init** - the constructor;
 * **add** - function that increments the global variable (`sum`) with the `value` parameter;
 * **upgrade** - function executed when upgrading the contract.
@@ -42,7 +42,7 @@ We notice 5 types of annotations:
 * `#[storage_mapper("sum")]` - this is a global **variable** (also called a storage) stored at the contract address;
 * `#[init]` - the constructor function; this is called when deploying the contract;
 * `#[upgrade]`  - this function is called when upgrading the contract;
-* `#[endpoint]` - an endpoint is a function callable directly by the user; A function not having this annotation will not be exposed publicly.
+* `#[endpoint]` - an endpoint is a function callable directly by the user; a function not having this annotation will not be exposed publicly.
 
 [Here](https://github.com/multiversx/mx-contracts-rs/blob/main/contracts/adder/src/adder.rs) is the smart contract code listed above and [here](https://github.com/multiversx/mx-contracts-rs/tree/main/contracts/adder) are all the files needed for compilation.
 
@@ -177,7 +177,7 @@ Packing ../output/adder.mxsc.json ...
 Contract size: 700 bytes.
 ```
 
-Let's check the contract:
+Let's check the `output` directory generated after running the build command:
 
 ```bash
 ls -l output/
