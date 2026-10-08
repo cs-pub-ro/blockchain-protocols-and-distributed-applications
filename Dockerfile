@@ -14,15 +14,17 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get update && \
     apt-get install -yqq nodejs
 
-# webpack 5.111.1 (published 2026-09-18) is missing lib/ContextReplacementPlugin.js,
-# which breaks Docusaurus 2.1.0. Ignore npm packages published after this date.
-ENV NPM_CONFIG_BEFORE=2026-09-15
-
 # Install reveal-md using npm.
 RUN npm install -g reveal-md
 
 # Install Docusaurus.
 RUN npm install create-docusaurus@2.1.0
+
+# Docusaurus 2.1.0 breaks with current webpack (5.111.1 lacks ContextReplacementPlugin,
+# newer versions reject webpackbar's ProgressPlugin options). The site is installed at
+# runtime by oe_builder (npx create-docusaurus), so ignore npm packages published after
+# the Docusaurus 2.1.0 era. Keep this after the reveal-md install.
+ENV NPM_CONFIG_BEFORE=2022-11-01
 
 WORKDIR /content
 

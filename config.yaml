@@ -32,6 +32,7 @@ embed_reveal:
     extension: mdx
     build:
       Introduction: slides/Introduction
+      Session2: slides/Session_2
       Session9: slides/Session_9
       Session10: slides/Session_10
       Session11: slides/Session_11
@@ -70,6 +71,7 @@ docusaurus:
       - Lectures:
           subsections:
             - Introduction: /build/embed_reveal/Introduction/Introduction.mdx
+            - Session 2 Bitcoin: /build/embed_reveal/Session2/Session2.mdx
             - Session 9 VM: /build/embed_reveal/Session9/Session9.mdx
             - Session 10 Tokenomics: /build/embed_reveal/Session10/Session10.mdx
             - Session 11 DeFi: /build/embed_reveal/Session11/Session11.mdx
