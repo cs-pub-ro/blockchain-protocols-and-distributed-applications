@@ -85,10 +85,7 @@ docusaurus:
             # - Composability: /build/embed_reveal/Composability/Composability.mdx
       - Practical Sessions:
           - Env Setup:
-              path: chapters/introduction/lab/content/setup
-              subsections:
-                - Setting up the Lab Environment: setup.md
-                - Testnet Wallets: testnet-wallets.md
+              path: chapters/introduction/lab/content/setup/setup.md
           - Wallet:
               path: chapters/introduction/lab
               extra:
@@ -110,18 +107,25 @@ docusaurus:
                       - Keystore Encryption: keystore_encryption.md
                       - Wallet Recovery: wallet_recovery.md
                       - Transaction Verification: transaction_verification.md
-                - Content:
+                - MultiversX:
                     path: content/wallet
                     subsections:
-                      - Cmd line wallet/: cmdline_wallet.md
-                      - Wallet/: wallet.md
-                      - Keystore/: keystore.md
+                      - Cmd line wallet: cmdline_wallet.md
+                      - Wallet: wallet.md
+                      - Keystore: keystore.md
                       - Access & Faucet: faucet.md
                       - Send Transaction: send_tx.md
                       - Browser Web Wallet: browser_wallet.md
+                - Ethereum:
+                    path: content/wallet
+                    subsections:
+                      - Installing MetaMask: metamask.md
+                      - Network Config: metamask_config_networks.md
+                      - Transaction: metamask_transaction.md
+                - Solana:
+                    path: content/wallet
+                    subsections:
                       - Solana Wallet: solana_wallet.md
-                      - Ethereum Wallet: ethereum_wallet.md
-                      # - Observer: observer.md
           - Explorer:
               path: chapters/introduction/lab/content/explorer
               extra:
