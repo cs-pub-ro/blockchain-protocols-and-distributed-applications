@@ -85,7 +85,9 @@ docusaurus:
             # - Composability: /build/embed_reveal/Composability/Composability.mdx
       - Practical Sessions:
           - Env Setup:
-              path: chapters/introduction/lab/content/setup/setup.md
+              path: chapters/introduction/lab/content/setup
+              subsections:
+                - Setting up the Lab Environment: setup.md
           - Wallet:
               path: chapters/introduction/lab
               extra:
