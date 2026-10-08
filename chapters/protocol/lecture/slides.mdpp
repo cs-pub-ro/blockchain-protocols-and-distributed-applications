@@ -1,0 +1,14 @@
+---
+title: "Bitcoin & Blockchain Protocol (V1)"
+revealOptions:
+  background-color: 'aquamarine'
+  transition: 'none'
+  slideNumber: true
+  autoAnimateDuration: 0.0
+---
+
+# Blockchain Protocols and Distributed Applications
+
+1. [Bitcoin & Blockchain Protocol](#bitcoin--blockchain-protocol-v1)
+
+!INCLUDE "slides/bitcoin.md"
