@@ -329,7 +329,6 @@ Now that you've created your first Solana program:
 2. ✅ Know how to build and deploy
 3. ✅ Understand how to test programs
 4. ➡️ Proceed to [Solana Program with State](./solana_with_state.md) (when available)
-5. ➡️ Learn about [Solana Accounts](./solana_accounts.md) (when available)
 
 ## Summary
 

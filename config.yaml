@@ -168,7 +168,6 @@ docusaurus:
                 - Solana Program Prerequisites: solana_prerequisites.md
                 - Solana Program Hello World: solana_hello_world.md
                 - Solana Program Advanced State: solana_with_state.md
-                - Solana Program Access Controls: solana_accounts.md
               extra:
                 - ../media/
           - Learning Rust:
