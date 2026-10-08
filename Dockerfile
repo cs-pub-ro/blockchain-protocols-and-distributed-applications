@@ -9,8 +9,8 @@ RUN pip install MarkdownPP
 # Verify installation
 RUN which markdown-pp || echo "markdown-pp not found in PATH"
 
-# Install node LTS (16)
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+# Install Node 20 (Docusaurus 2.1.0 is not compatible with newer Node versions)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get update && \
     apt-get install -yqq nodejs
 
