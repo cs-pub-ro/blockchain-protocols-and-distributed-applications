@@ -14,6 +14,10 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get update && \
     apt-get install -yqq nodejs
 
+# webpack 5.111.1 (published 2026-09-18) is missing lib/ContextReplacementPlugin.js,
+# which breaks Docusaurus 2.1.0. Ignore npm packages published after this date.
+ENV NPM_CONFIG_BEFORE=2026-09-15
+
 # Install reveal-md using npm.
 RUN npm install -g reveal-md
 
