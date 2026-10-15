@@ -156,7 +156,6 @@ docusaurus:
                     path: content/explorer
                     subsections:
                       - Solana Explorer: solana_explorer.md
-                - Devnet Blockchains: devnet_testnet.md
           - Tokens:
               path: chapters/tokens/lab/content
               subsections:
