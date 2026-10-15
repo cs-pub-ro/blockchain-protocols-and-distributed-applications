@@ -133,7 +133,7 @@ docusaurus:
           - Explorer:
               path: chapters/introduction/lab
               extra:
-                - ../../media/
+                - media/
               subsections:
                 - Time in Blockchain: time.md
                 - Multiversx:
