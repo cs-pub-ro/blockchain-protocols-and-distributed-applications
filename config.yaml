@@ -131,13 +131,13 @@ docusaurus:
                     subsections:
                       - Solana Wallet: solana_wallet.md
           - Explorer:
-              path: chapters/introduction/lab
+              path: chapters/introduction/lab/content/explorer
               extra:
-                - media/
+                - ../../media/
               subsections:
                 - Time in Blockchain: time.md
                 - Multiversx:
-                    path: content/explorer/multiversx
+                    path: multiversx
                     subsections:
                       - Blocks: blocks.md
                       - Block Leader: leader.md
@@ -146,16 +146,13 @@ docusaurus:
                       - Blockchain Validators: validators.md
                       - Blockchain Observers: observers.md
                 - Ethereum:
-                    path: content/explorer/ethereum
+                    path: ethereum
                     subsections:
                       - Blocks: blocks.md
                       - Block Leader: leader.md
                       - Transactions: transactions.md
                       - Blockchain Validators: validators.md
-                - Solana:
-                    path: content/explorer
-                    subsections:
-                      - Solana Explorer: solana_explorer.md
+                - Solana Explorer: solana_explorer.md
           - Tokens:
               path: chapters/tokens/lab/content
               subsections:
