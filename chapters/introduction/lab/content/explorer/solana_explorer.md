@@ -259,4 +259,3 @@ Programs can create PDAs - deterministic addresses that the program controls. Th
 - [Understanding Solana Slots](https://docs.solana.com/terminology#slot)
 
 ---
-

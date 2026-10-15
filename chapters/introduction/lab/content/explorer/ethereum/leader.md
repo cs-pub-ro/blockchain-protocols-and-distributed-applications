@@ -1,10 +1,13 @@
 # Blockchain Leader
 
-We will continue with the same [block](https://explorer.multiversx.com/blocks/cec3654a58245c7b548ffdb56254107b3a3a46903b5d191cf67ff126eaa17111) from the previous section (Block Height: 16826695).
+We will continue with the same [block](https://etherscan.io/block/24892306) from the previous section (Block Height: 24892306).
 
-![Leader](../../media/leader.png)
+![Leader](../../../media/eth_proposal.png)
 
-We can observe that the **Leader** (also called the **proposer**) is `Istari Vision`.
+We can observe that the **Leader** (also called the **proposer**) has address `0x8ae3fb1cacd9a3c44ff7789617f6ae1b700823610c0459f5e3dede3a3110133cbcf5bc613abbae951fb7c005e7e7cc27`.
+
+To find who the leader is, look for the *Proposed On* section, then, on the redirected page, look for the *Proposer Index*.
+
 The leader, also known as the block producer or validator, is responsible for performing several critical tasks within a consensus round:
 
 1. **Block Proposal:** The leader is tasked with proposing a new block containing a set of transactions. This block proposal is the first step in the process of reaching consensus. The leader selects transactions to include in the proposed block and creates a cryptographic hash of the block's contents.
@@ -17,12 +20,11 @@ The leader, also known as the block producer or validator, is responsible for pe
 
 Let's see some details about this proposer:
 
-![Istari Vision](../../media/istari.png)
+![Leader](../../../media/eth_leader.png)
 
-We can see his public key, version of the software for the blockchain node and other information we will further discuss.
+We can see the public key, and the total income.
 
 ## Practice
 
 - Open 3 different blocks in 3 different tabs. Observe that every time there is another leader.
 Why do you think the system is designed this way?
-- Open 3 different blocks in 3 different tabs on Ethereum [Explorer](https://etherscan.io/). Observe that every time there is another leader.

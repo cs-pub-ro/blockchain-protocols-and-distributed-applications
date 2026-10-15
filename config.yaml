@@ -131,20 +131,32 @@ docusaurus:
                     subsections:
                       - Solana Wallet: solana_wallet.md
           - Explorer:
-              path: chapters/introduction/lab/content/explorer
+              path: chapters/introduction/lab
               extra:
                 - ../../media/
-                # - ../../quiz/
               subsections:
-                - Time in Blockchain/: time.md
-                - Blocks/: blocks.md
-                - Block Leader/: leader.md
-                - Consensus Grup/: consensus.md
-                - Transactions/: transactions.md
-                - Blockchain Validators/: validators.md
-                - Blockchain Observers/: observers.md
-                - Devnet Blockchains/: devnet_testnet.md
-                - Solana Explorer/: solana_explorer.md
+                - Time in Blockchain: time.md
+                - Multiversx:
+                  path: content/explorer/multiversx
+                  subsections:
+                    - Blocks: blocks.md
+                    - Block Leader: leader.md
+                    - Consensus Group: consensus.md
+                    - Transactions: transactions.md
+                    - Blockchain Validators: validators.md
+                    - Blockchain Observers: observers.md
+                - Ethereum:
+                  path: content/explorer/ethereum
+                  subsections:
+                    - Blocks: blocks.md
+                    - Block Leader: leader.md
+                    - Transactions: transactions.md
+                    - Blockchain Validators: validators.md
+                - Solana:
+                  path: content/explorer
+                  subsections:
+                    - Solana Explorer: solana_explorer.md
+                - Devnet Blockchains: devnet_testnet.md
           - Tokens:
               path: chapters/tokens/lab/content
               subsections:
@@ -211,7 +223,6 @@ docusaurus:
               path: chapters/introduction/lab/content/observer/
               extra:
                 - ../../media/
-                # - ../../quiz/
               subsections:
                 - Observers: observer.md
           - APIs:
