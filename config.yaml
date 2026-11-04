@@ -158,28 +158,40 @@ docusaurus:
               subsections:
                 - Standards: standards.md
                 - Fungible & NonFungible Tokens: fungible-non-fungible.md
-                - Fungible: fungible.md
-                - NFT: nft.md
-                - Solana SPL Tokens: solana_spl_tokens.md
-                - Solana Metaplex NFTs: solana_metaplex_nfts.md
+                - Multiversx:
+                    path: multiversx
+                    subsections:
+                      - Fungible: fungible.md
+                      - NFT: nft.md
+                - Solana:
+                    path: solana
+                    subsections:
+                      - SPL Tokens: solana_spl_tokens.md
+                      - Metaplex NFTs: solana_metaplex_nfts.md
               extra:
                 - ../media/
           - Smart Contracts:
               path: chapters/smart-contracts/lab/content
               subsections:
-                - Prerequisites: prerequisites.md
-                - Empty SC: empty.md
-                - Empty Interaction: empty_interaction.md
-                - Adder SC: adder.md
-                - Adder Rust Interaction: adder_rust_interaction.md
-                - Mxpy Adder Deploy: mxpy_deploy.md
-                - Mxpy Adder Call: mxpy_sc_call.md
-                - Neversea SC: neversea.md
-                - Blackbox Testing: blackbox.md
-                - Interactor Testing: chain-sim.md
-                - Solana Program Prerequisites: solana_prerequisites.md
-                - Solana Program Hello World: solana_hello_world.md
-                - Solana Program Advanced State: solana_with_state.md
+                - Multiversx:
+                    path: multiversx
+                    subsections:
+                      - Prerequisites: prerequisites.md
+                      - Empty SC: empty.md
+                      - Empty Interaction: empty_interaction.md
+                      - Adder SC: adder.md
+                      - Adder Rust Interaction: adder_rust_interaction.md
+                      - Mxpy Adder Deploy: mxpy_deploy.md
+                      - Mxpy Adder Call: mxpy_sc_call.md
+                      - Neversea SC: neversea.md
+                      - Blackbox Testing: blackbox.md
+                      - Interactor Testing: chain-sim.md
+                - Solana:
+                    path: solana
+                    subsections:
+                      - Solana Program Prerequisites: solana_prerequisites.md
+                      - Solana Program Hello World: solana_hello_world.md
+                      - Solana Program Advanced State: solana_with_state.md
               extra:
                 - ../media/
           - Learning Rust:

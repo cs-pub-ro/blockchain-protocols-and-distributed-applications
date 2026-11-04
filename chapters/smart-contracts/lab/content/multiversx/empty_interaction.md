@@ -105,7 +105,7 @@ members = [
 ]
 ```
 
-Now, you can deploy your contract by running the following command in the `interactor directory.
+Now, you can deploy your contract by **running** the following command in the **interactor directory**.
 
 ```bash
 $ cargo run deploy

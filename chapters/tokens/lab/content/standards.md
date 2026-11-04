@@ -5,6 +5,7 @@ A crypto token is a representation of an asset or interest that has been tokeniz
 Crypto tokens are often used to raise funds for projects and are usually created, distributed, sold, and circulated through an initial coin offering (ICO) process, which involves a crowdfunding round.
 
 In this section we will discuss 2 different approaches of token implementation:
+
 * Ethereum Standard: ERC - Ethereum Request for Comments
 * MultiversX: ESDT - eStandard Digital Token
 
