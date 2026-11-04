@@ -16,7 +16,7 @@ To check the successful installation:
 
 ```bash
 $ mxpy --version
-MultiversX Python CLI (mxpy) 11.2.3
+MultiversX Python CLI (mxpy) 12.0.0
 ```
 
 If you encounter any errors, follow [the guide](https://docs.multiversx.com/sdk-and-tools/mxpy/installing-mxpy).
@@ -35,7 +35,7 @@ To check for successful installation:
 
 ```bash
 $ sc-meta --version
-multiversx-sc-meta 0.62.1
+multiversx-sc-meta 0.66.2
 ```
 
 If you encounter any errors, follow the guide [here](https://docs.multiversx.com/developers/toolchain-setup).

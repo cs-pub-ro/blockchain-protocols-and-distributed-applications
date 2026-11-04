@@ -49,7 +49,7 @@ mxpy token issue-non-fungible \
 ### Practice
 
 Let's create our first NFT collection. We will make a transaction to the testnet blockchain via **mxpy** tool.
-To install the tool check the [prerequisites section](../../../smart-contracts/lab/content/prerequisites.md).
+To install the tool check the [prerequisites section](/chapters/smart-contracts/lab/content/multiversx/prerequisites.md)
 
 ```bash
 mxpy token issue-non-fungible \
@@ -63,7 +63,7 @@ mxpy token issue-non-fungible \
 We called the `issueNonFungible` **built-in function**, signed the transaction with a **PEM** file for blockchain authentication, and used the **testnet** proxy. This transaction does an automated payment of $0.05$ EGLD.
 
 Let's check our NFT collection on blockchain:
-![BPDA_NFT](../media/bpda_nft.png)
+![BPDA_NFT](../../media/bpda_nft.png)
 
 Observe that the **Collection Name** (which is also known as **token ID**) is `BPDA-ee1eda`. This is formed using the ticker provided,"-" and 6 random hex numbers.
 
@@ -222,7 +222,7 @@ mxpy tx new \
 ## Branding
 
 Here is `SubcarpatiOGs` NFT Collection.
-![Stramosi NFT](../media/stramosi.png)
+![Stramosi NFT](../../media/stramosi.png)
 
 Observe that there are Social links, a Description and you can even see a Logo.
 
