@@ -31,7 +31,7 @@ pub trait Adder {
 
 We notice 4 functions:
 
-* **sum** - this is a global variable, a `SingleValueMapper` (a single value) of type BigUint (unsigned integer);
+* **sum** - this is a global variable, a `SingleValueMapper` (a **Multiversx** Map object, that maps a single key to a single value) of type BigUint (unsigned integer);
 * **init** - the constructor;
 * **add** - function that increments the global variable (`sum`) with the `value` parameter;
 * **upgrade** - function executed when upgrading the contract.
